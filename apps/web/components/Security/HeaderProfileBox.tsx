@@ -48,6 +48,9 @@ export const HeaderProfileBox = ({ primaryColor = '' }: { primaryColor?: string 
   const { userRoles, rights } = useAdminStatus()
   const org = useOrg() as any
   const { t, i18n } = useTranslation()
+  // People recognise themselves by name; the handle is only a fallback.
+  const user = session?.data?.user
+  const displayName = [user?.first_name, user?.last_name].filter(Boolean).join(' ') || user?.username
   const { track } = useLHAnalytics()
   const colors = getMenuColorClasses(primaryColor)
 
@@ -190,7 +193,7 @@ export const HeaderProfileBox = ({ primaryColor = '' }: { primaryColor?: string 
                   <UserAvatar border="border-2" rounded="rounded-lg" width={30} shadow={primaryColor ? '' : undefined} />
                   <div className="flex flex-col items-start space-y-0">
                     <div className="flex items-center space-x-2">
-                      <p className={`text-sm font-semibold capitalize ${colors.profileName}`}>{session.data.user.username}</p>
+                      <p className={`text-sm font-semibold ${colors.profileName}`}>{displayName}</p>
                       {userRoleInfo && userRoleInfo.name !== 'USER' && (
                         <Tooltip 
                           content={userRoleInfo.description}
@@ -228,8 +231,8 @@ export const HeaderProfileBox = ({ primaryColor = '' }: { primaryColor?: string 
                   <div className="flex items-center space-x-2">
                     <UserAvatar border="border-2" rounded="rounded-full" width={24} />
                     <div>
-                      <p className="text-sm font-medium">{session.data.user.username}</p>
-                      <p className="text-xs text-gray-500 capitalize">{session.data.user.email}</p>
+                      <p className="text-sm font-medium">{displayName}</p>
+                      <p className="text-xs text-gray-500">{session.data.user.email}</p>
                     </div>
                   </div>
                 </DropdownMenuLabel>
