@@ -243,11 +243,17 @@
 @layer utilities {
   /*
    * Primary actions: anything you can press that the product painted black
-   * (or near-black) becomes brand blue. Surfaces that are dark on purpose —
-   * video letterboxes, image overlays, tooltips — are not buttons and keep
-   * the ink colour.
+   * (or near-black) becomes brand blue — whether the colour sits on the
+   * pressable element itself or on the face directly inside it. Surfaces that
+   * are dark on purpose — video letterboxes, image overlays, tooltips — are
+   * neither, and keep the ink colour.
    */
-  :is(button, a, [role='button']):is(
+  :is(button, a, [role='button'], [class*='cursor-pointer'], [class*='hover:']):is(
+      .bg-black, .bg-neutral-950, .bg-neutral-900, .bg-neutral-800,
+      .bg-gray-950, .bg-gray-900, .bg-gray-800,
+      .bg-slate-900, .bg-slate-800, .bg-zinc-950, .bg-zinc-900
+    ),
+  :is(button, a, [role='button']) > :is(
       .bg-black, .bg-neutral-950, .bg-neutral-900, .bg-neutral-800,
       .bg-gray-950, .bg-gray-900, .bg-gray-800,
       .bg-slate-900, .bg-slate-800, .bg-zinc-950, .bg-zinc-900
@@ -256,11 +262,16 @@
     color: #fff;
   }
 
-  :is(button, a, [role='button']):is(
+  :is(button, a, [role='button'], [class*='cursor-pointer'], [class*='hover:']):is(
       .bg-black, .bg-neutral-950, .bg-neutral-900, .bg-neutral-800,
       .bg-gray-950, .bg-gray-900, .bg-gray-800,
       .bg-slate-900, .bg-slate-800, .bg-zinc-950, .bg-zinc-900
-    ):not(:disabled):hover {
+    ):not(:disabled):hover,
+  :is(button, a, [role='button']):not(:disabled):hover > :is(
+      .bg-black, .bg-neutral-950, .bg-neutral-900, .bg-neutral-800,
+      .bg-gray-950, .bg-gray-900, .bg-gray-800,
+      .bg-slate-900, .bg-slate-800, .bg-zinc-950, .bg-zinc-900
+    ) {
     background-color: var(--color-blue-700);
   }
 
@@ -268,7 +279,12 @@
       .bg-black, .bg-neutral-950, .bg-neutral-900, .bg-neutral-800,
       .bg-gray-950, .bg-gray-900, .bg-gray-800,
       .bg-slate-900, .bg-slate-800, .bg-zinc-950, .bg-zinc-900
-    ):disabled {
+    ):disabled,
+  :is(button, a, [role='button']):disabled > :is(
+      .bg-black, .bg-neutral-950, .bg-neutral-900, .bg-neutral-800,
+      .bg-gray-950, .bg-gray-900, .bg-gray-800,
+      .bg-slate-900, .bg-slate-800, .bg-zinc-950, .bg-zinc-900
+    ) {
     background-color: var(--color-gray-300);
     color: var(--color-gray-600);
   }
