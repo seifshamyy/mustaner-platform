@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { removeCourse, startCourse } from '@services/courses/activity'
 import { revalidateTags, asArray } from '@services/utils/ts/requests'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import { useLHSession } from '@components/Contexts/LHSessionContext'
 import { getUriWithOrg } from '@services/config/config'
 import { getOffersByResource } from '@services/payments/offers'
@@ -36,6 +37,7 @@ interface Course {
   chapters?: Array<{
     name: string
     activities: Array<{
+      id?: number
       activity_uuid: string
       name: string
       activity_type: string
@@ -85,6 +87,20 @@ function CoursesActions({ courseuuid, orgslug, course, trailData }: CourseAction
     staleTime: 60_000,
   });
   const linkedOffers: any[] = asArray(offersResult);
+
+  // "Continue learning" lands on the first lesson this learner hasn't
+  // completed (same completion rule as CourseProgress), or the first lesson.
+  const learnerRun = trailData?.runs?.find(
+    (run: any) => run.course?.course_uuid?.replace('course_', '') === cleanCourseUuid
+  )
+  const courseActivities = (course.chapters ?? []).flatMap((chapter) => chapter.activities ?? [])
+  const nextActivity =
+    courseActivities.find(
+      (activity) => !learnerRun?.steps?.some((step: any) => step.activity_id === activity.id)
+    ) ?? courseActivities[0]
+  const continueHref = nextActivity
+    ? getUriWithOrg(orgslug, `/course/${cleanCourseUuid}/activity/${nextActivity.activity_uuid.replace('activity_', '')}`)
+    : null
 
   const handleCourseAction = async () => {
     if (!session.data?.user) {
@@ -465,7 +481,25 @@ function CoursesActions({ courseuuid, orgslug, course, trailData }: CourseAction
         {/* Progress Section */}
         {renderProgressSection()}
 
-        {/* Start/Leave Course Button */}
+        {/* Enrolled: continue where they left off; leaving is a quiet secondary action. */}
+        {isStarted && continueHref ? (
+          <>
+            <Link
+              href={continueHref}
+              className="w-full py-3 rounded-lg nice-shadow font-semibold transition-colors flex items-center justify-center gap-2 bg-blue-600 text-white hover:bg-blue-700"
+            >
+              <span>{t('courses.continue_learning')}</span>
+              <ArrowRight className="w-5 h-5 rtl:-scale-x-100" />
+            </Link>
+            <button
+              onClick={handleCourseAction}
+              disabled={isActionLoading}
+              className="w-full text-sm font-medium text-neutral-500 hover:text-red-600 transition-colors disabled:opacity-60"
+            >
+              {t('courses.leave_course')}
+            </button>
+          </>
+        ) : (
         <button
           onClick={handleCourseAction}
           disabled={isActionLoading}
@@ -482,6 +516,7 @@ function CoursesActions({ courseuuid, orgslug, course, trailData }: CourseAction
             renderActionButton(isStarted ? 'leave' : 'start')
           )}
         </button>
+        )}
 
         {/* Contributor Button */}
         {renderContributorButton()}
