@@ -31,6 +31,7 @@ import { getUriWithOrg } from '@services/config/config'
 import { removeCoursePrefix } from '@components/Objects/Thumbnails/CourseThumbnail'
 import UserAvatar from '@components/Objects/UserAvatar'
 import { useLHAnalytics, AnalyticsEvent } from '@services/analytics'
+import EmptyIllustration from '@components/Objects/EmptyIllustration'
 
 /**
  * Discussions store their body as a tiptap/ProseMirror JSON document
@@ -719,9 +720,7 @@ function LoadingGrid() {
 function EmptyState({ query, t }: { query: string; t: (_k: string, _o?: any) => string }) {
   return (
     <div className="flex flex-col items-center justify-center py-16 text-center">
-      <div className="mb-4 p-4 bg-black/5 rounded-full">
-        <SearchIcon className="w-8 h-8 text-black/40" />
-      </div>
+      <EmptyIllustration kind="search" />
       <h3 className="text-lg font-medium text-black/80 mb-2">
         {t('search.no_results_found')}
       </h3>
@@ -735,9 +734,7 @@ function EmptyState({ query, t }: { query: string; t: (_k: string, _o?: any) => 
 function StartState({ label }: { label: string }) {
   return (
     <div className="flex flex-col items-center justify-center py-20 text-center">
-      <div className="mb-4 p-4 bg-black/5 rounded-full">
-        <SearchIcon className="w-8 h-8 text-black/40" />
-      </div>
+      <EmptyIllustration kind="search" />
       <h3 className="text-lg font-medium text-black/70">{label}</h3>
     </div>
   )

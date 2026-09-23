@@ -27,6 +27,7 @@ import Modal from '@components/Objects/StyledElements/Modal/Modal'
 import { searchMatchesAny } from '@/lib/search/normalize'
 import { useLHAnalytics, AnalyticsEvent } from '@services/analytics'
 import CatalogPagination, { useCatalogPagination } from '@components/Objects/Catalog/CatalogPagination'
+import EmptyIllustration from '@components/Objects/EmptyIllustration'
 
 interface BoardListClientProps {
   org_id: number
@@ -366,7 +367,7 @@ export default function BoardListClient({ org_id, orgslug }: BoardListClientProp
             {filteredBoards.length === 0 && searchQuery && (
               <div className="col-span-full flex justify-center items-center py-8">
                 <div className="text-center">
-                  <Search className="w-12 h-12 text-gray-300 mx-auto mb-4" />
+                  <EmptyIllustration kind="search" size="sm" />
                   <h2 className="text-xl font-semibold text-gray-600 mb-2">{t('boards.no_boards_found')}</h2>
                   <p className="text-gray-400">{t('boards.try_different_search')}</p>
                 </div>

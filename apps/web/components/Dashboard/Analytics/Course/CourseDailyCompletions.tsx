@@ -66,15 +66,15 @@ export default function CourseDailyCompletions({
                 <AreaChart data={rows}>
                   <defs>
                     <linearGradient id="completionsModalGrad" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#10b981" stopOpacity={0.3} />
-                      <stop offset="100%" stopColor="#10b981" stopOpacity={0.02} />
+                      <stop offset="0%" stopColor="#007a57" stopOpacity={0.3} />
+                      <stop offset="100%" stopColor="#007a57" stopOpacity={0.02} />
                     </linearGradient>
                   </defs>
                   <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" vertical={false} />
                   <XAxis dataKey="date" tick={{ fontSize: 11 }} stroke="#9ca3af" tickFormatter={shortDate} axisLine={false} tickLine={false} />
                   <YAxis tick={{ fontSize: 11 }} stroke="#9ca3af" tickFormatter={kFormatter} axisLine={false} tickLine={false} allowDecimals={false} />
                   <Tooltip contentStyle={{ borderRadius: 12, border: '1px solid #f3f4f6', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
-                  <Area type="monotone" dataKey="completions" stroke="#10b981" strokeWidth={2.5} fill="url(#completionsModalGrad)" dot={false} />
+                  <Area type="monotone" dataKey="completions" stroke="#007a57" strokeWidth={2.5} fill="url(#completionsModalGrad)" dot={false} />
                 </AreaChart>
               </ResponsiveContainer>
             </div>
@@ -97,13 +97,13 @@ export default function CourseDailyCompletions({
               <AreaChart data={rows}>
                 <defs>
                   <linearGradient id="completionsMiniGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#10b981" stopOpacity={0.2} />
-                    <stop offset="100%" stopColor="#10b981" stopOpacity={0.02} />
+                    <stop offset="0%" stopColor="#007a57" stopOpacity={0.2} />
+                    <stop offset="100%" stopColor="#007a57" stopOpacity={0.02} />
                   </linearGradient>
                 </defs>
                 <XAxis dataKey="date" tick={{ fontSize: 9 }} stroke="#9ca3af" tickFormatter={shortDate} axisLine={false} tickLine={false} />
                 <Tooltip contentStyle={{ borderRadius: 12, border: '1px solid #f3f4f6', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
-                <Area type="monotone" dataKey="completions" stroke="#10b981" strokeWidth={2} fill="url(#completionsMiniGrad)" dot={false} />
+                <Area type="monotone" dataKey="completions" stroke="#007a57" strokeWidth={2} fill="url(#completionsMiniGrad)" dot={false} />
               </AreaChart>
             </ResponsiveContainer>
           </div>

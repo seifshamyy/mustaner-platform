@@ -50,7 +50,7 @@ export default function CourseAvgSessionDuration({
           formatter={(value = 0) => [`${value} min ${t('analytics.course_analytics.units.avg_per_learner')}`, '']}
           contentStyle={{ borderRadius: 12, border: '1px solid #f3f4f6', fontSize: 13 }}
         />
-        <Bar dataKey="minutes" name={t('analytics.course_analytics.avg_session_duration.minutes_label')} fill="#8b5cf6" radius={[4, 4, 0, 0]} />
+        <Bar dataKey="minutes" name={t('analytics.course_analytics.avg_session_duration.minutes_label')} fill="#00697e" radius={[4, 4, 0, 0]} />
       </BarChart>
     </ResponsiveContainer>
   )
@@ -70,7 +70,7 @@ export default function CourseAvgSessionDuration({
           formatter={(value = 0) => [`${value} min ${t('analytics.course_analytics.units.avg_per_learner')}`, '']}
           contentStyle={{ borderRadius: 12, border: '1px solid #f3f4f6', fontSize: 13 }}
         />
-        <Bar dataKey="minutes" name={t('analytics.course_analytics.avg_session_duration.minutes_label')} fill="#8b5cf6" radius={[6, 6, 0, 0]} />
+        <Bar dataKey="minutes" name={t('analytics.course_analytics.avg_session_duration.minutes_label')} fill="#00697e" radius={[6, 6, 0, 0]} />
       </BarChart>
     </ResponsiveContainer>
   )

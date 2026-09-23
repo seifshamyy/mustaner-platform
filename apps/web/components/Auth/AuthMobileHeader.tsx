@@ -1,8 +1,6 @@
 'use client'
 import React from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
-import learnhouseIcon from 'public/learnhouse_bigicon_1.png'
 import { getOrgLogoMediaDirectory, getOrgAuthBackgroundMediaDirectory } from '@services/media/media'
 import { getUriWithOrg } from '@services/config/config'
 
@@ -19,14 +17,12 @@ export default function AuthMobileHeader({ org }: AuthMobileHeaderProps) {
     unsplash_photographer_url = '',
     unsplash_photo_url = '',
   } = authBranding
-  const UNSPLASH_UTM = '?utm_source=LearnHouse&utm_medium=referral'
+  const UNSPLASH_UTM = '?utm_source=Mustaner&utm_medium=referral'
   const withUtm = (url: string) => (url ? `${url}${UNSPLASH_UTM}` : '')
 
   const getBackgroundStyle = (): React.CSSProperties => {
     if (background_type === 'gradient' || !background_image) {
-      return {
-        background: 'linear-gradient(041.61deg, #202020 7.15%, #000000 90.96%)',
-      }
+      return { background: '#ffffff' }
     }
     if (background_type === 'custom' && background_image) {
       return {
@@ -42,16 +38,14 @@ export default function AuthMobileHeader({ org }: AuthMobileHeaderProps) {
         backgroundPosition: 'center',
       }
     }
-    return {
-      background: 'linear-gradient(041.61deg, #202020 7.15%, #000000 90.96%)',
-    }
+    return { background: '#ffffff' }
   }
 
   const hasCustomBackground = background_type !== 'gradient' && background_image
 
   return (
     <div
-      className="relative flex items-center gap-4 px-5 py-4 rounded-b-2xl overflow-hidden"
+      className={`relative flex items-center gap-4 px-5 py-4 overflow-hidden ${hasCustomBackground ? '' : 'border-b border-neutral-200'}`}
       style={getBackgroundStyle()}
     >
       {hasCustomBackground && (
@@ -59,7 +53,7 @@ export default function AuthMobileHeader({ org }: AuthMobileHeaderProps) {
       )}
 
       <Link prefetch href={getUriWithOrg(org?.slug, '/')} className="relative z-10">
-        <div className="w-10 h-10 rounded-lg ring-1 ring-inset ring-white/10 bg-white flex items-center justify-center overflow-hidden shrink-0">
+        <div className="w-10 h-10 rounded-lg ring-1 ring-inset ring-neutral-200 bg-white flex items-center justify-center overflow-hidden shrink-0">
           {org?.logo_image ? (
             <img
               src={getOrgLogoMediaDirectory(org.org_uuid, org.logo_image)}
@@ -67,20 +61,13 @@ export default function AuthMobileHeader({ org }: AuthMobileHeaderProps) {
               className="w-full h-full object-contain p-1.5"
             />
           ) : (
-            <Image
-              quality={100}
-              width={40}
-              height={40}
-              src={learnhouseIcon}
-              alt="LearnHouse"
-              className="object-contain"
-            />
+            <img src="/brand/mark.png" alt="Mustaner" className="w-full h-full object-contain" />
           )}
         </div>
       </Link>
 
-      <span className="relative z-10 font-semibold text-white text-lg truncate">
-        {org?.name || 'LearnHouse'}
+      <span className={`relative z-10 font-semibold text-lg truncate ${hasCustomBackground ? 'text-white' : 'text-neutral-900'}`}>
+        {org?.name || 'Mustaner'}
       </span>
 
       {/* Unsplash attribution (required by Unsplash API guidelines) */}

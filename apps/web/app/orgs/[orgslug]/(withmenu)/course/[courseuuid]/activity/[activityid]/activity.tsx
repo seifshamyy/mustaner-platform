@@ -588,7 +588,7 @@ function ActivityClient(props: ActivityClientProps) {
                                 cx="16"
                                 cy="16"
                                 r="14"
-                                stroke="#10b981"
+                                stroke="#007a57"
                                 strokeWidth="3"
                                 fill="none"
                                 strokeLinecap="round"
@@ -1843,7 +1843,7 @@ function AssignmentTools(props: {
               recycle={false}
               gravity={0.18}
               tweenDuration={6000}
-              colors={['#10b981', '#14b8a6', '#06b6d4', '#fbbf24', '#f59e0b', '#ec4899']}
+              colors={['#007a57', '#14b8a6', '#06b6d4', '#fbbf24', '#f59e0b', '#ec4899']}
             />
           </div>
         )}

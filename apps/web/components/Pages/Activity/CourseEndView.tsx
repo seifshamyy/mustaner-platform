@@ -2,7 +2,7 @@ import React, { useMemo, useEffect, useState, useRef } from 'react';
 import toast from 'react-hot-toast';
 import dynamic from 'next/dynamic';
 const ReactConfetti = dynamic(() => import('react-confetti'), { ssr: false });
-import { Trophy, ArrowLeft, BookOpen, Target, Download, Shield } from 'lucide-react';
+import { ArrowLeft, BookOpen, Target, Download, Shield } from 'lucide-react';
 import Link from 'next/link';
 import { getUriWithOrg, getAbsoluteUriWithOrg } from '@services/config/config';
 import { getCourseThumbnailMediaDirectory } from '@services/media/media';
@@ -250,7 +250,7 @@ const CourseEndView: React.FC<CourseEndViewProps> = ({
             height={height}
             numberOfPieces={200}
             recycle={false}
-            colors={['#6366f1', '#10b981', '#3b82f6']}
+            colors={['#007a57', '#00697e', '#0055ac']}
           />
         </div>
         
@@ -268,9 +268,7 @@ const CourseEndView: React.FC<CourseEndViewProps> = ({
               />
             )}
             
-            <div className="bg-emerald-100 p-4 rounded-full">
-              <Trophy className="w-16 h-16 text-emerald-600" />
-            </div>
+            <img src="/illustrations/course-complete.webp" alt="" className="h-40 w-auto" />
           </div>
           
           <h1 className="text-4xl font-bold text-gray-900">

@@ -83,7 +83,7 @@ class TestEmailsService:
         call = send_email.call_args.kwargs
         assert "https://platform.test/organizations" in call["body"]
         # Org-less keeps the LearnHouse-branded subject + Academy footer, no org logo.
-        assert "Welcome to LearnHouse" in call["subject"]
+        assert "Welcome to Mustaner" in call["subject"]
         assert "LearnHouse Academy" in call["body"]
         assert "<img" not in call["body"]
 
@@ -99,7 +99,7 @@ class TestEmailsService:
         call = send_email.call_args.kwargs
         # Subject/body name the org (html-escaped), not LearnHouse.
         assert "Acme &amp; Co" in call["subject"]
-        assert "Welcome to LearnHouse" not in call["subject"]
+        assert "Welcome to Mustaner" not in call["subject"]
         assert "Acme &amp; Co" in call["body"]
         # Org logo replaces the mark; Academy link is gone; powered-by remains.
         assert '<img src="https://api.test/content/orgs/org_uuid/logos/logo.png"' in call["body"]

@@ -941,7 +941,7 @@ def _support_url() -> str:
     The old `{platform}/dashboard/support` path 404s (the platform dashboard is
     gone on .io), so use a support mailto that can never break.
     """
-    return "mailto:hello@learnhouse.app"
+    return "mailto:contact@mustaner.com"
 
 
 def _render_magic_link_error(title: str, message: str) -> HTMLResponse:
@@ -956,7 +956,7 @@ def _render_magic_link_error(title: str, message: str) -> HTMLResponse:
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Sign-in link — LearnHouse</title>
+<title>Sign-in link — Mustaner</title>
 <style>
   body {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
          background: #f6f7f9; color: #111827; margin: 0;

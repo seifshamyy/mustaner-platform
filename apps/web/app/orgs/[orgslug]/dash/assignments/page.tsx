@@ -17,7 +17,6 @@ import {
   GalleryVerticalEnd,
   GraduationCap,
   Hash,
-  Inbox,
   Layers2,
   Percent,
   Plus,
@@ -32,6 +31,7 @@ import Link from 'next/link';
 import React, { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next';
 import NewAssignmentModal from './_components/NewAssignmentModal';
+import EmptyIllustration from '@components/Objects/EmptyIllustration'
 
 type StatusFilter = 'all' | 'published' | 'drafts';
 
@@ -44,7 +44,7 @@ const BADGE_BASE =
   'flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold ring-1 ring-inset whitespace-nowrap'
 
 const BADGE_VIOLET =
-  'bg-gradient-to-b from-violet-50 to-violet-100 text-violet-700 ring-violet-300/40 shadow-[0_1px_2px_rgba(139,92,246,0.18),inset_0_1px_0_rgba(255,255,255,0.85)]'
+  'bg-gradient-to-b from-violet-50 to-violet-100 text-violet-700 ring-violet-300/40 shadow-[0_1px_2px_rgba(0,85,172,0.18),inset_0_1px_0_rgba(255,255,255,0.85)]'
 const BADGE_BLUE =
   'bg-gradient-to-b from-blue-50 to-blue-100 text-blue-700 ring-blue-300/40 shadow-[0_1px_2px_rgba(59,130,246,0.18),inset_0_1px_0_rgba(255,255,255,0.85)]'
 const BADGE_EMERALD =
@@ -324,9 +324,7 @@ function AssignmentsHome() {
 
         {courseAssignments && filteredCourseRows.length === 0 && (
           <div className='flex flex-col items-center justify-center py-16 text-gray-400 gap-3'>
-            <div className='bg-gray-100 rounded-2xl p-4'>
-              <Inbox size={28} />
-            </div>
+            <EmptyIllustration kind="assignments" className="mb-2" />
             <p className='text-sm font-semibold'>
               {searchQuery || statusFilter !== 'all' || autoGradedOnly
                 ? t('dashboard.assignments.home.empty_filtered')

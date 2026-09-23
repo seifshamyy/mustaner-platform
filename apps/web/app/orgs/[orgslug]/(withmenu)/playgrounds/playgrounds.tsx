@@ -18,6 +18,7 @@ import FeatureGate from '@components/Dashboard/Shared/FeatureGate/FeatureGate'
 import useAdminStatus from '@components/Hooks/useAdminStatus'
 import { searchMatchesAny } from '@/lib/search/normalize'
 import CatalogPagination, { useCatalogPagination } from '@components/Objects/Catalog/CatalogPagination'
+import EmptyIllustration from '@components/Objects/EmptyIllustration'
 
 interface PlaygroundsClientProps {
   orgslug: string
@@ -159,7 +160,7 @@ export default function PlaygroundsClient({
 
               {filtered.length === 0 && searchQuery && (
                 <div className="col-span-full flex flex-col justify-center items-center py-12 px-4">
-                  <Search className="w-12 h-12 text-gray-300 mb-4" />
+                  <EmptyIllustration kind="search" size="sm" />
                   <h2 className="text-xl font-semibold text-gray-600 mb-2">{t('playgrounds.no_results_for')} &quot;{searchQuery}&quot;</h2>
                   <p className="text-gray-400">{t('playgrounds.try_different_search')}</p>
                 </div>
@@ -167,9 +168,7 @@ export default function PlaygroundsClient({
 
               {playgrounds.length === 0 && !searchQuery && (
                 <div className="col-span-full flex flex-col justify-center items-center py-12 px-4 border-2 border-dashed border-gray-100 rounded-2xl bg-gray-50/30">
-                  <div className="p-4 bg-white rounded-full nice-shadow mb-4">
-                    <Cube className="w-8 h-8 text-gray-300" />
-                  </div>
+                  <EmptyIllustration kind="playgrounds" />
                   <h1 className="text-xl font-bold text-gray-600 mb-2">{t('playgrounds.no_playgrounds_yet')}</h1>
                   <p className="text-md text-gray-400 mb-6 max-w-xs text-center">
                     {t('playgrounds.playgrounds_description')}

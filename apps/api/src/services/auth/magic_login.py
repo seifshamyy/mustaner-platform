@@ -124,11 +124,11 @@ def send_magic_login_email(
     """
     return send_email(
         to=email,
-        subject="Your LearnHouse login link",
+        subject="Your Mustaner login link",
         body=_email_layout(
-            title="Sign in to LearnHouse",
+            title="Sign in to Mustaner",
             body_content=body_content,
-            footer_note="This link signs you in to your LearnHouse account.",
+            footer_note="This link signs you in to your Mustaner account.",
         ),
     )
 

@@ -1,0 +1,270 @@
+/*
+ * Mustaner brand layer.
+ *
+ * The product's components are written against Tailwind's stock palette
+ * (gray, neutral, black, blue, violet…). Instead of rewriting thousands of
+ * class names, this file redefines the palette itself, so every component
+ * renders in Mustaner's identity:
+ *
+ *   neutrals (gray, neutral, slate, zinc, stone) → ink-tinted greys
+ *   black                                         → Mustaner ink #0F2233
+ *   blue, sky                                     → brand blue   #0055AC
+ *   indigo, violet, purple, fuchsia (AI accents)  → brand teal   #00697E
+ *   green, emerald, lime, teal, cyan              → brand green  #007A57
+ *   red, orange, amber, yellow, rose, pink        → unchanged (they carry meaning)
+ *
+ * Colours were sampled from the logo. Geometry follows the square-Kufic
+ * wordmark: every corner is 3px and nothing is a pill.
+ */
+
+@theme {
+  --font-sans: var(--font-default), 'Segoe UI', system-ui, -apple-system, sans-serif;
+
+  --radius-xs: 3px;
+  --radius-xl: 3px;
+  --radius-2xl: 3px;
+  --radius-3xl: 3px;
+  --radius-4xl: 3px;
+
+  --color-black: #0f2233;
+
+  --color-gray-50: #f7f9fb;
+  --color-gray-100: #f1f5f8;
+  --color-gray-200: #e4eaf0;
+  --color-gray-300: #d3dce5;
+  --color-gray-400: #9fb0bf;
+  --color-gray-500: #74879a;
+  --color-gray-600: #56697b;
+  --color-gray-700: #3e4f5e;
+  --color-gray-800: #273849;
+  --color-gray-900: #172a3b;
+  --color-gray-950: #0f2233;
+
+  --color-neutral-50: #f7f9fb;
+  --color-neutral-100: #f1f5f8;
+  --color-neutral-200: #e4eaf0;
+  --color-neutral-300: #d3dce5;
+  --color-neutral-400: #9fb0bf;
+  --color-neutral-500: #74879a;
+  --color-neutral-600: #56697b;
+  --color-neutral-700: #3e4f5e;
+  --color-neutral-800: #273849;
+  --color-neutral-900: #172a3b;
+  --color-neutral-950: #0f2233;
+
+  --color-slate-50: #f7f9fb;
+  --color-slate-100: #f1f5f8;
+  --color-slate-200: #e4eaf0;
+  --color-slate-300: #d3dce5;
+  --color-slate-400: #9fb0bf;
+  --color-slate-500: #74879a;
+  --color-slate-600: #56697b;
+  --color-slate-700: #3e4f5e;
+  --color-slate-800: #273849;
+  --color-slate-900: #172a3b;
+  --color-slate-950: #0f2233;
+
+  --color-zinc-50: #f7f9fb;
+  --color-zinc-100: #f1f5f8;
+  --color-zinc-200: #e4eaf0;
+  --color-zinc-300: #d3dce5;
+  --color-zinc-400: #9fb0bf;
+  --color-zinc-500: #74879a;
+  --color-zinc-600: #56697b;
+  --color-zinc-700: #3e4f5e;
+  --color-zinc-800: #273849;
+  --color-zinc-900: #172a3b;
+  --color-zinc-950: #0f2233;
+
+  --color-stone-50: #f7f9fb;
+  --color-stone-100: #f1f5f8;
+  --color-stone-200: #e4eaf0;
+  --color-stone-300: #d3dce5;
+  --color-stone-400: #9fb0bf;
+  --color-stone-500: #74879a;
+  --color-stone-600: #56697b;
+  --color-stone-700: #3e4f5e;
+  --color-stone-800: #273849;
+  --color-stone-900: #172a3b;
+  --color-stone-950: #0f2233;
+
+  --color-blue-50: #eef4fb;
+  --color-blue-100: #dde9f7;
+  --color-blue-200: #bcd3ef;
+  --color-blue-300: #8fb5e2;
+  --color-blue-400: #5a8fd1;
+  --color-blue-500: #2a6fc0;
+  --color-blue-600: #0055ac;
+  --color-blue-700: #004992;
+  --color-blue-800: #003d79;
+  --color-blue-900: #073462;
+  --color-blue-950: #06223f;
+
+  --color-sky-50: #eef4fb;
+  --color-sky-100: #dde9f7;
+  --color-sky-200: #bcd3ef;
+  --color-sky-300: #8fb5e2;
+  --color-sky-400: #5a8fd1;
+  --color-sky-500: #2a6fc0;
+  --color-sky-600: #0055ac;
+  --color-sky-700: #004992;
+  --color-sky-800: #003d79;
+  --color-sky-900: #073462;
+  --color-sky-950: #06223f;
+
+  --color-indigo-50: #edf7f8;
+  --color-indigo-100: #d4ecef;
+  --color-indigo-200: #a9d8de;
+  --color-indigo-300: #74bcc7;
+  --color-indigo-400: #3a98a8;
+  --color-indigo-500: #0f7d90;
+  --color-indigo-600: #00697e;
+  --color-indigo-700: #005868;
+  --color-indigo-800: #064754;
+  --color-indigo-900: #083b46;
+  --color-indigo-950: #04262e;
+
+  --color-violet-50: #edf7f8;
+  --color-violet-100: #d4ecef;
+  --color-violet-200: #a9d8de;
+  --color-violet-300: #74bcc7;
+  --color-violet-400: #3a98a8;
+  --color-violet-500: #0f7d90;
+  --color-violet-600: #00697e;
+  --color-violet-700: #005868;
+  --color-violet-800: #064754;
+  --color-violet-900: #083b46;
+  --color-violet-950: #04262e;
+
+  --color-purple-50: #edf7f8;
+  --color-purple-100: #d4ecef;
+  --color-purple-200: #a9d8de;
+  --color-purple-300: #74bcc7;
+  --color-purple-400: #3a98a8;
+  --color-purple-500: #0f7d90;
+  --color-purple-600: #00697e;
+  --color-purple-700: #005868;
+  --color-purple-800: #064754;
+  --color-purple-900: #083b46;
+  --color-purple-950: #04262e;
+
+  --color-fuchsia-50: #edf7f8;
+  --color-fuchsia-100: #d4ecef;
+  --color-fuchsia-200: #a9d8de;
+  --color-fuchsia-300: #74bcc7;
+  --color-fuchsia-400: #3a98a8;
+  --color-fuchsia-500: #0f7d90;
+  --color-fuchsia-600: #00697e;
+  --color-fuchsia-700: #005868;
+  --color-fuchsia-800: #064754;
+  --color-fuchsia-900: #083b46;
+  --color-fuchsia-950: #04262e;
+
+  --color-teal-50: #edf7f8;
+  --color-teal-100: #d4ecef;
+  --color-teal-200: #a9d8de;
+  --color-teal-300: #74bcc7;
+  --color-teal-400: #3a98a8;
+  --color-teal-500: #0f7d90;
+  --color-teal-600: #00697e;
+  --color-teal-700: #005868;
+  --color-teal-800: #064754;
+  --color-teal-900: #083b46;
+  --color-teal-950: #04262e;
+
+  --color-cyan-50: #edf7f8;
+  --color-cyan-100: #d4ecef;
+  --color-cyan-200: #a9d8de;
+  --color-cyan-300: #74bcc7;
+  --color-cyan-400: #3a98a8;
+  --color-cyan-500: #0f7d90;
+  --color-cyan-600: #00697e;
+  --color-cyan-700: #005868;
+  --color-cyan-800: #064754;
+  --color-cyan-900: #083b46;
+  --color-cyan-950: #04262e;
+
+  --color-green-50: #edf8f3;
+  --color-green-100: #d3eee3;
+  --color-green-200: #a7dcc6;
+  --color-green-300: #6fc2a2;
+  --color-green-400: #35a27b;
+  --color-green-500: #108864;
+  --color-green-600: #007a57;
+  --color-green-700: #006749;
+  --color-green-800: #04533c;
+  --color-green-900: #064432;
+  --color-green-950: #03291e;
+
+  --color-emerald-50: #edf8f3;
+  --color-emerald-100: #d3eee3;
+  --color-emerald-200: #a7dcc6;
+  --color-emerald-300: #6fc2a2;
+  --color-emerald-400: #35a27b;
+  --color-emerald-500: #108864;
+  --color-emerald-600: #007a57;
+  --color-emerald-700: #006749;
+  --color-emerald-800: #04533c;
+  --color-emerald-900: #064432;
+  --color-emerald-950: #03291e;
+
+  --color-lime-50: #edf8f3;
+  --color-lime-100: #d3eee3;
+  --color-lime-200: #a7dcc6;
+  --color-lime-300: #6fc2a2;
+  --color-lime-400: #35a27b;
+  --color-lime-500: #108864;
+  --color-lime-600: #007a57;
+  --color-lime-700: #006749;
+  --color-lime-800: #04533c;
+  --color-lime-900: #064432;
+  --color-lime-950: #03291e;
+
+  --color-brand-green: #007a57;
+  --color-brand-teal: #00697e;
+  --color-brand-blue: #0055ac;
+  --color-ink: #0f2233;
+}
+
+:root {
+  --font-arabic: var(--font-default);
+  --mustaner-gradient: linear-gradient(90deg, #007a57 0%, #007a57 30%, #00697e 52%, #0055ac 74%, #0055ac 100%);
+}
+
+/*
+ * Squares, not pills: the wordmark has no curves, neither does the product.
+ * Deliberately outside any layer — Tailwind emits .rounded-full inside the
+ * utilities layer, and an unlayered rule always outranks it.
+ */
+.rounded-full {
+  border-radius: 3px;
+}
+
+@layer utilities {
+  /*
+   * Primary actions: anything you can press that the product painted black
+   * becomes brand blue. Surfaces that are black on purpose — video
+   * letterboxes, image overlays — are not buttons and keep the ink colour.
+   */
+  :is(button, a, [role='button']).bg-black {
+    background-color: var(--color-blue-600);
+    color: #fff;
+  }
+
+  :is(button, a, [role='button']).bg-black:not(:disabled):hover {
+    background-color: var(--color-blue-700);
+  }
+
+  :is(button, a, [role='button']).bg-black:disabled {
+    background-color: var(--color-gray-300);
+    color: var(--color-gray-600);
+  }
+
+  .bg-mustaner {
+    background-image: var(--mustaner-gradient);
+  }
+}
+
+::selection {
+  background: rgba(0, 85, 172, 0.16);
+}

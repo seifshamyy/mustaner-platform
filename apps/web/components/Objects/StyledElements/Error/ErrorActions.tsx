@@ -13,6 +13,7 @@ import {
 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
+import { SUPPORT_EMAIL } from '@services/brand/brand'
 
 type Variant = 'primary' | 'neutral' | 'danger' | 'ghost'
 
@@ -100,7 +101,7 @@ export default function ErrorActions({ resolutions, reset, eventId, loginNext }:
   const loginHref = loginNext
     ? `/login?next=${encodeURIComponent(loginNext)}`
     : '/login'
-  const supportHref = getPlatformUrl('/contact') || 'mailto:support@learnhouse.io'
+  const supportHref = getPlatformUrl('/contact') || `mailto:${SUPPORT_EMAIL}`
 
   return (
     <div className="flex flex-wrap justify-center gap-3">

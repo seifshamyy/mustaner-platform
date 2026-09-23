@@ -41,9 +41,9 @@ import { getUriWithOrg } from '@services/config/config'
 import { usePlan } from '@components/Hooks/usePlan'
 import { PlanLevel, planMeetsRequirement } from '@services/plans/plans'
 import PlanBadge from '@components/Dashboard/Shared/PlanRestricted/PlanBadge'
-import WelcomeGlobe from './WelcomeGlobe'
 import { useTranslation } from 'react-i18next'
 import { useLHAnalytics, AnalyticsEvent } from '@services/analytics'
+import { getSiteUrl } from '@services/brand/brand'
 
 const ACTIVITY_TYPES = [
   { icon: Browsers, color: 'text-blue-400', label: 'Page' },
@@ -291,10 +291,8 @@ export default function OnboardingBar() {
                     transition={{ duration: 0.3, ease }}
                     className="p-8 text-center"
                   >
-                    <div className="flex justify-center -mb-8">
-                      <div className="w-[180px]">
-                        <WelcomeGlobe />
-                      </div>
+                    <div className="flex justify-center">
+                      <img src="/illustrations/course-complete.webp" alt="" className="h-[160px] w-auto" />
                     </div>
                     <h3 className="text-lg font-bold text-gray-900 mt-2">
                       {t('onboarding.farewell.title')}
@@ -662,52 +660,29 @@ export default function OnboardingBar() {
                                       </div>
                                     )}
 
-                                  {/* Teach the world — LearnHouse University link */}
+                                  {/* Teach the world — Mustaner's own programs */}
                                   {step.id === 'teach_the_world' &&
                                     !step.completed && (
                                       <div className="relative px-3 pb-3 space-y-2">
-                                        <a
-                                          href="https://university.learnhouse.io"
-                                          target="_blank"
-                                          rel="noopener noreferrer"
-                                          className="flex items-center gap-3 px-4 py-3 rounded-lg bg-white nice-shadow hover:bg-gray-50 transition-colors"
-                                        >
-                                          <img
-                                            src="/UNI_LOGO.png"
-                                            alt="LearnHouse University"
-                                            className="h-9 w-auto shrink-0 rounded"
-                                          />
-                                          <div className="min-w-0">
-                                            <p className="text-xs font-semibold text-gray-700">
-                                              {t('onboarding.steps.teach_the_world.university')}
-                                            </p>
-                                            <p className="text-[11px] text-gray-400">
-                                              {t('onboarding.steps.teach_the_world.university_desc')}
-                                            </p>
-                                          </div>
-                                          <span className="text-gray-300 shrink-0 ms-auto">→</span>
-                                        </a>
-                                        <a
-                                          href="https://classroom.learnhouse.io"
-                                          target="_blank"
-                                          rel="noopener noreferrer"
-                                          className="flex items-center gap-3 px-4 py-3 rounded-lg bg-white nice-shadow hover:bg-gray-50 transition-colors"
-                                        >
-                                          <img
-                                            src="/theclassroom.png"
-                                            alt="The Classroom"
-                                            className="h-9 w-auto shrink-0 rounded"
-                                          />
-                                          <div className="min-w-0">
-                                            <p className="text-xs font-semibold text-gray-700">
-                                              {t('onboarding.steps.teach_the_world.classroom')}
-                                            </p>
-                                            <p className="text-[11px] text-gray-400">
-                                              {t('onboarding.steps.teach_the_world.classroom_desc')}
-                                            </p>
-                                          </div>
-                                          <span className="text-gray-300 shrink-0 ms-auto">→</span>
-                                        </a>
+                                        {getSiteUrl() && (
+                                          <a
+                                            href={getSiteUrl('/en/programs') ?? undefined}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="flex items-center gap-3 px-4 py-3 rounded-lg bg-white nice-shadow hover:bg-gray-50 transition-colors"
+                                          >
+                                            <img src="/lrn-dash.svg" alt="" className="h-9 w-9 shrink-0" />
+                                            <div className="min-w-0">
+                                              <p className="text-xs font-semibold text-gray-700">
+                                                {t('onboarding.steps.teach_the_world.university')}
+                                              </p>
+                                              <p className="text-[11px] text-gray-400">
+                                                {t('onboarding.steps.teach_the_world.university_desc')}
+                                              </p>
+                                            </div>
+                                            <span className="text-gray-300 shrink-0 ms-auto">→</span>
+                                          </a>
+                                        )}
                                         <button
                                           onClick={() => {
                                             track(AnalyticsEvent.OnboardingStepCompleted, { step_id: 'teach_the_world' })

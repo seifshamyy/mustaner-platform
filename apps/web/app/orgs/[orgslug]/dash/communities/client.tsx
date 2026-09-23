@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Plus, Users, MessagesSquare } from 'lucide-react'
+import { Plus, MessagesSquare } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { useOrg } from '@components/Contexts/OrgContext'
 import { Community } from '@services/communities/communities'
@@ -12,6 +12,7 @@ import { Breadcrumbs } from '@components/Objects/Breadcrumbs/Breadcrumbs'
 import CommunityCard from '@components/Objects/Communities/CommunityCard'
 import AuthenticatedClientElement from '@components/Security/AuthenticatedClientElement'
 import FeatureGate from '@components/Dashboard/Shared/FeatureGate/FeatureGate'
+import EmptyIllustration from '@components/Objects/EmptyIllustration'
 
 interface CommunitiesDashClientProps {
   org_id: number
@@ -74,9 +75,7 @@ const CommunitiesDashClient = ({
           <div className="col-span-full flex justify-center items-center py-8">
             <div className="text-center">
               <div className="mb-4">
-                <div className="w-24 h-24 mx-auto bg-gray-100 rounded-full flex items-center justify-center">
-                  <Users size={48} className="text-gray-300" />
-                </div>
+                <EmptyIllustration kind="community" />
               </div>
               <h2 className="text-2xl font-bold text-gray-600 mb-2">
                 {t('dashboard.courses.communities.no_communities')}

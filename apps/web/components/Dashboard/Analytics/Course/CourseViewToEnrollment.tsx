@@ -40,18 +40,18 @@ export default function CourseViewToEnrollment({
       <AreaChart data={chartRows}>
         <defs>
           <linearGradient id="vteViewsMini" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#6366f1" stopOpacity={0.12} />
-            <stop offset="100%" stopColor="#6366f1" stopOpacity={0.01} />
+            <stop offset="0%" stopColor="#0055ac" stopOpacity={0.12} />
+            <stop offset="100%" stopColor="#0055ac" stopOpacity={0.01} />
           </linearGradient>
           <linearGradient id="vteEnrollsMini" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#10b981" stopOpacity={0.12} />
-            <stop offset="100%" stopColor="#10b981" stopOpacity={0.01} />
+            <stop offset="0%" stopColor="#007a57" stopOpacity={0.12} />
+            <stop offset="100%" stopColor="#007a57" stopOpacity={0.01} />
           </linearGradient>
         </defs>
         <XAxis dataKey="shortDate" tick={{ fontSize: 9 }} axisLine={false} tickLine={false} />
         <Tooltip contentStyle={{ borderRadius: 12, border: '1px solid #f3f4f6', fontSize: 13 }} />
-        <Area type="monotone" dataKey="views" name={t('analytics.course_analytics.common.views')} stroke="#6366f1" strokeWidth={1.5} fill="url(#vteViewsMini)" dot={false} />
-        <Area type="monotone" dataKey="enrollments" name={t('analytics.course_analytics.common.enrollments')} stroke="#10b981" strokeWidth={1.5} fill="url(#vteEnrollsMini)" dot={false} />
+        <Area type="monotone" dataKey="views" name={t('analytics.course_analytics.common.views')} stroke="#0055ac" strokeWidth={1.5} fill="url(#vteViewsMini)" dot={false} />
+        <Area type="monotone" dataKey="enrollments" name={t('analytics.course_analytics.common.enrollments')} stroke="#007a57" strokeWidth={1.5} fill="url(#vteEnrollsMini)" dot={false} />
       </AreaChart>
     </ResponsiveContainer>
   )
@@ -61,12 +61,12 @@ export default function CourseViewToEnrollment({
       <AreaChart data={chartRows}>
         <defs>
           <linearGradient id="vteViewsModal" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#6366f1" stopOpacity={0.15} />
-            <stop offset="100%" stopColor="#6366f1" stopOpacity={0.01} />
+            <stop offset="0%" stopColor="#0055ac" stopOpacity={0.15} />
+            <stop offset="100%" stopColor="#0055ac" stopOpacity={0.01} />
           </linearGradient>
           <linearGradient id="vteEnrollsModal" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#10b981" stopOpacity={0.15} />
-            <stop offset="100%" stopColor="#10b981" stopOpacity={0.01} />
+            <stop offset="0%" stopColor="#007a57" stopOpacity={0.15} />
+            <stop offset="100%" stopColor="#007a57" stopOpacity={0.01} />
           </linearGradient>
         </defs>
         <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
@@ -74,8 +74,8 @@ export default function CourseViewToEnrollment({
         <YAxis tick={{ fontSize: 11 }} axisLine={false} tickLine={false} />
         <Tooltip contentStyle={{ borderRadius: 12, border: '1px solid #f3f4f6', fontSize: 13 }} />
         <Legend iconType="circle" wrapperStyle={{ fontSize: 12 }} />
-        <Area type="monotone" dataKey="views" name={t('analytics.course_analytics.common.views')} stroke="#6366f1" strokeWidth={2} fill="url(#vteViewsModal)" dot={{ r: 2 }} />
-        <Area type="monotone" dataKey="enrollments" name={t('analytics.course_analytics.common.enrollments')} stroke="#10b981" strokeWidth={2} fill="url(#vteEnrollsModal)" dot={{ r: 2 }} />
+        <Area type="monotone" dataKey="views" name={t('analytics.course_analytics.common.views')} stroke="#0055ac" strokeWidth={2} fill="url(#vteViewsModal)" dot={{ r: 2 }} />
+        <Area type="monotone" dataKey="enrollments" name={t('analytics.course_analytics.common.enrollments')} stroke="#007a57" strokeWidth={2} fill="url(#vteEnrollsModal)" dot={{ r: 2 }} />
       </AreaChart>
     </ResponsiveContainer>
   )

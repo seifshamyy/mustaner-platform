@@ -3,25 +3,27 @@
 //
 // AuthFooter   — the "By continuing, you agree to … Terms of Service and
 //                Privacy Policy." line shown under the auth forms.
-// CopyrightFooter — the "© {year} LearnHouse, Inc." line for app surfaces
+// CopyrightFooter — the "© {year} …" line for app surfaces
 //                (the apex /home hub, the onboarding page, …).
 //
-// Legal pages live on the marketing/platform site, so links resolve via
-// getPlatformUrl() with a sensible public fallback.
+// Legal pages live on the marketing/platform site and resolve via
+// getPlatformUrl(). Until that site publishes them, nothing links anywhere:
+// a user must never be asked to agree to terms that aren't Mustaner's.
 import React from 'react'
 import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
 import { getPlatformUrl } from '@services/config/config'
 
-const TERMS_URL = getPlatformUrl('/terms') || 'https://www.learnhouse.io/terms'
-const PRIVACY_URL = getPlatformUrl('/privacy') || 'https://www.learnhouse.io/privacy'
+const TERMS_URL = getPlatformUrl('/terms')
+const PRIVACY_URL = getPlatformUrl('/privacy')
 
 export function AuthFooter({ className = '' }: { className?: string }) {
   const { t } = useTranslation()
+  if (!TERMS_URL || !PRIVACY_URL) return null
   return (
     <div className={`pb-8 pt-6 text-center px-6 ${className}`}>
       <p className="text-[13px] text-black/30 font-medium">
-        {t('auth.terms_text', { defaultValue: "By continuing, you agree to LearnHouse's" })}{' '}
+        {t('auth.terms_text', { defaultValue: "By continuing, you agree to Mustaner's" })}{' '}
         <Link
           href={TERMS_URL}
           target="_blank"
@@ -62,8 +64,9 @@ export function CopyrightFooter({
     <footer className={`w-full py-6 px-6 ${className}`}>
       <div className="flex flex-col sm:flex-row items-center justify-center gap-x-5 gap-y-2 text-[13px] font-medium">
         <p className={base}>
-          {t('common.copyright', { defaultValue: '© {{year}} LearnHouse, Inc.', year })}
+          {t('common.copyright', { defaultValue: '© {{year}} Mustaner for Training', year })}
         </p>
+        {TERMS_URL && PRIVACY_URL && (
         <nav className="flex items-center gap-x-5">
           <Link
             href={TERMS_URL}
@@ -82,6 +85,7 @@ export function CopyrightFooter({
             {t('auth.privacy_policy', { defaultValue: 'Privacy Policy' })}
           </Link>
         </nav>
+        )}
       </div>
     </footer>
   )

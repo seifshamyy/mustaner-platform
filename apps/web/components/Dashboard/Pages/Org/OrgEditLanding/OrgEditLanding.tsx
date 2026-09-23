@@ -86,11 +86,11 @@ const PREDEFINED_GRADIENTS = {
     direction: '90deg'
   },
   'emerald-depths': {
-    colors: ['#064e3b', '#10b981'] as Array<string>,
+    colors: ['#064e3b', '#007a57'] as Array<string>,
     direction: '135deg'
   },
   'royal-navy': {
-    colors: ['#1e3a8a', '#3b82f6'] as Array<string>,
+    colors: ['#1e3a8a', '#0055ac'] as Array<string>,
     direction: '225deg'
   },
   'volcanic': {

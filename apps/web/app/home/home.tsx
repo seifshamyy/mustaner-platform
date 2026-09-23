@@ -39,6 +39,7 @@ import {
   DialogFooter,
 } from '@components/ui/dialog'
 import { AVAILABLE_LANGUAGES } from '@/lib/languages'
+import { BRAND_NAME } from '@services/brand/brand'
 
 function HomeClient() {
   const { t, i18n } = useTranslation()
@@ -97,7 +98,7 @@ function HomeClient() {
               { }
               <img
                 src="/lrn.svg"
-                alt="LearnHouse"
+                alt="Mustaner"
                 width={44}
                 height={44}
                 className="opacity-90"
@@ -242,12 +243,12 @@ function HomeClient() {
                 className="mt-10 flex items-center gap-1.5 text-[11px] text-black/30 hover:text-black/60 transition-colors"
               >
                 <span>{t('common.powered_by', { defaultValue: 'Powered by' })}</span>
-                <span className="font-semibold tracking-tight text-black/50 group-hover:text-black/70">LearnHouse</span>
+                <span className="font-semibold tracking-tight text-black/50 group-hover:text-black/70">{BRAND_NAME}</span>
               </a>
             ) : (
               <div className="mt-10 flex items-center gap-1.5 text-[11px] text-black/30">
                 <span>{t('common.powered_by', { defaultValue: 'Powered by' })}</span>
-                <span className="font-semibold tracking-tight text-black/50">LearnHouse</span>
+                <span className="font-semibold tracking-tight text-black/50">{BRAND_NAME}</span>
               </div>
             )}
             <CopyrightFooter year={new Date().getFullYear()} className="mt-4 pt-0" />

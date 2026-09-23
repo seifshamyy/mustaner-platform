@@ -22,7 +22,7 @@ export default function GradeDistribution() {
             <XAxis dataKey="grade" tick={{ fontSize: 11 }} stroke="#9ca3af" />
             <YAxis tick={{ fontSize: 11 }} stroke="#9ca3af" allowDecimals={false} />
             <Tooltip contentStyle={{ borderRadius: 12, border: '1px solid #f3f4f6', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
-            <Bar dataKey="count" name="Count" fill="#10b981" radius={[4, 4, 0, 0]} />
+            <Bar dataKey="count" name="Count" fill="#007a57" radius={[4, 4, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
       )}

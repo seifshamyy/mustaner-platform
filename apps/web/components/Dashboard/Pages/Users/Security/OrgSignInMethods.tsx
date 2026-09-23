@@ -15,6 +15,7 @@ import {
   sameMethodSet,
   useOrgSecurityPolicy,
 } from './shared'
+import { isMultiOrgModeEnabled } from '@services/config/config'
 
 /**
  * Users → Sign-in methods. Owns which methods members may use to reach this org
@@ -139,18 +140,20 @@ const OrgSignInMethods: React.FC = () => {
           </p>
         )}
 
-        {/* Central session sharing */}
+        {/* Central session sharing — only meaningful when several organizations
+            share one sign-in (multi tenancy). */}
+        {isMultiOrgModeEnabled() && (
         <div className="flex items-start justify-between gap-4 pt-1 border-t border-gray-100">
           <div className="min-w-0 pt-4">
             <Label htmlFor="central-session-sharing" className="cursor-pointer">
               {t('dashboard.organization.security.session_sharing_label', {
-                defaultValue: 'Allow sharing sessions with learnhouse.io',
+                defaultValue: 'Allow sessions from the central sign-in',
               })}
             </Label>
             <p className="text-xs text-gray-500 mt-0.5 leading-relaxed max-w-xl">
               {t('dashboard.organization.security.session_sharing_hint', {
                 defaultValue:
-                  'When off, signing in at learnhouse.io won’t let members into this org — they must sign in again from this org’s login page using an allowed method.',
+                  'When off, members must sign in again from this organization’s own login page using an allowed method.',
               })}
             </p>
           </div>
@@ -165,10 +168,11 @@ const OrgSignInMethods: React.FC = () => {
             disabled={controlsDisabled}
             className="shrink-0 mt-5"
             aria-label={t('dashboard.organization.security.session_sharing_label', {
-              defaultValue: 'Allow sharing sessions with learnhouse.io',
+              defaultValue: 'Allow sessions from the central sign-in',
             })}
           />
         </div>
+        )}
 
         {saveError && (
           <div className="flex items-start gap-2 rounded-lg bg-red-50 border border-red-200/80 px-4 py-3">

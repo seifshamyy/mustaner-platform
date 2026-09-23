@@ -70,8 +70,8 @@ const EVENT_META: Record<
 
 const DEVICE_COLORS: Record<string, string> = {
   desktop: '#6b8de3',
-  mobile: '#818cf8',
-  tablet: '#a78bfa',
+  mobile: '#5a8fd1',
+  tablet: '#3a98a8',
   unknown: '#d1d5db',
 }
 

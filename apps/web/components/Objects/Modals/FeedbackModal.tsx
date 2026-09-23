@@ -144,7 +144,7 @@ export function FeedbackModal({
         className={cn(
           'sm:max-w-md',
           isDark
-            ? 'bg-[#0f0f10] border-white/10 text-white'
+            ? 'bg-[#0f2233] border-white/10 text-white'
             : 'bg-white border-gray-200'
         )}
       >

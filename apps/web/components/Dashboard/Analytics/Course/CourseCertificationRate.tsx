@@ -33,7 +33,7 @@ export default function CourseCertificationRate({
         ) : (
           <div className="space-y-8 py-6">
             <div className="flex justify-center">
-              <ProgressRing percent={rate} size={160} strokeWidth={12} color="#10b981" />
+              <ProgressRing percent={rate} size={160} strokeWidth={12} color="#007a57" />
             </div>
             <div className="text-center">
               <p className="text-5xl font-black text-gray-900">{rate}%</p>
@@ -59,7 +59,7 @@ export default function CourseCertificationRate({
         <div className="h-48 flex items-center justify-center text-gray-300 text-sm">{t('analytics.course_analytics.common.no_data')}</div>
       ) : (
         <div className="flex items-center justify-center h-48 gap-5">
-          <ProgressRing percent={rate} size={80} strokeWidth={6} color="#10b981" />
+          <ProgressRing percent={rate} size={80} strokeWidth={6} color="#007a57" />
           <div>
             <p className="text-4xl font-black text-gray-900">{rate}%</p>
             <p className="text-sm text-gray-500">{t('analytics.course_analytics.units.claim_rate')}</p>

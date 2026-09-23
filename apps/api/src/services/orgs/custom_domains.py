@@ -105,13 +105,13 @@ def get_verification_instructions(domain: str, token: str, org_slug: str) -> Cus
     subdomain = _get_subdomain_prefix(domain)
 
     if subdomain:
-        txt_record_host = f"_learnhouse-verification.{subdomain}"
+        txt_record_host = f"_mustaner-verification.{subdomain}"
         cname_record_host = subdomain
     else:
-        txt_record_host = "_learnhouse-verification"
+        txt_record_host = "_mustaner-verification"
         cname_record_host = "@"
 
-    txt_record_value = f"learnhouse-verify={token}"
+    txt_record_value = f"mustaner-verify={token}"
     cname_record_value = f"{org_slug}.{LEARNHOUSE_DOMAIN}"
 
     instructions = f"""
@@ -173,8 +173,8 @@ async def verify_domain_dns(domain: CustomDomain, db_session: AsyncSession, org_
         import dns.resolver
 
         # Check TXT record
-        txt_host = f"_learnhouse-verification.{domain.domain}"
-        expected_txt = f"learnhouse-verify={domain.verification_token}"
+        txt_host = f"_mustaner-verification.{domain.domain}"
+        expected_txt = f"mustaner-verify={domain.verification_token}"
 
         try:
             txt_answers = dns.resolver.resolve(txt_host, 'TXT')

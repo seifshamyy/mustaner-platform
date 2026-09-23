@@ -32,15 +32,15 @@ export default function BehaviorSection({ behavior }: { behavior: any }) {
                 <AreaChart data={daily} margin={{ top: 5, right: 10, left: -20, bottom: 0 }}>
                   <defs>
                     <linearGradient id="ua-grad" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3} />
-                      <stop offset="95%" stopColor="#3b82f6" stopOpacity={0} />
+                      <stop offset="5%" stopColor="#0055ac" stopOpacity={0.3} />
+                      <stop offset="95%" stopColor="#0055ac" stopOpacity={0} />
                     </linearGradient>
                   </defs>
                   <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
                   <XAxis dataKey="day" tick={{ fontSize: 11 }} />
                   <YAxis tick={{ fontSize: 11 }} />
                   <Tooltip />
-                  <Area type="monotone" dataKey="minutes" name="minutes" stroke="#3b82f6" fill="url(#ua-grad)" />
+                  <Area type="monotone" dataKey="minutes" name="minutes" stroke="#0055ac" fill="url(#ua-grad)" />
                 </AreaChart>
               </ResponsiveContainer>
             </div>

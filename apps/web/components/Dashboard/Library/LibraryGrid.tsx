@@ -4,11 +4,11 @@ import LibraryItemCard from '@components/Dashboard/Library/LibraryItemCard'
 import CourseThumbnail, { removeCoursePrefix } from '@components/Objects/Thumbnails/CourseThumbnail'
 import ConfirmationModal from '@components/Objects/StyledElements/ConfirmationModal/ConfirmationModal'
 import { getUriWithOrg } from '@services/config/config'
-import { FolderSimple } from '@phosphor-icons/react'
 import { FolderMinus, GripVertical } from 'lucide-react'
 import { DragDropContext, Droppable, Draggable, type DropResult } from '@hello-pangea/dnd'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
+import EmptyIllustration from '@components/Objects/EmptyIllustration'
 
 type Props = {
   folders: any[]
@@ -99,9 +99,7 @@ export default function LibraryGrid({
   if (isEmpty) {
     return (
       <div className="flex flex-col items-center justify-center py-16 text-center gap-3">
-        <div className="bg-gray-100 rounded-2xl p-4 text-gray-400">
-          <FolderSimple size={28} weight="duotone" />
-        </div>
+        <EmptyIllustration kind="library" className="mb-2" />
         <p className="text-sm font-semibold text-gray-500">{emptyTitle || t('library.empty_folder')}</p>
         {emptyDescription && <p className="text-xs text-gray-400 -mt-1 max-w-xs">{emptyDescription}</p>}
         {emptyAction && <div className="mt-2">{emptyAction}</div>}

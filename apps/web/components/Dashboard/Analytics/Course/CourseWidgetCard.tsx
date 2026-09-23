@@ -134,7 +134,7 @@ export function ProgressRing({
   percent,
   size = 64,
   strokeWidth = 5,
-  color = '#6366f1',
+  color = '#0055ac',
   bgColor = '#f3f4f6',
 }: {
   percent: number
@@ -271,7 +271,7 @@ export function Sparkline({
   data,
   width = 80,
   height = 24,
-  color = '#6366f1',
+  color = '#0055ac',
 }: {
   data: number[]
   width?: number

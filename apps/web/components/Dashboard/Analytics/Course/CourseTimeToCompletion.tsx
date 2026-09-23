@@ -76,7 +76,7 @@ export default function CourseTimeToCompletion({
             percent={p75 > 0 ? Math.min((median / p75) * 100, 100) : 50}
             size={80}
             strokeWidth={6}
-            color="#3b82f6"
+            color="#0055ac"
           />
           <div>
             <p className="text-4xl font-black text-gray-900">{median}</p>

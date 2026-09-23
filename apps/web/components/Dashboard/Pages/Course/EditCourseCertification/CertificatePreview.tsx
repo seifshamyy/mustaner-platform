@@ -225,7 +225,7 @@ const CertificatePreview: React.FC<CertificatePreviewProps> = ({
             {/* Organic background pattern */}
             <div className="absolute inset-0 opacity-3">
               <div className="w-full h-full" style={{
-                backgroundImage: `radial-gradient(ellipse at 30% 30%, #10b981 1px, transparent 1px), radial-gradient(ellipse at 70% 70%, #10b981 0.5px, transparent 0.5px)`,
+                backgroundImage: `radial-gradient(ellipse at 30% 30%, #007a57 1px, transparent 1px), radial-gradient(ellipse at 70% 70%, #007a57 0.5px, transparent 0.5px)`,
                 backgroundSize: '12px 8px'
               }}></div>
             </div>
@@ -255,7 +255,7 @@ const CertificatePreview: React.FC<CertificatePreviewProps> = ({
             {/* Geometric background */}
             <div className="absolute inset-0 opacity-4">
               <div className="w-full h-full" style={{
-                backgroundImage: `linear-gradient(45deg, #8b5cf6 25%, transparent 25%), linear-gradient(-45deg, #8b5cf6 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #8b5cf6 75%), linear-gradient(-45deg, transparent 75%, #8b5cf6 75%)`,
+                backgroundImage: `linear-gradient(45deg, #00697e 25%, transparent 25%), linear-gradient(-45deg, #00697e 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #00697e 75%), linear-gradient(-45deg, transparent 75%, #00697e 75%)`,
                 backgroundSize: '6px 6px'
               }}></div>
             </div>
@@ -301,28 +301,28 @@ const CertificatePreview: React.FC<CertificatePreviewProps> = ({
             
             {/* Wave decorations */}
             <div className="absolute top-2 left-0 right-0 h-4 opacity-30" style={{
-              background: `radial-gradient(ellipse at center, #3b82f6 30%, transparent 30%)`,
+              background: `radial-gradient(ellipse at center, #0055ac 30%, transparent 30%)`,
               backgroundSize: '20px 8px'
             }}></div>
             <div className="absolute bottom-2 left-0 right-0 h-4 opacity-30" style={{
-              background: `radial-gradient(ellipse at center, #3b82f6 30%, transparent 30%)`,
+              background: `radial-gradient(ellipse at center, #0055ac 30%, transparent 30%)`,
               backgroundSize: '20px 8px'
             }}></div>
             
             {/* Side wave patterns */}
             <div className="absolute left-2 top-0 bottom-0 w-4 opacity-30" style={{
-              background: `radial-gradient(ellipse at center, #3b82f6 30%, transparent 30%)`,
+              background: `radial-gradient(ellipse at center, #0055ac 30%, transparent 30%)`,
               backgroundSize: '8px 20px'
             }}></div>
             <div className="absolute right-2 top-0 bottom-0 w-4 opacity-30" style={{
-              background: `radial-gradient(ellipse at center, #3b82f6 30%, transparent 30%)`,
+              background: `radial-gradient(ellipse at center, #0055ac 30%, transparent 30%)`,
               backgroundSize: '8px 20px'
             }}></div>
             
             {/* Wave background */}
             <div className="absolute inset-0 opacity-4">
               <div className="w-full h-full" style={{
-                backgroundImage: `repeating-linear-gradient(45deg, #3b82f6 0px, #3b82f6 1px, transparent 1px, transparent 8px), repeating-linear-gradient(-45deg, #3b82f6 0px, #3b82f6 1px, transparent 1px, transparent 8px)`,
+                backgroundImage: `repeating-linear-gradient(45deg, #0055ac 0px, #0055ac 1px, transparent 1px, transparent 8px), repeating-linear-gradient(-45deg, #0055ac 0px, #0055ac 1px, transparent 1px, transparent 8px)`,
                 backgroundSize: '12px 12px'
               }}></div>
             </div>
@@ -390,7 +390,7 @@ const CertificatePreview: React.FC<CertificatePreviewProps> = ({
             {/* Academic background pattern */}
             <div className="absolute inset-0 opacity-3">
               <div className="w-full h-full" style={{
-                backgroundImage: `radial-gradient(circle at 50% 50%, #6366f1 1px, transparent 1px)`,
+                backgroundImage: `radial-gradient(circle at 50% 50%, #0055ac 1px, transparent 1px)`,
                 backgroundSize: '15px 15px'
               }}></div>
             </div>
@@ -419,7 +419,7 @@ const CertificatePreview: React.FC<CertificatePreviewProps> = ({
             {/* Modern subtle background */}
             <div className="absolute inset-0 opacity-2">
               <div className="w-full h-full" style={{
-                backgroundImage: `linear-gradient(135deg, #3b82f6 0%, transparent 1%), linear-gradient(225deg, #3b82f6 0%, transparent 1%)`,
+                backgroundImage: `linear-gradient(135deg, #0055ac 0%, transparent 1%), linear-gradient(225deg, #0055ac 0%, transparent 1%)`,
                 backgroundSize: '12px 12px'
               }}></div>
             </div>
@@ -573,7 +573,7 @@ const CertificatePreview: React.FC<CertificatePreviewProps> = ({
                 )}
               </div>
               <div className={`text-xs ${theme.secondary} font-medium`} dir="auto">
-                {org?.name || 'LearnHouse'}
+                {org?.name || 'Mustaner'}
               </div>
             </div>
 

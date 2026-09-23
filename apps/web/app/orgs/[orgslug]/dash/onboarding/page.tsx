@@ -20,27 +20,20 @@ export default function OnboardingPage() {
     <div className="flex w-full">
       <div className="w-full px-4 sm:px-10 tracking-tighter flex flex-col space-y-6 pb-16">
         {/* Header — inspired by the sidebar onboarding box, in light mode:
-            violet label, blueprint-grid pattern, neon purple progress. */}
+            brand-blue label, square-grid pattern, green-to-blue progress. */}
         <div className="relative overflow-hidden -mx-4 sm:-mx-10 px-4 sm:px-10 pt-6 pb-1">
-          {/* Blueprint grid — purple, fading down */}
+          {/* The Kufic square grid, fading down */}
           <div
             className="absolute inset-0 pointer-events-none"
             style={{
               backgroundImage: `
-                linear-gradient(rgba(139,92,246,0.07) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(139,92,246,0.07) 1px, transparent 1px),
-                linear-gradient(rgba(139,92,246,0.035) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(139,92,246,0.035) 1px, transparent 1px)`,
+                linear-gradient(rgba(0,85,172,0.07) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,85,172,0.07) 1px, transparent 1px),
+                linear-gradient(rgba(0,85,172,0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,85,172,0.035) 1px, transparent 1px)`,
               backgroundSize: '60px 60px, 60px 60px, 15px 15px, 15px 15px',
               maskImage: 'linear-gradient(to bottom, black 0%, transparent 88%)',
               WebkitMaskImage: 'linear-gradient(to bottom, black 0%, transparent 88%)',
-            }}
-          />
-          {/* Purple glow blooming from the top */}
-          <div
-            className="absolute inset-x-0 top-0 h-28 pointer-events-none"
-            style={{
-              background: 'radial-gradient(70% 100% at 28% 0%, rgba(139,92,246,0.13), transparent 70%)',
             }}
           />
 
@@ -58,7 +51,7 @@ export default function OnboardingPage() {
               </h1>
             </div>
 
-            {/* Right — compact neon progress */}
+            {/* Right — compact progress in the wordmark's green → blue */}
             <div className="w-full sm:w-72 shrink-0 sm:pb-2">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-semibold text-gray-700">
@@ -68,13 +61,12 @@ export default function OnboardingPage() {
                   {Math.round(progress * 100)}%
                 </span>
               </div>
-              <div className="h-1.5 bg-violet-100/70 rounded-full overflow-hidden">
+              <div className="h-1.5 bg-blue-600/10 rounded-full overflow-hidden">
                 <div
                   className="h-full rounded-full transition-all duration-500"
                   style={{
                     width: `${progress * 100}%`,
-                    background: 'linear-gradient(90deg, #6366f1 0%, #8b5cf6 55%, #a855f7 100%)',
-                    boxShadow: '0 0 8px rgba(139,92,246,0.55), 0 0 2px rgba(99,102,241,0.8)',
+                    background: 'linear-gradient(90deg, #007a57 0%, #00697e 50%, #0055ac 100%)',
                   }}
                 />
               </div>

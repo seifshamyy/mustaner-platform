@@ -18,7 +18,6 @@ import { useQueryClient } from '@tanstack/react-query'
 import { queryKeys } from '@/lib/query/keys'
 import UnsplashImagePicker, { UnsplashPhotoMeta } from '@components/Dashboard/Pages/Course/EditCourseGeneral/UnsplashImagePicker'
 import AIImageButton from '@components/Objects/AI/AIImageButton'
-import { usePlan } from '@components/Hooks/usePlan'
 
 const SUPPORTED_FILES = constructAcceptValue(['png', 'jpg', 'webp'])
 
@@ -34,11 +33,6 @@ export default function AuthBrandingTab() {
   const queryClient = useQueryClient()
 
   const existingConfig = org?.config?.config?.customization?.auth_branding || org?.config?.config?.general?.auth_branding || {}
-
-  // Check if org has enterprise plan - hide LearnHouse branding for enterprise users
-  // In OSS mode, always show branding regardless of plan
-  const plan = usePlan()
-  const isEnterprise = plan === 'enterprise'
 
   const [welcomeMessage, setWelcomeMessage] = useState<string>(existingConfig.welcome_message || '')
   const [backgroundType, setBackgroundType] = useState<BackgroundType>(existingConfig.background_type || 'gradient')
@@ -123,9 +117,9 @@ export default function AuthBrandingTab() {
 
   const getBackgroundStyle = () => {
     if (backgroundType === 'gradient') {
-      // Original black gradient
+      // Illustrated Mustaner panel (see AuthBrandingPanel)
       return {
-        background: 'linear-gradient(041.61deg, #202020 7.15%, #000000 90.96%)',
+        background: '#f1f5f8',
       }
     }
     if (backgroundType === 'custom' && backgroundImage) {
@@ -143,9 +137,9 @@ export default function AuthBrandingTab() {
         backgroundPosition: 'center',
       }
     }
-    // Default to original black gradient
+    // Default: the illustrated Mustaner panel
     return {
-      background: 'linear-gradient(041.61deg, #202020 7.15%, #000000 90.96%)',
+      background: '#f1f5f8',
     }
   }
 
@@ -316,20 +310,24 @@ export default function AuthBrandingTab() {
                 <div className="absolute inset-0 bg-black/30" />
               )}
 
-              {/* Top lrn logo - hidden for enterprise users */}
-              {!isEnterprise && (
-                <div className="relative z-10">
+              {backgroundType === 'gradient' && (
+                <div className="relative z-10 flex-1 flex flex-col justify-between">
                   <div
-                    className={cn(
-                      "w-4 h-4 bg-contain bg-no-repeat",
-                      textColor === 'light' ? "opacity-60 invert" : "opacity-40"
-                    )}
-                    style={{ backgroundImage: "url(/lrn.svg)" }}
+                    className="h-4 w-12 bg-contain bg-no-repeat"
+                    style={{
+                      backgroundImage: `url(${org?.logo_image ? getOrgLogoMediaDirectory(org?.org_uuid, org?.logo_image) : '/brand/lockup.png'})`,
+                    }}
                   />
+                  <img src="/illustrations/auth-learn.webp" alt="" className="mx-auto h-20 w-auto" />
+                  <div className="space-y-1">
+                    <div className="h-2 w-20 rounded bg-neutral-800" />
+                    <div className="h-1.5 w-24 rounded bg-neutral-300" />
+                  </div>
                 </div>
               )}
 
               {/* Centered content */}
+              {backgroundType !== 'gradient' && (
               <div className="relative z-10 flex-1 flex items-center justify-center">
                 <div className={cn(
                   "text-center flex flex-col items-center space-y-2",
@@ -358,6 +356,7 @@ export default function AuthBrandingTab() {
                   )}
                 </div>
               </div>
+              )}
             </div>
           </div>
         </div>

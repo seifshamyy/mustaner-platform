@@ -33,6 +33,7 @@ import { usePlan } from '@components/Hooks/usePlan'
 import { searchMatchesAny } from '@/lib/search/normalize'
 import { useLHAnalytics, AnalyticsEvent } from '@services/analytics'
 import CatalogPagination, { useCatalogPagination } from '@components/Objects/Catalog/CatalogPagination'
+import EmptyIllustration from '@components/Objects/EmptyIllustration'
 
 type CourseProps = {
   orgslug: string
@@ -395,7 +396,7 @@ function CoursesHome(params: CourseProps) {
         }
       )
       const timestamp = new Date().toISOString().split('T')[0]
-      downloadBlob(blob, `learnhouse-courses-export-${timestamp}.zip`)
+      downloadBlob(blob, `mustaner-courses-export-${timestamp}.zip`)
       exportToast.complete(toastId, undefined, count, 'batch')
     } catch (error: any) {
       exportToast.error(toastId, error.message || t('courses.courses_exported_error'), undefined, count, 'batch')
@@ -653,7 +654,7 @@ function CoursesHome(params: CourseProps) {
         {filteredCourses.length === 0 && searchQuery && (
           <div className="col-span-full flex justify-center items-center py-8">
             <div className="text-center">
-              <Search className="w-12 h-12 text-gray-300 mx-auto mb-4" />
+              <EmptyIllustration kind="search" size="sm" />
               <h2 className="text-xl font-semibold text-gray-600 mb-2">
                 {t('courses.no_search_results')}
               </h2>
@@ -667,16 +668,7 @@ function CoursesHome(params: CourseProps) {
           <div className="col-span-full flex justify-center items-center py-8">
             <div className="text-center">
               <div className="mb-4">
-                <svg
-                  width="120"
-                  height="120"
-                  viewBox="0 0 295 295"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="mx-auto"
-                >
-                  {/* ... SVG content ... */}
-                </svg>
+                <EmptyIllustration kind="courses" />
               </div>
               <h2 className="text-2xl font-bold text-gray-600 mb-2">
                 {t('dashboard.courses.no_courses')}

@@ -142,8 +142,8 @@ class TestCustomDomainHelpers:
 
         assert info.domain == "docs.example.com"
         assert info.status == "pending"
-        assert info.txt_record_host == "_learnhouse-verification.docs"
-        assert info.txt_record_value == "learnhouse-verify=token123"
+        assert info.txt_record_host == "_mustaner-verification.docs"
+        assert info.txt_record_value == "mustaner-verify=token123"
         assert info.cname_record_host == "docs"
         assert info.cname_record_value == f"test-org.{custom_domains_service.LEARNHOUSE_DOMAIN}"
         assert "DNS records" in info.instructions
@@ -151,7 +151,7 @@ class TestCustomDomainHelpers:
     def test_helper_functions_cover_apex_domain_instructions(self):
         info = get_verification_instructions("example.com", "token456", "org-slug")
 
-        assert info.txt_record_host == "_learnhouse-verification"
+        assert info.txt_record_host == "_mustaner-verification"
         assert info.cname_record_host == "@"
         assert info.cname_record_value == f"org-slug.{custom_domains_service.LEARNHOUSE_DOMAIN}"
 
@@ -372,7 +372,7 @@ class TestVerificationInfoAndVerifyCustomDomain:
 
         assert info.domain == domain.domain
         assert info.status == "pending"
-        assert info.txt_record_host == "_learnhouse-verification.docs"
+        assert info.txt_record_host == "_mustaner-verification.docs"
         assert info.cname_record_host == "docs"
         assert result["success"] is True
         assert result["status"] == "pending"
@@ -452,7 +452,7 @@ class TestVerifyDomainDns:
         )
 
         dns_module, resolver_module = _install_fake_dns_module(
-            resolve_return_value=["learnhouse-verify=token-123"],
+            resolve_return_value=["mustaner-verify=token-123"],
         )
         with patch.dict(sys.modules, {"dns": dns_module, "dns.resolver": resolver_module}):
             success, message = await verify_domain_dns(domain, db, org.slug)
@@ -463,7 +463,7 @@ class TestVerifyDomainDns:
         assert domain.verified_at is not None
         assert domain.last_check_at is not None
         resolver_module.resolve.assert_called_once_with(
-            "_learnhouse-verification.docs.example.com",
+            "_mustaner-verification.docs.example.com",
             "TXT",
         )
 
@@ -476,7 +476,7 @@ class TestVerifyDomainDns:
             verification_token="token-abc",
         )
         dns_module, resolver_module = _install_fake_dns_module(
-            resolve_return_value=["learnhouse-verify=wrong"],
+            resolve_return_value=["mustaner-verify=wrong"],
         )
         with patch.dict(sys.modules, {"dns": dns_module, "dns.resolver": resolver_module}):
             success, message = await verify_domain_dns(mismatch, db, org.slug)

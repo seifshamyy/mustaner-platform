@@ -34,6 +34,7 @@ import FeatureGate from '@components/Dashboard/Shared/FeatureGate/FeatureGate'
 import { searchMatchesAny } from '@/lib/search/normalize'
 import { useLHAnalytics, AnalyticsEvent } from '@services/analytics'
 import CatalogPagination, { useCatalogPagination } from '@components/Objects/Catalog/CatalogPagination'
+import EmptyIllustration from '@components/Objects/EmptyIllustration'
 
 interface PlaygroundsListClientProps {
   org_id: number
@@ -283,7 +284,7 @@ export default function PlaygroundsListClient({ org_id, orgslug }: PlaygroundsLi
               {filtered.length === 0 && searchQuery && (
                 <div className="col-span-full flex justify-center items-center py-8 text-center">
                   <div>
-                    <Search className="w-12 h-12 text-gray-300 mx-auto mb-4" />
+                    <EmptyIllustration kind="search" size="sm" />
                     <h2 className="text-xl font-semibold text-gray-600 mb-2">No playgrounds found</h2>
                     <p className="text-gray-400">Try a different search term</p>
                   </div>

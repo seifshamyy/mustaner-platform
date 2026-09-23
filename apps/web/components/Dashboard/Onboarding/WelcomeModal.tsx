@@ -14,7 +14,6 @@ import {
   Certificate,
   ChartBar,
 } from '@phosphor-icons/react'
-import WelcomeGlobe from './WelcomeGlobe'
 import { useTranslation } from 'react-i18next'
 import { useLHAnalytics, AnalyticsEvent } from '@services/analytics'
 
@@ -25,77 +24,77 @@ const FEATURES = [
     icon: BookOpen,
     labelKey: 'onboarding.welcome.features.teach',
     descKey: 'onboarding.welcome.features.teach_desc',
-    gradient: 'from-blue-50/40 to-blue-50/10',
-    iconColor: 'text-blue-500',
-    pattern: `radial-gradient(circle, rgba(59,130,246,0.08) 1px, transparent 1px)`,
-    patternSize: '10px 10px',
+    gradient: 'from-white to-white',
+    iconColor: 'text-green-600',
+    pattern: `linear-gradient(rgba(0,85,172,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,85,172,0.05) 1px, transparent 1px)`,
+    patternSize: '12px 12px',
   },
   {
     icon: Lightning,
     labelKey: 'onboarding.welcome.features.interactive',
     descKey: 'onboarding.welcome.features.interactive_desc',
-    gradient: 'from-amber-50/40 to-amber-50/10',
-    iconColor: 'text-amber-500',
-    pattern: `repeating-linear-gradient(-45deg, transparent, transparent 6px, rgba(245,158,11,0.06) 6px, rgba(245,158,11,0.06) 7px)`,
+    gradient: 'from-white to-white',
+    iconColor: 'text-teal-600',
+    pattern: `linear-gradient(rgba(0,85,172,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,85,172,0.05) 1px, transparent 1px)`,
   },
   {
     icon: ChatsCircle,
     labelKey: 'onboarding.welcome.features.community',
     descKey: 'onboarding.welcome.features.community_desc',
-    gradient: 'from-emerald-50/40 to-emerald-50/10',
-    iconColor: 'text-emerald-500',
-    pattern: `radial-gradient(circle, rgba(16,185,129,0.08) 1px, transparent 1px)`,
-    patternSize: '10px 10px',
+    gradient: 'from-white to-white',
+    iconColor: 'text-blue-600',
+    pattern: `linear-gradient(rgba(0,85,172,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,85,172,0.05) 1px, transparent 1px)`,
+    patternSize: '12px 12px',
   },
   {
     icon: Files,
     labelKey: 'onboarding.welcome.features.assess',
     descKey: 'onboarding.welcome.features.assess_desc',
-    gradient: 'from-violet-50/40 to-violet-50/10',
-    iconColor: 'text-violet-500',
-    pattern: `repeating-linear-gradient(45deg, transparent, transparent 6px, rgba(139,92,246,0.06) 6px, rgba(139,92,246,0.06) 7px)`,
+    gradient: 'from-white to-white',
+    iconColor: 'text-green-600',
+    pattern: `linear-gradient(rgba(0,85,172,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,85,172,0.05) 1px, transparent 1px)`,
   },
   {
     icon: ChalkboardSimple,
     labelKey: 'onboarding.welcome.features.collaborate',
     descKey: 'onboarding.welcome.features.collaborate_desc',
-    gradient: 'from-rose-50/40 to-rose-50/10',
-    iconColor: 'text-rose-500',
-    pattern: `repeating-linear-gradient(0deg, transparent, transparent 8px, rgba(244,63,94,0.05) 8px, rgba(244,63,94,0.05) 9px), repeating-linear-gradient(90deg, transparent, transparent 8px, rgba(244,63,94,0.05) 8px, rgba(244,63,94,0.05) 9px)`,
+    gradient: 'from-white to-white',
+    iconColor: 'text-teal-600',
+    pattern: `linear-gradient(rgba(0,85,172,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,85,172,0.05) 1px, transparent 1px)`,
   },
   {
     icon: Microphone,
     labelKey: 'onboarding.welcome.features.voice',
     descKey: 'onboarding.welcome.features.voice_desc',
-    gradient: 'from-purple-50/40 to-purple-50/10',
-    iconColor: 'text-purple-500',
-    pattern: `radial-gradient(circle, rgba(168,85,247,0.06) 1.5px, transparent 1.5px)`,
+    gradient: 'from-white to-white',
+    iconColor: 'text-blue-600',
+    pattern: `linear-gradient(rgba(0,85,172,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,85,172,0.05) 1px, transparent 1px)`,
     patternSize: '12px 12px',
   },
   {
     icon: Certificate,
     labelKey: 'onboarding.welcome.features.certify',
     descKey: 'onboarding.welcome.features.certify_desc',
-    gradient: 'from-sky-50/40 to-sky-50/10',
-    iconColor: 'text-sky-500',
-    pattern: `repeating-linear-gradient(135deg, transparent, transparent 6px, rgba(14,165,233,0.06) 6px, rgba(14,165,233,0.06) 7px)`,
+    gradient: 'from-white to-white',
+    iconColor: 'text-green-600',
+    pattern: `linear-gradient(rgba(0,85,172,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,85,172,0.05) 1px, transparent 1px)`,
   },
   {
     icon: ChartBar,
     labelKey: 'onboarding.welcome.features.impact',
     descKey: 'onboarding.welcome.features.impact_desc',
-    gradient: 'from-indigo-50/40 to-indigo-50/10',
-    iconColor: 'text-indigo-500',
-    pattern: `radial-gradient(circle, rgba(99,102,241,0.06) 1px, transparent 1px), radial-gradient(circle, rgba(99,102,241,0.04) 1.5px, transparent 1.5px)`,
-    patternSize: '10px 10px',
+    gradient: 'from-white to-white',
+    iconColor: 'text-teal-600',
+    pattern: `linear-gradient(rgba(0,85,172,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,85,172,0.05) 1px, transparent 1px)`,
+    patternSize: '12px 12px',
   },
   {
     icon: Users,
     labelKey: 'onboarding.welcome.features.team',
     descKey: 'onboarding.welcome.features.team_desc',
-    gradient: 'from-teal-50/40 to-teal-50/10',
-    iconColor: 'text-teal-500',
-    pattern: `repeating-linear-gradient(-45deg, transparent, transparent 8px, rgba(20,184,166,0.05) 8px, rgba(20,184,166,0.05) 9px)`,
+    gradient: 'from-white to-white',
+    iconColor: 'text-blue-600',
+    pattern: `linear-gradient(rgba(0,85,172,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,85,172,0.05) 1px, transparent 1px)`,
   },
 ]
 
@@ -147,10 +146,9 @@ export default function WelcomeModal() {
                 >
                   <div className="px-10 pt-10 pb-2 text-center">
                     <motion.img
-                      src="/lrn-dash.svg"
-                      alt="LearnHouse"
-                      className="h-12 w-12 mx-auto mb-5"
-                      style={{ filter: 'brightness(0)' }}
+                      src="/brand/lockup.png"
+                      alt="Mustaner"
+                      className="h-16 w-auto mx-auto mb-5"
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.2, duration: 0.5, ease }}
@@ -205,7 +203,7 @@ export default function WelcomeModal() {
                             className="absolute inset-0"
                             style={{
                               backgroundImage: f.pattern,
-                              backgroundSize: f.patternSize || 'auto',
+                              backgroundSize: f.patternSize || '12px 12px',
                             }}
                           />
                           <div className="relative">
@@ -223,15 +221,13 @@ export default function WelcomeModal() {
               )}
             </AnimatePresence>
 
-            {/* Globe */}
+            {/* Learners climbing the Kufic grid: the start of their path. */}
             <motion.div
-              className="flex justify-center -mb-[140px]"
-              animate={{ marginTop: showFeatures ? -20 : 0 }}
-              transition={{ duration: 0.6, ease }}
+              className="flex justify-center px-10 pb-6"
+              animate={{ height: showFeatures ? 0 : 'auto', opacity: showFeatures ? 0 : 1 }}
+              transition={{ duration: 0.5, ease }}
             >
-              <div className="w-[280px]">
-                <WelcomeGlobe />
-              </div>
+              <img src="/illustrations/welcome.webp" alt="" className="h-[220px] w-auto" />
             </motion.div>
 
             {/* Button */}

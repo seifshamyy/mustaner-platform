@@ -340,7 +340,7 @@ function CoursesActions({ courseuuid, orgslug, course, trailData }: CourseAction
                       cx="32"
                       cy="32"
                       r="28"
-                      stroke="#10b981"
+                      stroke="#007a57"
                       strokeWidth="6"
                       fill="none"
                       strokeLinecap="round"

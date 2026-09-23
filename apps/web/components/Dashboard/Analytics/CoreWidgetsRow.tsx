@@ -31,7 +31,7 @@ import { useTranslation } from 'react-i18next'
 
 const kFormatter = (v: number) => (v >= 1000 ? `${(v / 1000).toFixed(0)}K` : String(v))
 
-const COLORS = ['#6b8de3', '#818cf8', '#a78bfa', '#c4b5fd']
+const COLORS = ['#6b8de3', '#5a8fd1', '#3a98a8', '#c4b5fd']
 
 function ExpandButton({ onClick }: { onClick: () => void }) {
   return (

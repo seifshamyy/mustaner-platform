@@ -1,42 +1,29 @@
 import { ArrowRight } from 'lucide-react'
-import Image from 'next/image'
 import Link from 'next/link'
-import learnhouseIcon from 'public/black_logo.png'
 
+// The route's language is unknown here, so the page speaks both.
 export default function NotFound() {
   return (
-    <div className="flex min-h-screen w-full flex-col items-center justify-center 
-   bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-200 to-slate-300">
-    {/* The nx-* classes here were left over from a Nextra template and never
-        existed in this project's Tailwind build, so they rendered nothing.
-        Only pb-20 was ever doing anything. */}
-    <div className="pb-20">
-        <Image quality={100}
-          width={270}
-          height={100}
-          src={learnhouseIcon}
-          alt="logo"
-        />
-        </div>
-      <div className="space-y-6 text-center">
-        <h1 className="text-8xl leading-7 font-bold text-black drop-shadow-md">
-          404!
-        </h1>
-        <p className='text-lg pt-8 text-black tracking-tight font-medium leading-normal'>
-          We are very sorry for the inconvenience. It looks like you're trying to
-          <span className="block">access a page that has been deleted or never existed before</span>
-        </p>
-      </div>
-      <div className='pt-8 flex flex-col items-center'>
+    <main className="flex min-h-screen w-full flex-col items-center justify-center bg-white px-6 py-16 text-center">
+      <img src="/brand/lockup.png" alt="Mustaner — مستنير" className="h-14 w-auto" />
+      <img src="/illustrations/not-found.webp" alt="" className="mt-10 h-56 w-auto" />
+      <h1 className="mt-8 text-3xl font-extrabold text-neutral-950">This page is not on the grid.</h1>
+      <p className="mt-2 text-2xl font-bold text-neutral-800" lang="ar" dir="rtl">
+        هذه الصفحة ليست على الشبكة.
+      </p>
+      <p className="mt-4 max-w-md text-base text-neutral-600">
+        The link may be old, or the page has moved.
+        <span className="block" lang="ar" dir="rtl">
+          ربما الرابط قديم، أو نُقلت الصفحة.
+        </span>
+      </p>
       <Link
         href="/"
-        className="flex w-fit h-[50px] text-xl space-x-2 bg-black px-6 py-2 text-md rounded-lg font-bold text-white items-center shadow-md gap-2"
+        className="mt-8 inline-flex h-12 items-center gap-2 rounded-[3px] bg-blue-600 px-6 text-base font-semibold text-white transition-colors hover:bg-blue-700"
       >
-        Go back to homepage
-        <ArrowRight className="tracking-tight transition-transform duration-150 ease-in-out ms-1" />
+        Back to home · العودة للرئيسية
+        <ArrowRight className="h-4 w-4 rtl:-scale-x-100" />
       </Link>
-    </div>
-    </div>
+    </main>
   )
 }
-

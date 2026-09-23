@@ -18,7 +18,7 @@ import { useTranslation } from 'react-i18next'
 import useAdminStatus from '@components/Hooks/useAdminStatus'
 import {
   Question,
-  Book,
+  EnvelopeSimple,
   Globe,
   ChatCircleDots,
   ChatCircle,
@@ -26,7 +26,7 @@ import {
   ChalkboardSimple,
   Signpost,
 } from '@phosphor-icons/react'
-import { DiscordIcon } from '@components/Objects/Icons/DiscordIcon'
+import { SUPPORT_EMAIL, getSiteUrl, isFeedbackEnabled } from '@services/brand/brand'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -159,12 +159,12 @@ export const OrgMenu = (props: any) => {
                   {org?.logo_image ? (
                     <img
                       src={`${getOrgLogoMediaDirectory(org.org_uuid, org?.logo_image)}`}
-                      alt="Learnhouse"
+                      alt={org?.name}
                       style={{ width: 'auto', height: '100%' }}
                       className="rounded-md"
                     />
                   ) : (
-                    <LearnHouseLogo logoFilter={colors.logoFilter} />
+                    <BrandLogo logoFilter={colors.logoFilter} />
                   )}
                 </div>
               </Link>
@@ -313,47 +313,37 @@ export const OrgMenu = (props: any) => {
                       <span>{t('common.help')}</span>
                     </DropdownMenuLabel>
                     <DropdownMenuSeparator />
+                    {getSiteUrl() && (
+                      <DropdownMenuItem asChild>
+                        <a
+                          href={getSiteUrl() ?? undefined}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2"
+                        >
+                          <Globe size={16} weight="fill" />
+                          <span>{t('common.help_menu.website')}</span>
+                        </a>
+                      </DropdownMenuItem>
+                    )}
                     <DropdownMenuItem asChild>
-                      <a
-                        href="https://docs.learnhouse.app"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2"
-                      >
-                        <Book size={16} weight="fill" />
-                        <span>{t('common.help_menu.documentation')}</span>
+                      <a href={`mailto:${SUPPORT_EMAIL}`} className="flex items-center gap-2">
+                        <EnvelopeSimple size={16} weight="fill" />
+                        <span>{t('common.help_menu.contact', { defaultValue: 'Contact us' })}</span>
                       </a>
                     </DropdownMenuItem>
-                    <DropdownMenuItem asChild>
-                      <a
-                        href="https://learnhouse.app"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2"
-                      >
-                        <Globe size={16} weight="fill" />
-                        <span>{t('common.help_menu.website')}</span>
-                      </a>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem asChild>
-                      <a
-                        href="https://discord.gg/learnhouse"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2"
-                      >
-                        <DiscordIcon size={16} />
-                        <span>{t('common.help_menu.discord')}</span>
-                      </a>
-                    </DropdownMenuItem>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem
-                      onClick={() => setFeedbackModalOpen(true)}
-                      className="flex items-center gap-2"
-                    >
-                      <ChatCircleDots size={16} weight="fill" />
-                      <span>{t('common.help_menu.report_feedback')}</span>
-                    </DropdownMenuItem>
+                    {isFeedbackEnabled() && (
+                      <>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem
+                          onClick={() => setFeedbackModalOpen(true)}
+                          className="flex items-center gap-2"
+                        >
+                          <ChatCircleDots size={16} weight="fill" />
+                          <span>{t('common.help_menu.report_feedback')}</span>
+                        </DropdownMenuItem>
+                      </>
+                    )}
                   </DropdownMenuContent>
                 </DropdownMenu>
               </div>
@@ -557,13 +547,13 @@ const CopilotMenuButton = ({
   )
 }
 
-const LearnHouseLogo = ({ logoFilter }: { logoFilter: string }) => {
+const BrandLogo = ({ logoFilter }: { logoFilter: string }) => {
   return (
     <Image
-      src="/lrn-text.svg"
-      alt="LearnHouse logo"
-      width={133}
-      height={40}
+      src="/brand/wordmark.svg"
+      alt="Mustaner"
+      width={116}
+      height={27}
       style={{ height: 'auto', filter: logoFilter }}
     />
   )

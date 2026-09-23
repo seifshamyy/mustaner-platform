@@ -9,10 +9,11 @@ import CommunityCard from '@components/Objects/Communities/CommunityCard'
 import { CreateCommunityModal } from '@components/Objects/Modals/Communities/CreateCommunityModal'
 import { EditCommunityModal } from '@components/Objects/Modals/Communities/EditCommunityModal'
 import ContentPlaceHolderIfUserIsNotAdmin from '@components/Objects/ContentPlaceHolder'
-import { Users, Plus } from 'lucide-react'
+import { Plus } from 'lucide-react'
 import { Community } from '@services/communities/communities'
 import FeatureGate from '@components/Dashboard/Shared/FeatureGate/FeatureGate'
 import { useTrackView, AnalyticsEvent } from '@services/analytics'
+import EmptyIllustration from '@components/Objects/EmptyIllustration'
 
 interface CommunitiesClientProps {
   communities: Community[]
@@ -64,9 +65,7 @@ const CommunitiesClient = ({ communities, orgslug, org_id }: CommunitiesClientPr
           ))}
           {communities.length === 0 && (
             <div className="col-span-full flex flex-col justify-center items-center py-12 px-4 border-2 border-dashed border-gray-100 rounded-2xl bg-gray-50/30">
-              <div className="p-4 bg-white rounded-full nice-shadow mb-4">
-                <Users className="w-8 h-8 text-gray-300" strokeWidth={1.5} />
-              </div>
+              <EmptyIllustration kind="community" />
               <h1 className="text-xl font-bold text-gray-600 mb-2">
                 {t('communities.no_communities')}
               </h1>

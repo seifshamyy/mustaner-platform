@@ -92,7 +92,7 @@ const GRADE_BUCKETS = [
     { key: 'F', label: 'F', min: 0, max: 59, color: '#e11d48' },      // rose-600
     { key: 'D', label: 'D', min: 60, max: 69, color: '#f97316' },     // orange-500
     { key: 'C', label: 'C', min: 70, max: 79, color: '#f59e0b' },     // amber-500
-    { key: 'B', label: 'B', min: 80, max: 89, color: '#10b981' },     // emerald-500
+    { key: 'B', label: 'B', min: 80, max: 89, color: '#007a57' },     // emerald-500
     { key: 'A', label: 'A', min: 90, max: 100, color: '#059669' },    // emerald-600
 ];
 
@@ -427,12 +427,12 @@ function AssignmentAnalyticsSubPage({ assignment_uuid }: { assignment_uuid: stri
                                 <AreaChart data={timelineData} margin={{ top: 10, right: 10, bottom: 0, left: -20 }}>
                                     <defs>
                                         <linearGradient id="submittedGrad" x1="0" y1="0" x2="0" y2="1">
-                                            <stop offset="0%" stopColor="#6366f1" stopOpacity={0.35} />
-                                            <stop offset="100%" stopColor="#6366f1" stopOpacity={0} />
+                                            <stop offset="0%" stopColor="#0055ac" stopOpacity={0.35} />
+                                            <stop offset="100%" stopColor="#0055ac" stopOpacity={0} />
                                         </linearGradient>
                                         <linearGradient id="gradedGrad" x1="0" y1="0" x2="0" y2="1">
-                                            <stop offset="0%" stopColor="#10b981" stopOpacity={0.3} />
-                                            <stop offset="100%" stopColor="#10b981" stopOpacity={0} />
+                                            <stop offset="0%" stopColor="#007a57" stopOpacity={0.3} />
+                                            <stop offset="100%" stopColor="#007a57" stopOpacity={0} />
                                         </linearGradient>
                                     </defs>
                                     <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" vertical={false} />
@@ -469,20 +469,20 @@ function AssignmentAnalyticsSubPage({ assignment_uuid }: { assignment_uuid: stri
                                     <Area
                                         type="monotone"
                                         dataKey="submitted"
-                                        stroke="#6366f1"
+                                        stroke="#0055ac"
                                         strokeWidth={2}
                                         fill="url(#submittedGrad)"
                                         name={t('dashboard.assignments.analytics.timeline.submitted')}
-                                        dot={{ r: 3, strokeWidth: 0, fill: '#6366f1' }}
+                                        dot={{ r: 3, strokeWidth: 0, fill: '#0055ac' }}
                                     />
                                     <Area
                                         type="monotone"
                                         dataKey="graded"
-                                        stroke="#10b981"
+                                        stroke="#007a57"
                                         strokeWidth={2}
                                         fill="url(#gradedGrad)"
                                         name={t('dashboard.assignments.analytics.timeline.graded')}
-                                        dot={{ r: 3, strokeWidth: 0, fill: '#10b981' }}
+                                        dot={{ r: 3, strokeWidth: 0, fill: '#007a57' }}
                                     />
                                 </AreaChart>
                             </ResponsiveContainer>
@@ -776,7 +776,7 @@ function dateKey(iso: string): string {
 
 function gradeColor(pct: number): string {
     if (pct >= 90) return '#059669';
-    if (pct >= 80) return '#10b981';
+    if (pct >= 80) return '#007a57';
     if (pct >= 70) return '#f59e0b';
     if (pct >= 60) return '#f97316';
     return '#e11d48';

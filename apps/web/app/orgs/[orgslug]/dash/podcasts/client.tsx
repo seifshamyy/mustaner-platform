@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Plus, Mic2, Headphones } from 'lucide-react'
+import { Plus, Headphones } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { useOrg } from '@components/Contexts/OrgContext'
 import { PodcastWithEpisodeCount } from '@services/podcasts/podcasts'
@@ -10,6 +10,7 @@ import { Breadcrumbs } from '@components/Objects/Breadcrumbs/Breadcrumbs'
 import PodcastThumbnail from '@components/Objects/Thumbnails/PodcastThumbnail'
 import AuthenticatedClientElement from '@components/Security/AuthenticatedClientElement'
 import FeatureGate from '@components/Dashboard/Shared/FeatureGate/FeatureGate'
+import EmptyIllustration from '@components/Objects/EmptyIllustration'
 
 interface PodcastsDashClientProps {
   org_id: number
@@ -69,9 +70,7 @@ const PodcastsDashClient = ({
           <div className="col-span-full flex justify-center items-center py-8">
             <div className="text-center">
               <div className="mb-4">
-                <div className="w-24 h-24 mx-auto bg-gray-100 rounded-full flex items-center justify-center">
-                  <Mic2 size={48} className="text-gray-300" />
-                </div>
+                <EmptyIllustration kind="podcasts" />
               </div>
               <h2 className="text-2xl font-bold text-gray-600 mb-2">
                 {t('podcasts.no_podcasts')}

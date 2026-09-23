@@ -166,7 +166,7 @@ app.include_router(v1_router)
 
 @app.get("/")
 async def root():
-    return {"Message": "Welcome to LearnHouse ✨"}
+    return {"message": "Mustaner API"}
 
 
 if __name__ == "__main__":

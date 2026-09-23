@@ -111,7 +111,7 @@ class MailingConfig(BaseModel):
     # configurable would break DKIM alignment and burn a shared sending
     # reputation. Organizations may override this name per-org; see
     # ``src/services/email/sender.py``.
-    system_email_sender_name: Optional[str] = "LearnHouse"
+    system_email_sender_name: Optional[str] = "Mustaner"
     resend_api_key: Optional[str] = None
     smtp_host: Optional[str] = None
     smtp_port: Optional[int] = 587
@@ -510,7 +510,7 @@ def get_learnhouse_config() -> LearnHouseConfig:
     # From name exactly as it was.
     system_email_sender_name = env_system_email_sender_name or yaml_config.get(
         "mailing_config", {}
-    ).get("system_email_sender_name", "LearnHouse")
+    ).get("system_email_sender_name", "Mustaner")
     smtp_host = env_smtp_host or yaml_config.get("mailing_config", {}).get("smtp_host")
     smtp_port = int(env_smtp_port) if env_smtp_port else yaml_config.get("mailing_config", {}).get("smtp_port", 587)
     smtp_username = env_smtp_username or yaml_config.get("mailing_config", {}).get("smtp_username")

@@ -165,7 +165,7 @@ function DiscussionContentEditor({ content }: { content: any }) {
         }
 
         .discussion-content-readonly .ProseMirror .discussion-link {
-          color: #2563eb;
+          color: #0055ac;
           text-decoration: underline;
           cursor: pointer;
         }

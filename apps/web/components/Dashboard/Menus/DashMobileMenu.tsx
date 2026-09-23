@@ -22,19 +22,19 @@ import {
   X,
   Check,
   ChatCircleDots,
-  Book,
+  EnvelopeSimple,
   CaretDown,
   MagnifyingGlass,
   Code,
 } from '@phosphor-icons/react'
-import { DiscordIcon } from '@components/Objects/Icons/DiscordIcon'
+import { SUPPORT_EMAIL, getSiteUrl, isFeedbackEnabled } from '@services/brand/brand'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import UserAvatar from '../../Objects/UserAvatar'
 import { useLHSession } from '@components/Contexts/LHSessionContext'
-import { getUriWithOrg, getDeploymentMode } from '@services/config/config'
+import { getUriWithOrg } from '@services/config/config'
 import { useTranslation } from 'react-i18next'
 import { changeLanguage } from '@/lib/i18n'
 import { AVAILABLE_LANGUAGES } from '@/lib/languages'
@@ -61,12 +61,6 @@ function DashMobileMenu() {
 
   if (!org || !session || !mounted) return null
 
-  const mode = getDeploymentMode()
-  const planLabel =
-    mode === 'ee' ? 'Enterprise Edition' :
-    mode === 'oss' ? 'OSS' :
-    plan
-
   const rf = org?.config?.config?.resolved_features
   const isEnabled = (f: string) => rf?.[f]?.enabled === true
 
@@ -90,10 +84,10 @@ function DashMobileMenu() {
         style={{ bottom: 'calc(env(safe-area-inset-bottom) + 1.5rem)' }}
       >
         <div
-          className="flex items-center gap-0.5 px-1.5 py-1.5 bg-[#111113]/90 backdrop-blur-xl rounded-full"
+          className="flex items-center gap-0.5 px-1.5 py-1.5 bg-white/95 backdrop-blur-xl border border-neutral-200 shadow-lg shadow-neutral-900/10 rounded-full"
           style={{ boxShadow: '0 4px 16px rgba(0,0,0,0.3)' }}
         >
-          {/* LearnHouse logo — links to home */}
+          {/* Mustaner monogram — links to home */}
           <Link
             href="/dash"
             className="flex items-center justify-center px-2.5 py-2.5 rounded-full transition-all duration-200"
@@ -101,9 +95,8 @@ function DashMobileMenu() {
           >
             <img
               src="/lrn-dash.svg"
-              alt="LearnHouse"
-              className="h-[18px] w-[18px] opacity-60 hover:opacity-90 transition-opacity"
-              style={{ filter: 'brightness(0) invert(1)' }}
+              alt="Mustaner"
+              className="h-[18px] w-[18px] opacity-80 hover:opacity-100 transition-opacity"
             />
           </Link>
           {/* Progressive reveal — more icons as viewport widens */}
@@ -129,13 +122,13 @@ function DashMobileMenu() {
             <PillLink href="/dash/payments/overview" icon={<CurrencyCircleDollar size={18} weight="fill" />} active={isActive('/dash/payments')} className="hidden min-[750px]:flex" />
           )}
 
-          <span className="w-px h-4 bg-white/[0.15] mx-1 shrink-0" />
+          <span className="w-px h-4 bg-neutral-200 mx-1 shrink-0" />
 
           {/* Search */}
           <button
             onClick={openSearch}
             aria-label={t('common.search')}
-            className="p-2.5 rounded-full transition-all duration-200 text-white/60 hover:text-white hover:bg-white/[0.1]"
+            className="p-2.5 rounded-full transition-all duration-200 text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100"
           >
             <MagnifyingGlass size={18} weight="bold" />
           </button>
@@ -147,7 +140,7 @@ function DashMobileMenu() {
             aria-expanded={menuOpen}
             className={cn(
               'p-2.5 rounded-full transition-all duration-200 overflow-hidden',
-              menuOpen ? 'bg-white text-[#111113]' : 'text-white/60 hover:text-white hover:bg-white/[0.1]'
+              menuOpen ? 'bg-blue-600 text-white' : 'text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100'
             )}
           >
             <AnimatePresence mode="wait" initial={false}>
@@ -181,7 +174,7 @@ function DashMobileMenu() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 8, scale: 0.97 }}
               transition={{ type: 'spring', damping: 30, stiffness: 360 }}
-              className="fixed start-4 end-4 z-[9998] max-w-sm mx-auto bg-[#0e0e10]/95 backdrop-blur-xl rounded-2xl overflow-hidden"
+              className="fixed start-4 end-4 z-[9998] max-w-sm mx-auto bg-white/95 backdrop-blur-xl border border-neutral-200 shadow-xl shadow-neutral-900/10 rounded-2xl overflow-hidden"
               style={{
                 bottom: 'calc(env(safe-area-inset-bottom) + 5.5rem)',
                 boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
@@ -196,25 +189,16 @@ function DashMobileMenu() {
                     className="h-7 w-7 object-contain rounded-lg"
                   />
                 ) : (
-                  <div className="h-7 w-7 flex items-center justify-center bg-white/[0.06] rounded-lg">
-                    <img src="/lrn-dash.svg" alt="LearnHouse" className="h-4 w-4" style={{ filter: 'brightness(0) invert(1)' }} />
+                  <div className="h-7 w-7 flex items-center justify-center bg-neutral-100 rounded-lg">
+                    <img src="/lrn-dash.svg" alt="Mustaner" className="h-4 w-4" />
                   </div>
                 )}
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold text-white truncate leading-none mb-0.5">{org?.name}</p>
-                  <p className={cn(
-                    'text-[10px] font-medium',
-                    mode === 'ee' ? 'text-amber-400' :
-                    mode === 'oss' ? 'text-green-400' :
-                    plan === 'enterprise' ? 'text-amber-400' :
-                    plan === 'pro' ? 'text-purple-400' :
-                    plan === 'standard' ? 'text-blue-400' :
-                    'text-white/30'
-                  )}>{planLabel}</p>
+                  <p className="text-sm font-semibold text-neutral-900 truncate leading-none mb-0.5">{org?.name}</p>
                 </div>
               </div>
 
-              <div className="h-px bg-white/[0.05] mx-4" />
+              <div className="h-px bg-neutral-200 mx-4" />
 
               {/* Nav items */}
               <div className="py-2 px-2 max-h-[52vh] overflow-y-auto overscroll-contain space-y-px">
@@ -232,26 +216,26 @@ function DashMobileMenu() {
                 <PanelItem href="/dash/org/settings/general" icon={<Buildings size={15} weight="fill" />} label={t('common.organization')} active={isActive('/dash/org')} onClick={close} />
                 <PanelItem href="/dash/developers/api" icon={<Code size={15} weight="fill" />} label={t('dashboard.developers.breadcrumb', { defaultValue: 'Developers' })} active={isActive('/dash/developers')} onClick={close} />
 
-                <div className="h-px bg-white/[0.05] mx-2 my-1.5" />
+                <div className="h-px bg-neutral-200 mx-2 my-1.5" />
 
                 <PanelItem href="/account/general" icon={<Gear size={15} weight="fill" />} label={t('common.settings')} active={isActive('/account')} onClick={close} />
 
                 {/* Language picker */}
                 <button
                   onClick={() => setLangExpanded(v => !v)}
-                  className="flex items-center w-full rounded-lg px-2.5 py-2 gap-2.5 text-white/40 hover:text-white/80 hover:bg-white/[0.05] transition-all"
+                  className="flex items-center w-full rounded-lg px-2.5 py-2 gap-2.5 text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100 transition-all"
                 >
                   <Globe size={15} weight="fill" />
                   <span className="text-sm font-medium flex-1 text-start">{t('common.language')}</span>
                   <CaretDown size={10} weight="bold" className={cn('transition-transform', langExpanded && 'rotate-180')} />
                 </button>
                 {langExpanded && (
-                  <div className="ms-2 ps-3 border-s border-white/[0.05] space-y-px">
+                  <div className="ms-2 ps-3 border-s border-neutral-200 space-y-px">
                     {AVAILABLE_LANGUAGES.map(lang => (
                       <button
                         key={lang.code}
                         onClick={() => { changeLanguage(lang.code); setLangExpanded(false) }}
-                        className="flex items-center justify-between w-full px-2.5 py-1.5 rounded-lg text-sm text-white/40 hover:text-white/80 hover:bg-white/[0.05] transition-all"
+                        className="flex items-center justify-between w-full px-2.5 py-1.5 rounded-lg text-sm text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100 transition-all"
                       >
                         <span className="font-medium">{lang.nativeName}</span>
                         {i18n.language.split('-')[0] === lang.code && <Check size={11} weight="bold" className="text-green-500" />}
@@ -260,40 +244,40 @@ function DashMobileMenu() {
                   </div>
                 )}
 
-                <a href="https://docs.learnhouse.app" target="_blank" rel="noopener noreferrer"
-                  className="flex items-center w-full rounded-lg px-2.5 py-2 gap-2.5 text-white/40 hover:text-white/80 hover:bg-white/[0.05] transition-all"
-                >
-                  <Book size={15} weight="fill" />
-                  <span className="text-sm font-medium">{t('common.help_menu.documentation')}</span>
+                {getSiteUrl() && (
+                  <a href={getSiteUrl() ?? undefined} target="_blank" rel="noopener noreferrer" className="flex items-center w-full rounded-lg px-2.5 py-2 gap-2.5 text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100 transition-all">
+                    <Globe size={15} weight="fill" />
+                    <span className="text-sm font-medium">{t('common.help_menu.website')}</span>
+                  </a>
+                )}
+                <a href={`mailto:${SUPPORT_EMAIL}`} className="flex items-center w-full rounded-lg px-2.5 py-2 gap-2.5 text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100 transition-all">
+                  <EnvelopeSimple size={15} weight="fill" />
+                  <span className="text-sm font-medium">{t('common.help_menu.contact', { defaultValue: 'Contact us' })}</span>
                 </a>
-                <a href="https://discord.gg/learnhouse" target="_blank" rel="noopener noreferrer"
-                  className="flex items-center w-full rounded-lg px-2.5 py-2 gap-2.5 text-white/40 hover:text-white/80 hover:bg-white/[0.05] transition-all"
-                >
-                  <DiscordIcon size={15} />
-                  <span className="text-sm font-medium">{t('common.help_menu.discord')}</span>
-                </a>
-                <button
-                  onClick={() => { setFeedbackModalOpen(true); close() }}
-                  className="flex items-center w-full rounded-lg px-2.5 py-2 gap-2.5 text-white/40 hover:text-white/80 hover:bg-white/[0.05] transition-all"
-                >
-                  <ChatCircleDots size={15} weight="fill" />
-                  <span className="text-sm font-medium">{t('common.help_menu.report_feedback')}</span>
-                </button>
+                {isFeedbackEnabled() && (
+                  <button
+                    onClick={() => { setFeedbackModalOpen(true); close() }}
+                    className="flex items-center w-full rounded-lg px-2.5 py-2 gap-2.5 text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100 transition-all"
+                  >
+                    <ChatCircleDots size={15} weight="fill" />
+                    <span className="text-sm font-medium">{t('common.help_menu.report_feedback')}</span>
+                  </button>
+                )}
               </div>
 
               {/* User footer */}
-              <div className="h-px bg-white/[0.05] mx-4" />
+              <div className="h-px bg-neutral-200 mx-4" />
               <div className="px-4 py-3">
                 <div className="flex items-center gap-3">
                   <UserAvatar width={28} rounded="rounded-full" shadow="shadow-none" />
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-semibold text-white/90 truncate leading-none mb-0.5">{session?.data?.user?.username}</p>
-                    <p className="text-[10px] text-white/30 truncate">{session?.data?.user?.email}</p>
+                    <p className="text-sm font-semibold text-neutral-800 truncate leading-none mb-0.5">{session?.data?.user?.username}</p>
+                    <p className="text-[10px] text-neutral-400 truncate">{session?.data?.user?.email}</p>
                   </div>
                   <button
                     onClick={logOutUI}
                     aria-label={t('user.sign_out')}
-                    className="p-1.5 rounded-lg text-white/30 hover:text-red-400 hover:bg-white/[0.05] transition-all"
+                    className="p-1.5 rounded-lg text-neutral-400 hover:text-red-600 hover:bg-neutral-100 transition-all"
                   >
                     <SignOut size={14} weight="fill" data-dir-flip />
                   </button>
@@ -331,7 +315,7 @@ const PillLink = ({
     href={href}
     className={cn(
       'flex items-center justify-center p-2.5 rounded-full transition-all duration-200',
-      active ? 'bg-white/[0.15] text-white' : 'text-white/50 hover:text-white hover:bg-white/[0.08]',
+      active ? 'bg-blue-50 text-blue-700' : 'text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100',
       className
     )}
   >
@@ -358,13 +342,13 @@ const PanelItem = ({
     aria-current={active ? 'page' : undefined}
     className={cn(
       'relative flex items-center w-full rounded-lg px-2.5 py-2 gap-2 transition-all',
-      active ? 'text-white bg-white/[0.08]' : 'text-white/50 hover:text-white hover:bg-white/[0.06]'
+      active ? 'text-blue-700 bg-blue-50' : 'text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100'
     )}
   >
     {active && (
       <span
         aria-hidden="true"
-        className="absolute start-0.5 top-1/2 -translate-y-1/2 h-4 w-[2px] bg-white rounded-full"
+        className="absolute start-0.5 top-1/2 -translate-y-1/2 hidden"
       />
     )}
     {icon}

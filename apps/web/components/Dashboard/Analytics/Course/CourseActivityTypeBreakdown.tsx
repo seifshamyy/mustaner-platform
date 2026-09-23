@@ -16,9 +16,9 @@ const TYPE_COLORS: Record<string, string> = {
 }
 
 const TYPE_HEX: Record<string, string> = {
-  video: '#3b82f6',
+  video: '#0055ac',
   document: '#f59e0b',
-  quiz: '#8b5cf6',
+  quiz: '#00697e',
   assignment: '#f43f5e',
   dynamic: '#14b8a6',
   custom: '#6b7280',

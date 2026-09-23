@@ -1,7 +1,8 @@
 import React from 'react'
 
 /**
- * Full-page message for a surface that only exists in Enterprise Edition.
+ * Full-page message for a surface this deployment does not include (the
+ * Enterprise-only superadmin console).
  *
  * Kept separate from EELicenseError, which is an inline banner for a failing
  * licence check and names environment variables and pod logs — operator
@@ -10,14 +11,12 @@ import React from 'react'
  */
 export default function EERequiredScreen() {
   return (
-    <div className="flex justify-center items-center min-h-screen bg-[#0f0f10] px-6">
+    <div className="flex justify-center items-center min-h-screen bg-white px-6">
       <div className="text-center max-w-md">
-        <h1 className="text-2xl font-bold text-white mb-2">
-          Enterprise Edition license required
-        </h1>
-        <p className="text-white/50 text-sm leading-relaxed">
-          The superadmin dashboard is part of LearnHouse Enterprise Edition and
-          is not available on this deployment.
+        <img src="/illustrations/not-found.webp" alt="" className="mx-auto mb-6 h-48 w-auto" />
+        <h1 className="text-2xl font-bold text-neutral-950 mb-2">This page isn&apos;t available.</h1>
+        <p className="text-neutral-600 text-sm leading-relaxed">
+          It is not part of this platform.
         </p>
       </div>
     </div>

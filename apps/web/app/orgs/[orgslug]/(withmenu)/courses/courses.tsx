@@ -10,7 +10,7 @@ import CourseThumbnail from '@components/Objects/Thumbnails/CourseThumbnail'
 import NewCourseButton from '@components/Objects/StyledElements/Buttons/NewCourseButton'
 import useAdminStatus from '@components/Hooks/useAdminStatus'
 import { useTranslation } from 'react-i18next'
-import { BookCopy, Search, X, Users, Info, LogIn } from 'lucide-react'
+import { Search, X, Users, Info, LogIn } from 'lucide-react'
 import Link from 'next/link'
 import { getUriWithOrg } from '@services/config/config'
 import FeatureGate from '@components/Dashboard/Shared/FeatureGate/FeatureGate'
@@ -22,6 +22,7 @@ import { useCourses } from '@/hooks/queries/useCourses'
 import { useLHAnalytics, AnalyticsEvent } from '@services/analytics'
 import CatalogPagination, { useCatalogPagination } from '@components/Objects/Catalog/CatalogPagination'
 import { asArray } from '@services/utils/ts/requests'
+import EmptyIllustration from '@components/Objects/EmptyIllustration'
 
 interface CourseProps {
   orgslug: string
@@ -287,7 +288,7 @@ function Courses(props: CourseProps) {
             ))}
             {filteredCourses.length === 0 && searchQuery && (
               <div className="col-span-full flex flex-col justify-center items-center py-12 px-4">
-                <Search className="w-12 h-12 text-gray-300 mb-4" />
+                <EmptyIllustration kind="search" size="sm" />
                 <h2 className="text-xl font-semibold text-gray-600 mb-2">
                   {t('courses.no_search_results')}
                 </h2>
@@ -298,13 +299,7 @@ function Courses(props: CourseProps) {
             )}
             {allCourses.length === 0 && !searchQuery && (
               <div className="col-span-full flex flex-col justify-center items-center py-12 px-4 border-2 border-dashed border-gray-100 rounded-2xl bg-gray-50/30">
-                <div className="p-4 bg-white rounded-full nice-shadow mb-4">
-                  {isAuthenticated ? (
-                    <BookCopy className="w-8 h-8 text-gray-300" strokeWidth={1.5} />
-                  ) : (
-                    <LogIn className="w-8 h-8 text-gray-300" strokeWidth={1.5} />
-                  )}
-                </div>
+                <EmptyIllustration kind="courses" />
                 <h1 className="text-xl font-bold text-gray-600 mb-2">
                   {isAuthenticated
                     ? t('courses.no_courses')

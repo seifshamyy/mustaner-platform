@@ -11,11 +11,12 @@ import { PodcastPlayerProvider } from '@components/Contexts/PodcastPlayerContext
 import dynamic from 'next/dynamic'
 const PodcastPlayer = dynamic(() => import('@components/Objects/Podcasts/PodcastPlayer'), { ssr: false })
 import Image from 'next/image'
-import Link from 'next/link'
 import { PageViewTracker } from '@components/Analytics/PageViewTracker'
 import { usePathname, useSearchParams } from 'next/navigation'
 import { usePlan } from '@components/Hooks/usePlan'
 import { getGoogleFontUrl, DEFAULT_FONT } from '@/lib/fonts'
+import { getSiteUrl } from '@services/brand/brand'
+import { getUriWithOrg } from '@services/config/config'
 
 // Helper to convert hex to rgba
 const hexToRgba = (hex: string, alpha: number): string => {
@@ -39,16 +40,16 @@ function OrgFooter() {
       <div className="flex flex-col items-center justify-center space-y-4">
         {footerText && <p className="text-sm text-gray-500">{footerText}</p>}
         {showWatermark && (
-          <Link href="https://learnhouse.app" target="_blank" rel="noopener noreferrer">
+          <a href={getSiteUrl() ?? getUriWithOrg(org?.slug, '/')} target={getSiteUrl() ? '_blank' : undefined} rel="noopener noreferrer">
             <Image
               src="/lrn.svg"
-              alt="LearnHouse"
+              alt="Mustaner"
               width={24}
               height={24}
               style={{ height: 'auto' }}
-              className="opacity-15 hover:opacity-40 transition-opacity duration-300 cursor-pointer"
+              className="opacity-25 hover:opacity-50 transition-opacity duration-300 cursor-pointer"
             />
-          </Link>
+          </a>
         )}
       </div>
     </footer>

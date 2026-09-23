@@ -138,7 +138,7 @@ const OrgScripts: React.FC = () => {
         scriptElement.dataset.orgId = org?.id
         scriptElement.dataset.orgSlug = org?.slug
 
-        const comment = document.createComment(` LearnHouse Organization Script - ${scriptName} (${safeScriptId}) `)
+        const comment = document.createComment(` Organization Script - ${scriptName} (${safeScriptId}) `)
         document.body.appendChild(comment)
         document.body.appendChild(scriptElement)
       } else {
@@ -165,7 +165,7 @@ const OrgScripts: React.FC = () => {
         scriptElement.dataset.orgId = org?.id
         scriptElement.dataset.orgSlug = org?.slug
 
-        const comment = document.createComment(` LearnHouse Organization Script - ${scriptName} (${safeScriptId}) `)
+        const comment = document.createComment(` Organization Script - ${scriptName} (${safeScriptId}) `)
         document.body.appendChild(comment)
         document.body.appendChild(scriptElement)
       }

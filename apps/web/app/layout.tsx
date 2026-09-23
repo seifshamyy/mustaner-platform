@@ -1,30 +1,20 @@
 import '../styles/globals.css'
 import React from 'react'
 import Providers from '@components/Providers'
-import { Wix_Madefor_Text, Kufam } from 'next/font/google'
+import { Kufam } from 'next/font/google'
 
-const wixMadeforText = Wix_Madefor_Text({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-default',
-})
-
-// Wix Madefor Text has no Arabic subset, so Arabic would otherwise fall back to
-// whatever the OS provides — Geeza Pro, Segoe UI, Noto — and look like a
-// different product on every platform.
-//
-// Kufam is the Arabic face for the whole product. It is FORCED whenever the
-// UI is Arabic (see globals.css), not merely offered as a fallback: Kufam
-// ships a Latin subset too, so a mixed Arabic screen renders in one typeface
-// instead of switching per glyph between two designs with different
-// proportions.
-//
-// Kufam is a variable font (wght 400-900), so no weight list is needed; light
+// Kufam is the one typeface of the product, in both scripts: it is the face the
+// Mustaner identity is set in, and it carries Arabic and Latin in a single
+// design, so a mixed Arabic/English screen never switches typefaces mid-line.
+// It is a variable font (wght 400-900), so no weight list is needed; light
 // weights (font-light, font-extralight) render at 400.
+//
+// One instance serves both roles: --font-default for every script, and
+// --font-arabic, which globals.css forces whenever the UI is Arabic.
 const kufam = Kufam({
   subsets: ['arabic', 'latin'],
   display: 'swap',
-  variable: '--font-arabic',
+  variable: '--font-default',
 })
 
 export default function RootLayout({
@@ -38,7 +28,7 @@ export default function RootLayout({
   // no-JS baseline for crawlers; the script overwrites it for everyone else.
   return (
     <html
-      className={`${wixMadeforText.variable} ${kufam.variable}`}
+      className={kufam.variable}
       lang="en"
       suppressHydrationWarning
     >

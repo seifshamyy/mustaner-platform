@@ -166,7 +166,7 @@ async def api_export_courses_batch(
     )
 
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    filename = f"learnhouse-export-batch-{timestamp}.zip"
+    filename = f"mustaner-export-batch-{timestamp}.zip"
 
     # Clean up the temp file after the response is sent
     background_tasks.add_task(os.unlink, zip_path)
@@ -183,7 +183,7 @@ async def api_export_courses_batch(
     response_model=ImportAnalysisResponse,
     summary="Analyze a course import package",
     description=(
-        "Upload and analyze a LearnHouse course export ZIP. Validates the package, "
+        "Upload and analyze a course export ZIP. Validates the package, "
         "extracts its contents, and returns a list of courses available for import "
         "along with a temp_id to use with the subsequent import endpoint."
     ),
@@ -660,7 +660,7 @@ async def api_clone_course(
     summary="Export course as ZIP",
     description=(
         "Export a single course and all its content (chapters, activities, blocks, "
-        "and files) as a ZIP archive following the LearnHouse export format."
+        "and files) as a ZIP archive following the platform export format."
     ),
     responses={
         200: {"description": "ZIP archive containing the exported course", "content": {"application/zip": {}}},
@@ -696,7 +696,7 @@ async def api_export_course(
     zip_path = await export_course(request, course_uuid, current_user, db_session)
 
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    filename = f"learnhouse-export-{course_uuid}-{timestamp}.zip"
+    filename = f"mustaner-export-{course_uuid}-{timestamp}.zip"
 
     # Clean up the temp file after the response is sent
     background_tasks.add_task(os.unlink, zip_path)
