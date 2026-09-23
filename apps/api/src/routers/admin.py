@@ -14,7 +14,7 @@ from sqlmodel.ext.asyncio.session import AsyncSession
 from src.core.events.database import get_db_session
 from src.db.trails import TrailRead
 from src.db.users import UserRead
-from src.routers.auth import set_auth_cookies
+from src.routers.auth import get_cookie_domain_for_request, is_request_secure, set_auth_cookies
 from src.security.auth import get_current_user
 from src.services.admin.admin import (
     _require_api_token,
@@ -1029,6 +1029,19 @@ async def api_admin_magic_consume(
 
     redirect = RedirectResponse(url=target, status_code=302)
     set_auth_cookies(redirect, access_token, refresh_token, request)
+    # The web client only looks for a session when the non-httpOnly
+    # `LH_session` marker exists — its own sign-in routes set it beside the
+    # tokens. Without it, someone arriving through this link is signed in on
+    # the server but shown the site as a guest.
+    redirect.set_cookie(
+        key="LH_session",
+        value="1",
+        httponly=False,
+        secure=is_request_secure(request),
+        samesite="lax",
+        domain=get_cookie_domain_for_request(request),
+        max_age=30 * 24 * 60 * 60,
+    )
     return redirect
 
 

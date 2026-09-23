@@ -369,6 +369,8 @@ class TestAdminRouter:
             )
         assert response.status_code == 302
         assert response.headers["location"] == "/dashboard"
+        # The client-visible session marker rides along with the tokens.
+        assert "LH_session=1" in response.headers.get("set-cookie", "")
 
         # A 2FA-enabled user gets bounced to the code challenge instead of a
         # session: the magic link must not walk past their second factor.
@@ -387,6 +389,7 @@ class TestAdminRouter:
         assert "redirect_to=%2Fdashboard" in response.headers["location"]
         # No session cookies may be set on the challenge redirect.
         assert "LH_access" not in response.headers.get("set-cookie", "")
+        assert "LH_session" not in response.headers.get("set-cookie", "")
 
         with patch(
             "src.routers.admin.consume_magic_link_token",
