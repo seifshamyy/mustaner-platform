@@ -3,14 +3,16 @@ import { getUriWithOrg } from '@services/config/config'
 import { Books, FolderSimple, ChatsCircle, Headphones, Cube, ShoppingBag } from '@phosphor-icons/react'
 import { menuIcon } from '@components/Objects/Menus/menuIcons'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { getMenuColorClasses } from '@services/utils/ts/colorUtils'
 
-type Builtin = { feature: string; link: string; labelKey: string; Icon: any }
+// `sections` are the path prefixes that belong to the item, for its active state.
+type Builtin = { feature: string; link: string; labelKey: string; Icon: any; sections?: string[] }
 
 const BUILTIN: Record<string, Builtin> = {
-  courses: { feature: 'courses', link: '/courses', labelKey: 'courses.courses', Icon: Books },
+  courses: { feature: 'courses', link: '/courses', labelKey: 'courses.courses', Icon: Books, sections: ['/courses', '/course/'] },
   library: { feature: 'folders', link: '/library', labelKey: 'library.library', Icon: FolderSimple },
   podcasts: { feature: 'podcasts', link: '/podcasts', labelKey: 'podcasts.podcasts', Icon: Headphones },
   communities: { feature: 'communities', link: '/communities', labelKey: 'communities.title', Icon: ChatsCircle },
@@ -25,6 +27,7 @@ function MenuLinks(props: { orgslug: string; primaryColor?: string }) {
   const { t } = useTranslation()
   const org = useOrg() as any
   const colors = getMenuColorClasses(props.primaryColor || '')
+  const pathname = usePathname() ?? ''
 
   const rf = org?.config?.config?.resolved_features
   const isEnabled = (feature: string) => rf?.[feature]?.enabled === true
@@ -61,27 +64,39 @@ function MenuLinks(props: { orgslug: string; primaryColor?: string }) {
         Icon: meta.Icon,
         href: getUriWithOrg(props.orgslug, meta.link),
         external: false,
+        active: (meta.sections ?? [meta.link]).some((p) => pathname === p || pathname.startsWith(p.endsWith('/') ? p : `${p}/`)),
       }
     })
     .filter(Boolean) as any[]
 
   return (
-    <div className="ps-1">
-      <ul className="flex space-x-5">
-        {rendered.map((it) => {
-          const content = (
-            <li className={`flex space-x-2 items-center ${colors.text} font-semibold`}>
-              <it.Icon size={20} weight="fill" /> <span>{it.label}</span>
-            </li>
-          )
-          return it.external ? (
-            <a key={it.key} href={it.href} target="_blank" rel="noopener noreferrer">{content}</a>
-          ) : (
-            <Link key={it.key} href={it.href}>{content}</Link>
-          )
-        })}
-      </ul>
-    </div>
+    <ul className="flex items-center gap-1">
+      {rendered.map((it) => {
+        const className = `group flex h-9 items-center gap-2 rounded-[3px] px-3 font-semibold transition-colors duration-150 motion-reduce:transition-none ${
+          it.active ? colors.navLinkActive : colors.navLink
+        }`
+        const content = (
+          <>
+            <it.Icon
+              size={20}
+              weight={it.active ? 'fill' : 'duotone'}
+              aria-hidden="true"
+              className={`transition-colors duration-150 ${it.active ? colors.navIconActive : colors.navIcon}`}
+            />
+            <span>{it.label}</span>
+          </>
+        )
+        return (
+          <li key={it.key}>
+            {it.external ? (
+              <a href={it.href} target="_blank" rel="noopener noreferrer" className={className}>{content}</a>
+            ) : (
+              <Link href={it.href} className={className} aria-current={it.active ? 'page' : undefined}>{content}</Link>
+            )}
+          </li>
+        )
+      })}
+    </ul>
   )
 }
 

@@ -42,16 +42,20 @@ export function getMenuColorClasses(primaryColor: string) {
       text: 'text-gray-700',
       textMuted: 'text-gray-500',
       hoverBg: 'hover:bg-gray-100',
-      iconBtn: 'hover:bg-gray-100 text-gray-600',
+      iconBtn: 'hover:bg-blue-600/[0.06] hover:text-blue-700 text-gray-600',
       searchBg:
         'bg-white text-black placeholder:text-black/40 focus:ring-black/5 focus:border-black/20 nice-shadow',
       searchIcon:
         'text-black/40 group-focus-within:text-black/60',
-      signUpBtn: 'bg-black text-white hover:bg-gray-800',
+      signUpBtn: 'bg-blue-600 text-white hover:bg-blue-700',
       profileHover: 'hover:bg-gray-50',
       profileName: 'text-gray-900',
       profileMuted: 'text-gray-500',
       logoFilter: 'none',
+      navLink: 'text-gray-700 hover:text-blue-700 hover:bg-blue-600/[0.06]',
+      navLinkActive: 'text-blue-700 bg-blue-600/[0.06]',
+      navIcon: 'text-gray-400 group-hover:text-blue-600',
+      navIconActive: 'text-blue-600',
     }
   }
 
@@ -72,6 +76,10 @@ export function getMenuColorClasses(primaryColor: string) {
       profileName: 'text-gray-900',
       profileMuted: 'text-gray-700',
       logoFilter: 'none',
+      navLink: 'text-gray-900 hover:bg-black/10',
+      navLinkActive: 'text-gray-900 bg-black/10',
+      navIcon: 'text-gray-700',
+      navIconActive: 'text-gray-900',
     }
   }
 
@@ -89,5 +97,9 @@ export function getMenuColorClasses(primaryColor: string) {
     profileName: 'text-white',
     profileMuted: 'text-white/70',
     logoFilter: 'brightness(0) invert(1)',
+    navLink: 'text-white hover:bg-white/10',
+    navLinkActive: 'text-white bg-white/15',
+    navIcon: 'text-white/70',
+    navIconActive: 'text-white',
   }
 }

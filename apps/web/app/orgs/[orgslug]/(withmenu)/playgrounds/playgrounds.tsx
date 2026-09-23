@@ -19,6 +19,7 @@ import useAdminStatus from '@components/Hooks/useAdminStatus'
 import { searchMatchesAny } from '@/lib/search/normalize'
 import CatalogPagination, { useCatalogPagination } from '@components/Objects/Catalog/CatalogPagination'
 import EmptyIllustration from '@components/Objects/EmptyIllustration'
+import { createButtonClass, CreateButtonLabel } from '@components/Objects/StyledElements/Buttons/CreateButton'
 
 interface PlaygroundsClientProps {
   orgslug: string
@@ -107,10 +108,9 @@ export default function PlaygroundsClient({
                 <button
                   onClick={openCreateModal}
                   disabled={isCreating}
-                  className="rounded-lg bg-black transition-all duration-100 ease-linear antialiased p-2 px-5 my-auto font text-xs font-bold text-white nice-shadow flex space-x-2 items-center hover:scale-105 disabled:opacity-50"
+                  className={createButtonClass}
                 >
-                  <div>{t('playgrounds.new_playground')}</div>
-                  <div className="text-md bg-neutral-800 px-1 rounded-full">+</div>
+                  <CreateButtonLabel label={t('playgrounds.new_playground')} />
                 </button>
               )}
             </div>
@@ -177,10 +177,9 @@ export default function PlaygroundsClient({
                     <button
                       onClick={openCreateModal}
                       disabled={isCreating}
-                      className="rounded-lg bg-black transition-all duration-100 ease-linear antialiased p-2 px-5 my-auto font text-xs font-bold text-white nice-shadow flex space-x-2 items-center hover:scale-105 disabled:opacity-50"
+                      className={createButtonClass}
                     >
-                      <div>{t('playgrounds.new_playground')}</div>
-                      <div className="text-md bg-neutral-800 px-1 rounded-full">+</div>
+                      <CreateButtonLabel label={t('playgrounds.new_playground')} />
                     </button>
                   )}
                 </div>

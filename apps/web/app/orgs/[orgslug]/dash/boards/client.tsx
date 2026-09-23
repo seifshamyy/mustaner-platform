@@ -28,6 +28,7 @@ import { searchMatchesAny } from '@/lib/search/normalize'
 import { useLHAnalytics, AnalyticsEvent } from '@services/analytics'
 import CatalogPagination, { useCatalogPagination } from '@components/Objects/Catalog/CatalogPagination'
 import EmptyIllustration from '@components/Objects/EmptyIllustration'
+import { createButtonClass, CreateButtonLabel } from '@components/Objects/StyledElements/Buttons/CreateButton'
 
 interface BoardListClientProps {
   org_id: number
@@ -249,9 +250,8 @@ export default function BoardListClient({ org_id, orgslug }: BoardListClientProp
                   />
                 }
                 dialogTrigger={
-                  <button className="rounded-lg bg-black transition-all duration-100 ease-linear antialiased p-2 px-5 my-auto font text-xs font-bold text-white nice-shadow flex space-x-2 items-center hover:scale-105">
-                    <div>{t('boards.new_board')}</div>
-                    <div className="text-md bg-neutral-800 px-1 rounded-full">+</div>
+                  <button className={createButtonClass}>
+                    <CreateButtonLabel label={t('boards.new_board')} />
                   </button>
                 }
               />

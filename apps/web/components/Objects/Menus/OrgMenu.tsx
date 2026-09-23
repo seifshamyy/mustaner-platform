@@ -155,13 +155,12 @@ export const OrgMenu = (props: any) => {
           <div className="flex items-center space-x-5 md:w-auto w-full">
             <div className="logo flex md:w-auto w-full justify-center">
               <Link href={getUriWithOrg(orgslug, '/')}>
-                <div className="flex w-auto h-9 rounded-md items-center m-auto py-1 justify-center">
+                <div className="flex w-auto h-11 items-center m-auto justify-center">
                   {org?.logo_image ? (
                     <img
                       src={`${getOrgLogoMediaDirectory(org.org_uuid, org?.logo_image)}`}
                       alt={org?.name}
                       style={{ width: 'auto', height: '100%' }}
-                      className="rounded-md"
                     />
                   ) : (
                     <BrandLogo logoFilter={colors.logoFilter} />
@@ -552,8 +551,8 @@ const BrandLogo = ({ logoFilter }: { logoFilter: string }) => {
     <Image
       src="/brand/wordmark.svg"
       alt="Mustaner"
-      width={116}
-      height={27}
+      width={160}
+      height={37}
       style={{ height: 'auto', filter: logoFilter }}
     />
   )
