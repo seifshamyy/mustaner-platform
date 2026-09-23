@@ -108,7 +108,7 @@ function LayoutContent({ children, orgslug }: { children: ReactNode; orgslug: st
   return (
     <div
       // lh-org-font-root gives globals.css a hook to override this inline
-      // font-family in Arabic, where Tajawal replaces the org's custom face
+      // font-family in Arabic, where Kufam replaces the org's custom face
       // outright. An inline style beats any normal rule, so the override has to
       // target this element specifically.
       className="lh-org-font-root flex flex-col min-h-screen"

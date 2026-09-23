@@ -1,7 +1,7 @@
 import '../styles/globals.css'
 import React from 'react'
 import Providers from '@components/Providers'
-import { Wix_Madefor_Text, Tajawal } from 'next/font/google'
+import { Wix_Madefor_Text, Kufam } from 'next/font/google'
 
 const wixMadeforText = Wix_Madefor_Text({
   subsets: ['latin'],
@@ -13,17 +13,16 @@ const wixMadeforText = Wix_Madefor_Text({
 // whatever the OS provides — Geeza Pro, Segoe UI, Noto — and look like a
 // different product on every platform.
 //
-// Tajawal is the Arabic face for the whole product. It is FORCED whenever the
-// UI is Arabic (see globals.css), not merely offered as a fallback: Tajawal
+// Kufam is the Arabic face for the whole product. It is FORCED whenever the
+// UI is Arabic (see globals.css), not merely offered as a fallback: Kufam
 // ships a Latin subset too, so a mixed Arabic screen renders in one typeface
 // instead of switching per glyph between two designs with different
 // proportions.
 //
-// Weights are 200-900 with no 600 — a `font-semibold` element rounds up to 700,
-// which is the intended reading.
-const tajawal = Tajawal({
+// Kufam is a variable font (wght 400-900), so no weight list is needed; light
+// weights (font-light, font-extralight) render at 400.
+const kufam = Kufam({
   subsets: ['arabic', 'latin'],
-  weight: ['300', '400', '500', '700', '800'],
   display: 'swap',
   variable: '--font-arabic',
 })
@@ -39,7 +38,7 @@ export default function RootLayout({
   // no-JS baseline for crawlers; the script overwrites it for everyone else.
   return (
     <html
-      className={`${wixMadeforText.variable} ${tajawal.variable}`}
+      className={`${wixMadeforText.variable} ${kufam.variable}`}
       lang="en"
       suppressHydrationWarning
     >
