@@ -1,9 +1,7 @@
 import { NodeViewProps, NodeViewWrapper } from '@tiptap/react'
 import { Node } from '@tiptap/core'
-import {
-  CircleNotch, VideoCamera, UploadSimple, X, ArrowsLeftRight,
-  CheckCircle, WarningCircle, ArrowsOut,
-} from '@phosphor-icons/react'
+import { VideoCamera, UploadSimple, X, ArrowsLeftRight, CheckCircle, WarningCircle, ArrowsOut } from '@phosphor-icons/react'
+
 import React from 'react'
 import toast from 'react-hot-toast'
 import { uploadNewVideoFileWithProgress, getVideoBlock } from '../../../../../services/blocks/Video/video'
@@ -17,6 +15,7 @@ import { cn } from '@/lib/utils'
 import Modal from '@components/Objects/StyledElements/Modal/Modal'
 import LearnHousePlayer from '@components/Objects/Activities/Video/LearnHousePlayer'
 import { useTranslation } from 'react-i18next'
+import LearnHouseSpinner from '@components/Objects/Loaders/LearnHouseSpinner'
 
 const SUPPORTED_FILES = constructAcceptValue(['webm', 'mp4'])
 
@@ -404,7 +403,7 @@ function VideoBlockComponent(props: ExtendedNodeViewProps) {
             >
               {isLoading ? (
                 <div className="space-y-3">
-                  <CircleNotch weight="duotone" className="w-8 h-8 animate-spin mx-auto text-blue-500" />
+                  <LearnHouseSpinner size={44} className="mx-auto" />
                   <p className="text-sm text-neutral-600">{t('editor.blocks.video_block.uploading')} {uploadProgress}%</p>
                   <div className="w-48 h-1 bg-neutral-200 rounded-full mx-auto overflow-hidden">
                     <div
@@ -476,7 +475,7 @@ function VideoBlockComponent(props: ExtendedNodeViewProps) {
                 <div className="relative w-full aspect-video rounded-lg overflow-hidden bg-black nice-shadow">
                   {isLoading && (
                     <div className="absolute inset-0 z-40 flex items-center justify-center bg-black/10 backdrop-blur-sm">
-                      <CircleNotch weight="duotone" className="w-8 h-8 animate-spin text-white" />
+                      <LearnHouseSpinner size={44} tone="white" />
                     </div>
                   )}
                   <LearnHousePlayer {...playerProps} />

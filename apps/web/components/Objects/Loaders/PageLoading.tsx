@@ -1,40 +1,13 @@
 'use client'
-import { Loader2 } from 'lucide-react'
-import { motion } from 'motion/react'
+import { useTranslation } from 'react-i18next'
+import Assemble from './Assemble'
 
+/** A page on its way. Fades in after a short delay, so fast loads never flash it. */
 function PageLoading() {
+  const { t } = useTranslation()
   return (
-    <div className="fixed inset-0 flex items-center justify-center">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ 
-          opacity: [0, 0.5, 1], 
-          scale: 1,
-          transition: {
-            duration: 0.8,
-            scale: {
-              type: "spring",
-              stiffness: 50,
-              damping: 15,
-              delay: 0.2
-            },
-            opacity: {
-              duration: 0.6,
-              times: [0, 0.6, 1]
-            }
-          }
-        }}
-        exit={{ 
-          opacity: 0, 
-          scale: 0.95,
-          transition: {
-            duration: 0.4,
-            ease: "easeOut"
-          }
-        }}
-      >
-        <Loader2 className="w-10 h-10 text-gray-400 animate-spin" />
-      </motion.div>
+    <div className="mst-page-loading fixed inset-0 flex items-center justify-center">
+      <Assemble height={40} label={t('common.loading', { defaultValue: 'Loading' })} />
     </div>
   )
 }

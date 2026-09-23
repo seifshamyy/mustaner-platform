@@ -2,7 +2,8 @@
 import React, { Suspense, useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useLHSession } from '@components/Contexts/LHSessionContext'
-import { Check, Loader2, AlertTriangle } from 'lucide-react'
+import { Check, AlertTriangle } from 'lucide-react'
+
 import { motion } from 'motion/react'
 import toast from 'react-hot-toast'
 import { verifyStripeConnection } from '@services/payments/providers/stripe'
@@ -10,6 +11,7 @@ import { useLHAnalytics, AnalyticsEvent } from '@services/analytics'
 import Image from 'next/image'
 import learnhouseIcon from 'public/learnhouse_bigicon_1.png'
 import { useTranslation } from 'react-i18next'
+import LearnHouseSpinner from '@components/Objects/Loaders/LearnHouseSpinner'
 
 function StripeConnectCallbackInner() {
   const { t } = useTranslation()
@@ -87,7 +89,7 @@ function StripeConnectCallbackInner() {
           <div className="flex flex-col items-center text-center space-y-4">
             {status === 'processing' && (
               <>
-                <Loader2 className="h-12 w-12 text-blue-500 animate-spin" />
+                <LearnHouseSpinner size={44} />
                 <h2 className="text-xl font-semibold text-gray-800">
                   {t('payments.stripe_completing')}
                 </h2>
@@ -131,7 +133,7 @@ export default function StripeConnectCallback() {
   return (
     <Suspense fallback={
       <div className="h-screen w-full bg-[#f8f8f8] flex items-center justify-center">
-        <Loader2 className="h-8 w-8 text-gray-400 animate-spin" />
+        <LearnHouseSpinner size={44} />
       </div>
     }>
       <StripeConnectCallbackInner />

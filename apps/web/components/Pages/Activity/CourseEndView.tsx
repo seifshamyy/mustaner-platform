@@ -18,6 +18,7 @@ import {
   CERTIFICATE_CAPTURE_WIDTH,
 } from '@services/courses/certificateDownload';
 import { useTranslation } from 'react-i18next';
+import LearnHouseSpinner from '@components/Objects/Loaders/LearnHouseSpinner'
 
 interface CourseEndViewProps {
   courseName: string;
@@ -289,7 +290,7 @@ const CourseEndView: React.FC<CourseEndViewProps> = ({
           {showCertificateUI && (
             isLoadingCertificate || isLoadingCertificationStatus ? (
             <div className="flex items-center justify-center py-8">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+              <LearnHouseSpinner size={44} />
               <span className="ms-3 text-gray-600">{t('certificate.loading_certificate')}</span>
             </div>
           ) : certificateError ? (

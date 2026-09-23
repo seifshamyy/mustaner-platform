@@ -8,6 +8,7 @@ import { getOrganizationContextInfo } from '@services/organizations/orgs'
 import BoardCanvas from '@components/Dashboard/Boards/BoardCanvas'
 import { useTrackView, AnalyticsEvent } from '@services/analytics'
 import { useLHSession } from '@components/Contexts/LHSessionContext'
+import LearnHouseSpinner from '@components/Objects/Loaders/LearnHouseSpinner'
 
 interface BoardCanvasClientProps {
   boardUuid: string
@@ -58,7 +59,7 @@ export default function BoardCanvasClient({ boardUuid, accessToken, orgslug, use
   if (!token || isLoading) {
     return (
       <div className="flex h-screen items-center justify-center bg-[#f8f8f8]">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-gray-300 border-t-black" />
+        <LearnHouseSpinner size={44} />
       </div>
     )
   }

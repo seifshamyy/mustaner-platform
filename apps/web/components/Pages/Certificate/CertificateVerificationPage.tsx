@@ -9,6 +9,7 @@ import { getUriWithOrg, getAbsoluteUriWithOrg } from '@services/config/config';
 import { getCourseThumbnailMediaDirectory } from '@services/media/media';
 import { useOrg } from '@components/Contexts/OrgContext';
 import { useTrackView, AnalyticsEvent } from '@services/analytics';
+import LearnHouseSpinner from '@components/Objects/Loaders/LearnHouseSpinner'
 
 interface CertificateVerificationPageProps {
   certificateUuid: string;
@@ -96,7 +97,7 @@ const CertificateVerificationPage: React.FC<CertificateVerificationPageProps> = 
       <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50">
         <div className="bg-white rounded-2xl p-8 nice-shadow max-w-4xl w-full space-y-6">
           <div className="flex items-center justify-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+            <LearnHouseSpinner size={44} />
           </div>
           <div className="text-center">
             <h1 className="text-2xl font-bold text-gray-900 mb-2">Verifying Certificate</h1>

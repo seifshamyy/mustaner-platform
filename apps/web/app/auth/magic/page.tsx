@@ -2,8 +2,10 @@
 
 import React, { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { Loader2, AlertTriangle } from 'lucide-react'
+import { AlertTriangle } from 'lucide-react'
+
 import { useAuth } from '@components/Contexts/AuthContext'
+import LearnHouseSpinner from '@components/Objects/Loaders/LearnHouseSpinner'
 
 /**
  * Consumes a passwordless login link: reads ?token from the URL and hands it to
@@ -119,7 +121,7 @@ export default function MagicLinkConsumePage() {
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
           <div className="flex justify-center mb-4">
-            <Loader2 className="w-12 h-12 text-green-600 animate-spin" />
+            <LearnHouseSpinner size={44} />
           </div>
           <h1 className="text-xl font-semibold text-gray-800 mb-2">Success!</h1>
           <p className="text-gray-500">Redirecting you now...</p>
@@ -132,7 +134,7 @@ export default function MagicLinkConsumePage() {
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="text-center">
         <div className="flex justify-center mb-4">
-          <Loader2 className="w-12 h-12 text-gray-600 animate-spin" />
+          <LearnHouseSpinner size={44} />
         </div>
         <h1 className="text-xl font-semibold text-gray-800 mb-2">Signing you in...</h1>
         <p className="text-gray-500">Please wait while we verify your link.</p>

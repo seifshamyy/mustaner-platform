@@ -23,6 +23,7 @@ import {
 } from '@services/boards/playground'
 import { useDragResize } from './useDragResize'
 import { useLHAnalytics, AnalyticsEvent } from '@services/analytics'
+import LearnHouseSpinner from '@components/Objects/Loaders/LearnHouseSpinner'
 
 // ─── Constants ───────────────────────────────────────────────────────────────
 
@@ -478,7 +479,7 @@ function PlaygroundModal({
               {showLoading && (
                 <div className="flex items-center justify-center w-full h-full">
                   <div className="text-center space-y-3">
-                    <Loader2 className="w-8 h-8 animate-spin mx-auto text-purple-400" />
+                    <LearnHouseSpinner size={44} className="mx-auto" />
                     <p className="text-sm text-white/50">{t('boards.playground_block.generating')}</p>
                   </div>
                 </div>

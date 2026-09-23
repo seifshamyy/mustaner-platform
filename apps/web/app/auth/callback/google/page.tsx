@@ -2,11 +2,13 @@
 
 import React, { useEffect, useState } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
-import { Loader2, AlertTriangle, ShieldAlert } from 'lucide-react'
+import { AlertTriangle, ShieldAlert } from 'lucide-react'
+
 import Link from 'next/link'
 import { useAuth, validateOAuthState } from '@components/Contexts/AuthContext'
 import { getLEARNHOUSE_DOMAIN_VAL, getLEARNHOUSE_TOP_DOMAIN_VAL, getAPIUrl } from '@services/config/config'
 import { getErrorMessage } from '@services/utils/ts/errorMessage'
+import LearnHouseSpinner from '@components/Objects/Loaders/LearnHouseSpinner'
 
 export default function GoogleCallbackPage() {
   const searchParams = useSearchParams()
@@ -272,7 +274,7 @@ export default function GoogleCallbackPage() {
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
           <div className="flex justify-center mb-4">
-            <Loader2 className="w-12 h-12 text-gray-600 animate-spin" />
+            <LearnHouseSpinner size={44} />
           </div>
           <h1 className="text-xl font-semibold text-gray-800 mb-2">
             Completing sign in...
@@ -356,7 +358,7 @@ export default function GoogleCallbackPage() {
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="text-center">
         <div className="flex justify-center mb-4">
-          <Loader2 className="w-12 h-12 text-green-600 animate-spin" />
+          <LearnHouseSpinner size={44} />
         </div>
         <h1 className="text-xl font-semibold text-gray-800 mb-2">
           Success!

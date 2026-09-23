@@ -96,7 +96,7 @@ function EditScormActivityModal({ activity, onClose }: EditScormActivityModalPro
           className="inline-flex items-center justify-center h-9 px-5 text-sm font-medium text-white bg-black rounded-lg hover:bg-gray-800 transition-colors disabled:opacity-50"
         >
           {isSubmitting ? (
-            <LearnHouseSpinner size={18} className="[&>div]:border-t-white" />
+            <LearnHouseSpinner size={18} tone="white" />
           ) : (
             'Save changes'
           )}

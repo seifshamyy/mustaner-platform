@@ -46,6 +46,7 @@ import { getUriWithoutOrg } from '@services/config/config';
 import { useDebounce } from '@/hooks/useDebounce';
 import { useTranslation } from 'react-i18next';
 import { useLHAnalytics, AnalyticsEvent } from '@services/analytics';
+import LearnHouseSpinner from '@components/Objects/Loaders/LearnHouseSpinner'
 
 const SUPPORTED_FILES = constructAcceptValue(['jpg', 'png', 'webp', 'gif'])
 
@@ -657,7 +658,7 @@ function AccountGeneral() {
     return (
       <div className="bg-white rounded-xl nice-shadow p-8">
         <div className="flex items-center justify-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
+          <LearnHouseSpinner size={44} />
         </div>
       </div>
     );

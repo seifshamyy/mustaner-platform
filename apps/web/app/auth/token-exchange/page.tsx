@@ -2,7 +2,9 @@
 
 import React, { useEffect, useState, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
-import { Loader2, AlertTriangle } from 'lucide-react'
+import { AlertTriangle } from 'lucide-react'
+import LearnHouseSpinner from '@components/Objects/Loaders/LearnHouseSpinner'
+
 
 const ERROR_MESSAGES: Record<string, string> = {
   missing_code: 'No sign-in code was provided.',
@@ -102,7 +104,7 @@ function TokenExchangeInner() {
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="text-center">
         <div className="flex justify-center mb-4">
-          <Loader2 className="w-10 h-10 text-gray-600 animate-spin" />
+          <LearnHouseSpinner size={44} />
         </div>
         <h1 className="text-lg font-semibold text-gray-800 mb-1">Signing you in...</h1>
         <p className="text-gray-500 text-sm">Please wait while we set up your session.</p>
@@ -116,7 +118,7 @@ export default function TokenExchangePage() {
     <Suspense
       fallback={
         <div className="min-h-screen flex items-center justify-center bg-gray-50">
-          <Loader2 className="w-10 h-10 text-gray-600 animate-spin" />
+          <LearnHouseSpinner size={44} />
         </div>
       }
     >

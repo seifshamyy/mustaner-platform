@@ -190,7 +190,7 @@ export const OrgMenu = (props: any) => {
                         className={`p-2 rounded-lg transition-colors ${colors.iconBtn}`}
                         aria-label={t('courses.progress')}
                       >
-                        <Signpost size={20} weight="fill" />
+                        <Signpost size={20} weight="duotone" />
                       </Link>
                     </TooltipTrigger>
                     <TooltipContent side="bottom" className="text-xs">
@@ -212,7 +212,7 @@ export const OrgMenu = (props: any) => {
                           className={`p-2 rounded-lg transition-colors ${colors.iconBtn}`}
                           aria-label="Boards"
                         >
-                          <ChalkboardSimple size={20} weight="fill" />
+                          <ChalkboardSimple size={20} weight="duotone" />
                         </Link>
                       </TooltipTrigger>
                       <TooltipContent side="bottom" className="text-xs">
@@ -250,7 +250,7 @@ export const OrgMenu = (props: any) => {
                             className={`p-2 rounded-lg transition-colors ${colors.iconBtn}`}
                             aria-label={t('common.dashboard')}
                           >
-                            <SquaresFour size={20} weight="fill" />
+                            <SquaresFour size={20} weight="duotone" />
                           </button>
                         </DropdownMenuTrigger>
                       </TooltipTrigger>
@@ -297,7 +297,7 @@ export const OrgMenu = (props: any) => {
                             className={`p-2 rounded-lg transition-colors ${colors.iconBtn}`}
                             aria-label={t('common.help')}
                           >
-                            <Question size={20} weight="fill" />
+                            <Question size={20} weight="duotone" />
                           </button>
                         </DropdownMenuTrigger>
                       </TooltipTrigger>

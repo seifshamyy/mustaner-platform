@@ -1,10 +1,12 @@
-import { Loader2, Upload } from 'lucide-react'
+import { Upload } from 'lucide-react'
+
 import React, {
   ButtonHTMLAttributes,
   HTMLAttributes,
   InputHTMLAttributes,
 } from 'react'
 import { cn } from '@/lib/utils'
+import LearnHouseSpinner from '@components/Objects/Loaders/LearnHouseSpinner'
 
 const FileUploadBlockInput: React.FC<InputHTMLAttributes<HTMLInputElement>> = ({
   onChange,
@@ -61,7 +63,7 @@ function FileUploadBlock({
   if (isLoading)
     return (
       <div className="flex items-center justify-center py-8">
-        <Loader2 className="animate-spin text-slate-400" size={32} />
+        <LearnHouseSpinner size={44} />
       </div>
     )
 

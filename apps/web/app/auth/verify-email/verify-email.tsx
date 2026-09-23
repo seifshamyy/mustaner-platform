@@ -1,12 +1,14 @@
 'use client'
 import React, { useEffect, useRef, useState } from 'react'
-import { AlertTriangle, CheckCircle, Loader2, X } from 'lucide-react'
+import { AlertTriangle, CheckCircle, X } from 'lucide-react'
+
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { verifyEmail } from '@services/auth/auth'
 import { useTranslation } from 'react-i18next'
 import AuthLayout from '@components/Auth/AuthLayout'
 import { useLHAnalytics, AnalyticsEvent } from '@services/analytics'
+import LearnHouseSpinner from '@components/Objects/Loaders/LearnHouseSpinner'
 
 interface VerifyEmailClientProps {
     org: any
@@ -133,7 +135,7 @@ function VerifyEmailClient({ org }: VerifyEmailClientProps) {
                         {/* Loading State */}
                         {isVerifying && (
                             <div className="mt-8 flex flex-col items-center gap-4">
-                                <Loader2 className="h-12 w-12 animate-spin text-black/40" />
+                                <LearnHouseSpinner size={44} />
                                 <p className="text-black/45 text-sm font-medium">{t('auth.verifying_email')}</p>
                             </div>
                         )}

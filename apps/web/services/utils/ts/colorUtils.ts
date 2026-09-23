@@ -42,7 +42,7 @@ export function getMenuColorClasses(primaryColor: string) {
       text: 'text-gray-700',
       textMuted: 'text-gray-500',
       hoverBg: 'hover:bg-gray-100',
-      iconBtn: 'hover:bg-blue-600/[0.06] hover:text-blue-700 text-gray-600',
+      iconBtn: 'text-gray-500 hover:bg-blue-600/[0.06] hover:text-blue-700',
       searchBg:
         'bg-white text-black placeholder:text-black/40 focus:ring-black/5 focus:border-black/20 nice-shadow',
       searchIcon:

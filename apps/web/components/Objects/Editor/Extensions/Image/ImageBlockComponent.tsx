@@ -1,7 +1,8 @@
 import { NodeViewWrapper } from '@tiptap/react'
 import React, { useEffect } from 'react'
 import { Resizable } from 're-resizable'
-import { Image, DownloadSimple, TextAlignLeft, TextAlignCenter, TextAlignRight, ArrowsOut, UploadSimple, CircleNotch, WarningCircle } from '@phosphor-icons/react'
+import { Image, DownloadSimple, TextAlignLeft, TextAlignCenter, TextAlignRight, ArrowsOut, UploadSimple, WarningCircle } from '@phosphor-icons/react'
+
 import toast from 'react-hot-toast'
 import { uploadNewImageFile } from '../../../../../services/blocks/Image/images'
 import { getActivityBlockMediaDirectory } from '@services/media/media'
@@ -14,6 +15,7 @@ import Modal from '@components/Objects/StyledElements/Modal/Modal'
 import { useTranslation } from 'react-i18next'
 import UnsplashImagePicker, { UnsplashPhotoMeta } from '@components/Dashboard/Pages/Course/EditCourseGeneral/UnsplashImagePicker'
 import AIImageButton from '@components/Objects/AI/AIImageButton'
+import LearnHouseSpinner from '@components/Objects/Loaders/LearnHouseSpinner'
 
 const SUPPORTED_FILES = constructAcceptValue(['jpg', 'png', 'webp', 'gif'])
 const UNSPLASH_UTM = '?utm_source=Mustaner&utm_medium=referral'
@@ -316,7 +318,7 @@ function ImageBlockComponent(props: any) {
                 />
                 {isLoading ? (
                   <div className="space-y-3">
-                    <CircleNotch weight="duotone" className="w-8 h-8 animate-spin mx-auto text-neutral-500" />
+                    <LearnHouseSpinner size={44} className="mx-auto" />
                     <p className="text-sm text-neutral-600">{t('editor.blocks.image_block.uploading')} {progress}%</p>
                     <div
                       className="w-48 h-1 bg-neutral-200 rounded-full mx-auto overflow-hidden"

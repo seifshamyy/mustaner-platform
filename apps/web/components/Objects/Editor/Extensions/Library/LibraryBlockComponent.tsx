@@ -1,21 +1,8 @@
 import { NodeViewProps, NodeViewWrapper } from '@tiptap/react'
 import React from 'react'
 import toast from 'react-hot-toast'
-import {
-  ArrowLeftRight,
-  BookCopy,
-  Download,
-  ExternalLink,
-  Expand,
-  Gamepad2,
-  LayoutGrid,
-  Library,
-  Loader2,
-  Podcast,
-  Trash2,
-  Upload,
-  Users,
-} from 'lucide-react'
+import { ArrowLeftRight, BookCopy, Download, ExternalLink, Expand, Gamepad2, LayoutGrid, Library, Podcast, Trash2, Upload, Users } from 'lucide-react'
+
 import { useTranslation } from 'react-i18next'
 import { useOrg } from '@components/Contexts/OrgContext'
 import { useEditorProvider } from '@components/Contexts/Editor/EditorContext'
@@ -28,6 +15,7 @@ import ResourcePicker, {
 } from '@components/Dashboard/Library/ResourcePicker'
 import { createMedia, getMediaById, getMediaFileDirectory } from '@services/media/media-resource'
 import { buildEmbedUrl, buildResourceUrl, type ResourceKind } from '@/lib/library/resourceEmbed'
+import LearnHouseSpinner from '@components/Objects/Loaders/LearnHouseSpinner'
 
 const UPLOAD_ACCEPT =
   'image/*,video/*,audio/*,application/pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.zip'
@@ -177,7 +165,7 @@ function LibraryBlockComponent(props: NodeViewProps) {
           contentEditable={false}
         >
           {uploading ? (
-            <Loader2 className="animate-spin text-slate-400" size={32} />
+            <LearnHouseSpinner size={44} />
           ) : (
             <>
               <Library className="text-slate-300" size={40} />

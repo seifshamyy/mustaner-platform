@@ -7,6 +7,7 @@ import { getUserEnrollments } from '@services/payments/offers'
 import CourseThumbnail from '@components/Objects/Thumbnails/CourseThumbnail'
 import { BookOpen } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
+import LearnHouseSpinner from '@components/Objects/Loaders/LearnHouseSpinner'
 
 interface AccountMyCoursesProps {
   orgId: number
@@ -29,7 +30,7 @@ function AccountMyCourses({ orgId, orgslug }: AccountMyCoursesProps) {
     return (
       <div className="bg-white rounded-xl nice-shadow p-8">
         <div className="flex items-center justify-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
+          <LearnHouseSpinner size={44} />
         </div>
       </div>
     )

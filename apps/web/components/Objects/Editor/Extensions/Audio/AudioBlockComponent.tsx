@@ -19,6 +19,7 @@ import { cn } from '@/lib/utils'
 import { getOrgPodcasts, getPodcastMeta, type Podcast, type PodcastEpisode, type PodcastMeta } from '@services/podcasts/podcasts'
 import { safePlay } from '@/lib/media/safePlay'
 import InlineAudioPlayer, { formatTime } from '@components/Objects/Media/InlineAudioPlayer'
+import LearnHouseSpinner from '@components/Objects/Loaders/LearnHouseSpinner'
 
 const SUPPORTED_FILES = constructAcceptValue(['mp3', 'wav', 'ogg', 'm4a'])
 
@@ -720,7 +721,7 @@ function AudioBlockComponent(props: ExtendedNodeViewProps) {
                 >
                   {isLoading ? (
                     <div className="space-y-3">
-                      <CircleNotch weight="duotone" className="w-8 h-8 animate-spin mx-auto text-blue-500" />
+                      <LearnHouseSpinner size={44} className="mx-auto" />
                       <p className="text-sm text-neutral-600">Uploading... {uploadProgress}%</p>
                       <div className="w-48 h-1 bg-neutral-200 rounded-full mx-auto overflow-hidden">
                         <div className="h-full bg-blue-500 rounded-full transition-all duration-200" style={{ width: `${uploadProgress}%` }} />

@@ -12,6 +12,7 @@ import { getUser } from '@services/users/users'
 import { toast } from 'react-hot-toast'
 
 import { useTranslation } from 'react-i18next'
+import LearnHouseSpinner from '@components/Objects/Loaders/LearnHouseSpinner'
 
 // Define section types and their configurations
 const SECTION_TYPES = {
@@ -341,7 +342,7 @@ const UserProfileBuilder = () => {
     return (
       <div className="bg-white rounded-xl nice-shadow p-6">
         <div className="flex items-center justify-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
+          <LearnHouseSpinner size={44} />
         </div>
       </div>
     )

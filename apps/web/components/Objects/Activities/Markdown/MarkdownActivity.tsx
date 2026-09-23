@@ -9,6 +9,7 @@ import { updateActivity } from '@services/courses/activities'
 import { useLHSession } from '@components/Contexts/LHSessionContext'
 import toast from 'react-hot-toast'
 import 'github-markdown-css/github-markdown-light.css'
+import LearnHouseSpinner from '@components/Objects/Loaders/LearnHouseSpinner'
 
 function toRawUrl(url: string): string {
   // GitHub: github.com/user/repo/blob/branch/path -> raw.githubusercontent.com/user/repo/branch/path
@@ -100,7 +101,7 @@ function MarkdownActivity({ activity, editable = false, style }: MarkdownActivit
   if (loading) {
     return (
       <div className="flex items-center justify-center py-20">
-        <SpinnerGap size={32} className="animate-spin text-gray-400" />
+        <LearnHouseSpinner size={44} />
       </div>
     )
   }
