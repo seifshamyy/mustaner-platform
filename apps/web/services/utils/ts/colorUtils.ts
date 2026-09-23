@@ -32,12 +32,12 @@ export function isLightColor(hex: string): boolean {
 /**
  * Tailwind class sets for menu elements on a dynamic primary-color background.
  *
- * - No primaryColor → default gray theme
+ * - No primaryColor, or white (the default bar) → the Mustaner theme
  * - Dark primaryColor → white foreground
  * - Light primaryColor → dark foreground with subtle overlays
  */
 export function getMenuColorClasses(primaryColor: string) {
-  if (!primaryColor) {
+  if (!primaryColor || /^#?f{3}(f{3})?$/i.test(primaryColor.trim())) {
     return {
       text: 'text-gray-700',
       textMuted: 'text-gray-500',

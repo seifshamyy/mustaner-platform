@@ -17,9 +17,9 @@ export function CreateButtonLabel({ label }: { label: string }) {
       <span>{label}</span>
       <span
         aria-hidden="true"
-        className="grid size-5 place-items-center rounded-[2px] bg-white/15 transition-transform duration-200 group-hover:rotate-90 motion-reduce:transition-none"
+        className="grid size-5 place-items-center rounded-[2px] bg-white/15 transition-colors duration-150 group-hover:bg-white/25 motion-reduce:transition-none"
       >
-        <Plus size={12} weight="bold" />
+        <Plus size={12} weight="bold" className="transition-transform duration-150 group-hover:scale-125 motion-reduce:transition-none" />
       </span>
     </>
   )
