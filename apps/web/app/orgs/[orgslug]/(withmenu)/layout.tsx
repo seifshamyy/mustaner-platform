@@ -15,7 +15,8 @@ import { PageViewTracker } from '@components/Analytics/PageViewTracker'
 import { usePathname, useSearchParams } from 'next/navigation'
 import { usePlan } from '@components/Hooks/usePlan'
 import { getGoogleFontUrl, DEFAULT_FONT } from '@/lib/fonts'
-import { getSiteUrl } from '@services/brand/brand'
+import { getSiteUrl, getSourceUrl } from '@services/brand/brand'
+import { useTranslation } from 'react-i18next'
 import { getUriWithOrg } from '@services/config/config'
 
 // Helper to convert hex to rgba
@@ -28,6 +29,7 @@ const hexToRgba = (hex: string, alpha: number): string => {
 }
 
 function OrgFooter() {
+  const { t } = useTranslation()
   const org = useOrg() as any
   const footerText = org?.config?.config?.customization?.general?.footer_text || org?.config?.config?.general?.footer_text || ''
   const plan = usePlan()
@@ -49,6 +51,16 @@ function OrgFooter() {
               style={{ height: 'auto' }}
               className="opacity-25 hover:opacity-50 transition-opacity duration-300 cursor-pointer"
             />
+          </a>
+        )}
+        {getSourceUrl() && (
+          <a
+            href={getSourceUrl() ?? undefined}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs text-gray-400 hover:text-gray-600 transition-colors"
+          >
+            {t('common.open_source_licenses', { defaultValue: 'Open-source licenses' })}
           </a>
         )}
       </div>

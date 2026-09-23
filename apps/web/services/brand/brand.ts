@@ -24,3 +24,11 @@ export function getSiteUrl(path = ''): string | null {
 export function isFeedbackEnabled(): boolean {
   return Boolean(getConfig('NEXT_PUBLIC_LEARNHOUSE_SENTRY_DSN').trim())
 }
+
+/**
+ * Where users can get the platform's source code. The platform is AGPL-3.0
+ * software, so everyone who uses it over the network is offered its source.
+ */
+export function getSourceUrl(): string | null {
+  return getConfig('NEXT_PUBLIC_MUSTANER_SOURCE_URL').trim() || null
+}

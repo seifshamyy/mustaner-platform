@@ -236,7 +236,8 @@
     "move_up": "Move up",
     "move_down": "Move down",
     "less": "Less",
-    "more": "More"
+    "more": "More",
+    "open_source_licenses": "Open-source licenses"
   },
   "banner": {
     "viewing_as_guest": "You're viewing {{name}} as a guest.",
