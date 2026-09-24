@@ -500,35 +500,55 @@ function ActivityClient(props: ActivityClientProps) {
 
   if (activity?.is_locked) {
     const isAuthenticated = session?.status === 'authenticated'
+    // Sign-up and sign-in both return to this lesson.
+    const here = encodeURIComponent(`/course/${courseuuid}/activity/${activityid}`)
     return (
       <GeneralWrapperStyled>
-        <div className="max-w-2xl mx-auto my-16 bg-white rounded-2xl border border-gray-200/80 shadow-sm p-8 text-center">
-          <div className="mx-auto w-14 h-14 rounded-full bg-rose-50 flex items-center justify-center mb-4">
-            <Lock className="text-rose-500" size={24} />
-          </div>
-          <h1 className="text-xl font-semibold text-gray-900 mb-2">
-            {t('course.locked_title', 'This activity is locked')}
+        <div className="mx-auto my-12 max-w-xl rounded-[3px] border border-gray-200 bg-white px-6 py-10 text-center sm:px-10">
+          <img
+            src={isAuthenticated ? '/illustrations/empty-courses.webp' : '/illustrations/auth-learn.webp'}
+            alt=""
+            aria-hidden="true"
+            className="mx-auto mb-6 h-40 w-auto"
+          />
+          <p className="mb-2 inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-gray-500">
+            <Lock size={13} aria-hidden="true" />
+            {displayName}
+          </p>
+          <h1 className="text-2xl font-bold leading-tight text-gray-900 text-balance">
+            {isAuthenticated
+              ? t('course.locked_title', 'This activity is locked')
+              : t('course.locked_signup_title', 'Create your free account to open this lesson')}
           </h1>
-          <p className="text-sm text-gray-500 mb-6 leading-relaxed">
+          <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-gray-500">
             {isAuthenticated
               ? t('course.locked_restricted', 'You need to be a member of the right user group to access this. Ask a course admin to add you.')
-              : t('course.locked_auth_required', 'You need to sign in to access this activity.')}
+              : t('course.locked_signup_body', 'Every program is free while the platform opens. Your account takes a few seconds and opens every lesson.')}
           </p>
-          <div className="flex flex-col sm:flex-row gap-2 justify-center">
-            {!isAuthenticated && (
+          <div className="mt-8 flex flex-col justify-center gap-2 sm:flex-row">
+            {isAuthenticated ? (
               <Link
-                href={getUriWithOrg(orgslug, '/login')}
-                className="inline-flex items-center justify-center px-4 py-2 bg-gray-900 text-white rounded-lg text-sm font-semibold hover:bg-gray-800 transition-colors"
+                href={getUriWithOrg(orgslug, '') + `/course/${courseuuid}`}
+                className="inline-flex h-11 items-center justify-center rounded-[3px] bg-blue-600 px-6 text-sm font-bold text-white transition-colors hover:bg-blue-700"
               >
-                {t('auth.sign_in', 'Sign in')}
+                {t('course.back_to_course', 'Back to course')}
               </Link>
+            ) : (
+              <>
+                <Link
+                  href={getUriWithOrg(orgslug, `/signup?redirect=${here}`)}
+                  className="inline-flex h-11 items-center justify-center rounded-[3px] bg-blue-600 px-6 text-sm font-bold text-white transition-colors hover:bg-blue-700"
+                >
+                  {t('course.locked_signup_cta', 'Create free account')}
+                </Link>
+                <Link
+                  href={getUriWithOrg(orgslug, `/login?redirect=${here}`)}
+                  className="inline-flex h-11 items-center justify-center rounded-[3px] border border-gray-200 bg-white px-6 text-sm font-bold text-gray-700 transition-colors hover:bg-gray-50"
+                >
+                  {t('course.locked_signin_cta', 'I already have an account')}
+                </Link>
+              </>
             )}
-            <Link
-              href={getUriWithOrg(orgslug, '') + `/course/${courseuuid}`}
-              className="inline-flex items-center justify-center px-4 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm font-semibold hover:bg-gray-200 transition-colors"
-            >
-              {t('course.back_to_course', 'Back to course')}
-            </Link>
           </div>
         </div>
       </GeneralWrapperStyled>

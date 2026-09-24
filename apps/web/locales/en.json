@@ -5933,7 +5933,11 @@
     "backToCourses": "Back to Courses",
     "loadError": "This course could not be found or there was an error loading it.",
     "noPermission": "You do not have permission to view this course.",
-    "finish_course": "Finish course"
+    "finish_course": "Finish course",
+    "locked_signup_title": "Create your free account to open this lesson",
+    "locked_signup_body": "Every program is free while the platform opens. Your account takes a few seconds and opens every lesson.",
+    "locked_signup_cta": "Create free account",
+    "locked_signin_cta": "I already have an account"
   },
   "pagination": {
     "next": "Next",

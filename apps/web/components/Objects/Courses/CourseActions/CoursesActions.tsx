@@ -98,6 +98,8 @@ function CoursesActions({ courseuuid, orgslug, course, trailData }: CourseAction
     courseActivities.find(
       (activity) => !learnerRun?.steps?.some((step: any) => step.activity_id === activity.id)
     ) ?? courseActivities[0]
+  // Signing up from a course brings the visitor straight back to it.
+  const signupHref = getUriWithOrg(orgslug, `/signup?redirect=${encodeURIComponent(`/course/${cleanCourseUuid}`)}`)
   const continueHref = nextActivity
     ? getUriWithOrg(orgslug, `/course/${cleanCourseUuid}/activity/${nextActivity.activity_uuid.replace('activity_', '')}`)
     : null
@@ -108,13 +110,13 @@ function CoursesActions({ courseuuid, orgslug, course, trailData }: CourseAction
         reason: 'unauthenticated',
         intended_action: isStarted ? 'leave_course' : 'start_course',
       })
-      router.push(getUriWithOrg(orgslug, '/signup'))
+      router.push(signupHref)
       return
     }
 
     // Check if user is part of the organization
     if (!isUserPartOfTheOrg) {
-      router.push(getUriWithOrg(orgslug, '/signup'))
+      router.push(signupHref)
       return
     }
 
@@ -166,7 +168,7 @@ function CoursesActions({ courseuuid, orgslug, course, trailData }: CourseAction
 
   const handleApplyToContribute = async () => {
     if (!session.data?.user) {
-      router.push(getUriWithOrg(orgslug, '/signup'))
+      router.push(signupHref)
       return
     }
 
@@ -225,7 +227,7 @@ function CoursesActions({ courseuuid, orgslug, course, trailData }: CourseAction
     if (!session.data?.user) {
       return (
         <button
-          onClick={() => router.push(getUriWithOrg(orgslug, '/signup'))}
+          onClick={() => router.push(signupHref)}
           aria-label={t('auth.sign_up_to_contribute')}
           className="w-full bg-white text-neutral-700 border border-neutral-200 py-3 rounded-lg nice-shadow font-semibold hover:bg-neutral-50 transition-colors flex items-center justify-center gap-2 mt-3 cursor-pointer"
         >
@@ -416,7 +418,7 @@ function CoursesActions({ courseuuid, orgslug, course, trailData }: CourseAction
             </p>
           </div>
           <a
-            href={getUriWithOrg(orgslug, '/signup')}
+            href={signupHref}
             className="w-full bg-neutral-900 text-white py-3 rounded-lg nice-shadow font-semibold hover:bg-neutral-800 transition-colors flex items-center justify-center gap-2"
           >
             <UserPlus className="w-5 h-5" />

@@ -10,6 +10,7 @@ import { AlertTriangle, Info, Mail, User } from 'lucide-react'
 import Link from 'next/link'
 import { signup, resendVerificationEmail } from '@services/auth/auth'
 import { useOrg } from '@components/Contexts/OrgContext'
+import { useAuth } from '@components/Contexts/AuthContext'
 import { signIn } from '@components/Contexts/AuthContext'
 import { getLEARNHOUSE_TOP_DOMAIN_VAL, isOnCustomDomain } from '@services/config/config'
 import { getErrorMessage } from '@services/utils/ts/errorMessage'
@@ -71,6 +72,7 @@ function OpenSignUpComponent({ org: propOrg }: OpenSignUpComponentProps = {}) {
   const { track } = useLHAnalytics('public')
   const [isSubmitting, setIsSubmitting] = React.useState(false)
   const contextOrg = useOrg() as any
+  const { signIn } = useAuth()
   const org = (contextOrg && (contextOrg.id || contextOrg.slug)) ? contextOrg : propOrg
   const _router = useRouter()
   const [error, setError] = React.useState('')
@@ -119,6 +121,23 @@ function OpenSignUpComponent({ org: propOrg }: OpenSignUpComponentProps = {}) {
         let message = await res.json().catch(() => ({}))
         if (res.status == 200) {
           track(AnalyticsEvent.SignupSucceeded, { email_verified: message.email_verified })
+          // A ready account is signed straight in and taken where the visitor
+          // was headed, instead of being asked to type the same details again.
+          // Anything short of a clean sign-in falls back to the usual message.
+          if (message.email_verified !== false) {
+            const callbackUrl = buildCallbackUrl()
+            const session = await signIn('credentials', {
+              redirect: false,
+              email: values.email,
+              password: values.password,
+              orgSlug: org?.slug,
+              callbackUrl,
+            }).catch(() => null)
+            if (session && !session.error && !session.mfa_required) {
+              window.location.href = callbackUrl
+              return
+            }
+          }
           setMessage(message)
         } else {
           // Surface the backend's actual error detail for ANY non-2xx (incl. 409
