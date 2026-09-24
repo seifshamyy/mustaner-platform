@@ -2,6 +2,7 @@
 import { useOrg } from '@components/Contexts/OrgContext'
 import { signOut } from '@components/Contexts/AuthContext'
 import {
+  Browser,
   House,
   BookOpen,
   Files,
@@ -44,7 +45,7 @@ import {
   Lightning,
 } from '@phosphor-icons/react'
 import { motion } from 'motion/react'
-import { SUPPORT_EMAIL, getSiteUrl, isFeedbackEnabled } from '@services/brand/brand'
+import { SUPPORT_EMAIL, getSiteUrl, getWebsiteEditorUrl, isFeedbackEnabled } from '@services/brand/brand'
 import CommandPaletteTrigger from '@components/Dashboard/CommandPalette/CommandPaletteTrigger'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -1023,6 +1024,25 @@ function DashLeftMenu() {
                 {t('common.expand')}
               </TooltipContent>
             </Tooltip>
+          )}
+
+          {/* The website's content editor, for the people who run the org */}
+          {canManageOrg && getWebsiteEditorUrl() && (
+            <a
+              href={getWebsiteEditorUrl() ?? undefined}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={t('common.website_editor', { defaultValue: 'Website editor' })}
+              className={cn(
+                'flex items-center w-full rounded-lg text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100 transition-all group',
+                isCollapsed ? 'justify-center h-10' : 'px-3 py-2 gap-3'
+              )}
+            >
+              <Browser size={20} weight="fill" />
+              {!isCollapsed && (
+                <span className="text-sm font-medium">{t('common.website_editor', { defaultValue: 'Website editor' })}</span>
+              )}
+            </a>
           )}
 
           {/* Language Switcher with hover menu */}

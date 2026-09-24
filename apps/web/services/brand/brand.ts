@@ -17,6 +17,14 @@ export function getSiteUrl(path = ''): string | null {
 }
 
 /**
+ * The website editor (NEXT_PUBLIC_MUSTANER_CMS_URL): a secret, password-protected
+ * address on the website, opened from the dashboard by people who manage the org.
+ */
+export function getWebsiteEditorUrl(): string | null {
+  return getConfig('NEXT_PUBLIC_MUSTANER_CMS_URL').trim() || null
+}
+
+/**
  * Feedback is relayed to the error-reporting service; without one configured
  * it would be silently dropped, so the entry point is only offered when it
  * can actually reach someone.

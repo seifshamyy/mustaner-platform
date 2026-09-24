@@ -237,7 +237,8 @@
     "move_down": "تحريك لأسفل",
     "less": "أقل",
     "more": "المزيد",
-    "open_source_licenses": "تراخيص البرمجيات مفتوحة المصدر"
+    "open_source_licenses": "تراخيص البرمجيات مفتوحة المصدر",
+    "website_editor": "محرر الموقع"
   },
   "banner": {
     "viewing_as_guest": "أنت تتصفح {{name}} كضيف.",
