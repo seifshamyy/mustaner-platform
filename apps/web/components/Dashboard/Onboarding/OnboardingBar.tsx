@@ -292,7 +292,7 @@ export default function OnboardingBar() {
                     className="p-8 text-center"
                   >
                     <div className="flex justify-center">
-                      <img src="/illustrations/course-complete.webp" alt="" className="h-[160px] w-auto" />
+                      <img src="/illustrations/course-complete.webp" alt="" className="h-[200px] w-auto" />
                     </div>
                     <h3 className="text-lg font-bold text-gray-900 mt-2">
                       {t('onboarding.farewell.title')}

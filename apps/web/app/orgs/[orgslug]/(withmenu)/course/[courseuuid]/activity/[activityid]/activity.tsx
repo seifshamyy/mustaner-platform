@@ -509,7 +509,7 @@ function ActivityClient(props: ActivityClientProps) {
             src={isAuthenticated ? '/illustrations/empty-courses.webp' : '/illustrations/auth-learn.webp'}
             alt=""
             aria-hidden="true"
-            className="mx-auto mb-6 h-40 w-auto"
+            className="mx-auto mb-6 h-56 w-auto"
           />
           <p className="mb-2 inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-gray-500">
             <Lock size={13} aria-hidden="true" />

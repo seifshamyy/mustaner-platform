@@ -227,7 +227,7 @@ export default function WelcomeModal() {
               animate={{ height: showFeatures ? 0 : 'auto', opacity: showFeatures ? 0 : 1 }}
               transition={{ duration: 0.5, ease }}
             >
-              <img src="/illustrations/welcome.webp" alt="" className="h-[220px] w-auto" />
+              <img src="/illustrations/welcome.webp" alt="" className="h-[260px] w-auto" />
             </motion.div>
 
             {/* Button */}

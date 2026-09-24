@@ -13,7 +13,7 @@ export default function EERequiredScreen() {
   return (
     <div className="flex justify-center items-center min-h-screen bg-white px-6">
       <div className="text-center max-w-md">
-        <img src="/illustrations/not-found.webp" alt="" className="mx-auto mb-6 h-48 w-auto" />
+        <img src="/illustrations/not-found.webp" alt="" className="mx-auto mb-6 h-56 w-auto" />
         <h1 className="text-2xl font-bold text-neutral-950 mb-2">This page isn&apos;t available.</h1>
         <p className="text-neutral-600 text-sm leading-relaxed">
           It is not part of this platform.

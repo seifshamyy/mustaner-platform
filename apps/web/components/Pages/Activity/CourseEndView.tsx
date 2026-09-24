@@ -269,7 +269,7 @@ const CourseEndView: React.FC<CourseEndViewProps> = ({
               />
             )}
             
-            <img src="/illustrations/course-complete.webp" alt="" className="h-40 w-auto" />
+            <img src="/illustrations/course-complete.webp" alt="" className="h-56 w-auto" />
           </div>
           
           <h1 className="text-4xl font-bold text-gray-900">

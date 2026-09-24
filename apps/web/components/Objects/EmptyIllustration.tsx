@@ -42,7 +42,7 @@ export default function EmptyIllustration({
       alt=""
       aria-hidden="true"
       loading="lazy"
-      className={cn('mx-auto w-auto select-none', size === 'sm' ? 'h-28' : 'h-40', 'mb-5', className)}
+      className={cn('mx-auto w-auto select-none', size === 'sm' ? 'h-36' : 'h-52', 'mb-5', className)}
     />
   )
 }
