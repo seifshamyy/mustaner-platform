@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Sparkle } from '@phosphor-icons/react'
 import AIImagePicker from './AIImagePicker'
+import { isAICapabilityAvailable } from '@services/ai/capabilities'
 
 // Drop-in trigger for the shared AI image generator. Place next to an existing
 // Unsplash button on any image-upload surface; it manages its own modal state,
@@ -25,6 +26,7 @@ const AIImageButton: React.FC<AIImageButtonProps> = ({
   variant = 'button',
 }) => {
   const [open, setOpen] = useState(false)
+  if (!isAICapabilityAvailable('images')) return null
 
   const base =
     variant === 'chip'

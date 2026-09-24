@@ -236,7 +236,7 @@ function MagicBlockComponent(props: ExtendedNodeViewProps) {
       <NodeViewWrapper className="block-magic w-full">
         <div
           style={{
-            background: 'linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), radial-gradient(105.16% 105.16% at 50% -5.16%, rgba(255, 255, 255, 0.18) 0%, rgba(0, 0, 0, 0) 100%), rgb(2 1 25 / 98%)',
+            background: 'linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), radial-gradient(105.16% 105.16% at 50% -5.16%, rgba(255, 255, 255, 0.18) 0%, rgba(0, 0, 0, 0) 100%), rgb(15 34 51 / 98%)',
           }}
           className="rounded-2xl px-5 py-4 shadow-lg transition-all ease-linear ring-1 ring-inset ring-white/10 backdrop-blur-md"
         >
@@ -279,7 +279,7 @@ function MagicBlockComponent(props: ExtendedNodeViewProps) {
                 <div className="inline-flex flex-col items-center gap-3">
                   <div
                     style={{
-                      background: 'conic-gradient(from 32deg at 53.75% 50%, rgb(35, 40, 93) 4deg, rgba(20, 0, 52, 0.95) 59deg, rgba(164, 45, 238, 0.88) 281deg)',
+                      background: 'linear-gradient(135deg, #007a57 0%, #00697e 45%, #0055ac 100%)',
                     }}
                     className="p-4 rounded-full drop-shadow-md"
                   >
@@ -296,7 +296,7 @@ function MagicBlockComponent(props: ExtendedNodeViewProps) {
                   <button
                     onClick={() => setIsModalOpen(true)}
                     style={{
-                      background: 'conic-gradient(from 32deg at 53.75% 50%, rgb(35, 40, 93) 4deg, rgba(20, 0, 52, 0.95) 59deg, rgba(164, 45, 238, 0.88) 281deg)',
+                      background: 'linear-gradient(135deg, #007a57 0%, #00697e 45%, #0055ac 100%)',
                     }}
                     className="mt-2 px-5 py-2.5 text-white text-sm font-bold rounded-full transition-all duration-300 ease-in-out hover:scale-105 flex items-center gap-2 drop-shadow-md"
                   >

@@ -1013,7 +1013,7 @@ function AIEditorSidePanel(props: AIEditorSidePanelProps) {
         className="rounded-xl h-[calc(100vh-170px)] flex flex-col ring-1 ring-inset ring-white/10"
         style={{
           background:
-            'linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), radial-gradient(105.16% 105.16% at 50% -5.16%, rgba(255, 255, 255, 0.18) 0%, rgba(0, 0, 0, 0) 100%), rgb(2 1 25 / 98%)',
+            'linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), radial-gradient(105.16% 105.16% at 50% -5.16%, rgba(255, 255, 255, 0.18) 0%, rgba(0, 0, 0, 0) 100%), rgb(15 34 51 / 98%)',
         }}
       >
         {/* Header */}

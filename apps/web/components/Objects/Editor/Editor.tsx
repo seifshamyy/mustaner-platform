@@ -505,7 +505,7 @@ function Editor(props: EditorProps) {
                       }}
                       style={{
                         background:
-                          'conic-gradient(from 32deg at 53.75% 50%, rgb(35, 40, 93) 4deg, rgba(20, 0, 52, 0.95) 59deg, rgba(164, 45, 238, 0.88) 281deg)',
+                          'linear-gradient(135deg, #007a57 0%, #00697e 45%, #0055ac 100%)',
                       }}
                       className="rounded-md px-3 py-2 drop-shadow-md flex  items-center space-x-1.5 text-sm text-white hover:cursor-pointer transition delay-150 duration-300 ease-in-out hover:scale-105"
                     >

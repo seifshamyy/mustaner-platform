@@ -56,7 +56,7 @@ function AIActivityAsk(props: AIActivityAskProps) {
             onClick={handleOpenAI}
             style={{
               background:
-                'conic-gradient(from 32deg at 53.75% 50%, rgb(35, 40, 93) 4deg, rgba(20, 0, 52, 0.95) 59deg, rgba(164, 45, 238, 0.88) 281deg)',
+                'linear-gradient(135deg, #007a57 0%, #00697e 45%, #0055ac 100%)',
             }}
             className="rounded-full px-5 drop-shadow-md flex  items-center space-x-1.5 p-2.5 text-sm text-white hover:cursor-pointer transition delay-150 duration-300 ease-in-out hover:scale-105"
           >
@@ -287,7 +287,7 @@ function ActivityChatMessageBox(props: ActivityChatMessageBoxProps) {
               style={{
                 pointerEvents: 'auto',
                 background:
-                  'linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), radial-gradient(105.16% 105.16% at 50% -5.16%, rgba(255, 255, 255, 0.18) 0%, rgba(0, 0, 0, 0) 100%), rgb(2 1 25 / 98%)',
+                  'linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), radial-gradient(105.16% 105.16% at 50% -5.16%, rgba(255, 255, 255, 0.18) 0%, rgba(0, 0, 0, 0) 100%), rgb(15 34 51 / 98%)',
               }}
               className={`bg-black z-[10000] shadow-lg ring-1 ring-inset ring-white/10 text-white p-4 backdrop-blur-md transition-all duration-300 flex flex-col rounded-2xl max-w-(--breakpoint-2xl) w-10/12 mx-auto fixed bottom-4 left-1/2 transform -translate-x-1/2 ${
                 aiChatBotState.isFullscreen
@@ -901,7 +901,7 @@ function AISidePanelInline(props: AISidePanelProps) {
       }}
       style={{
         background:
-          'linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), radial-gradient(105.16% 105.16% at 50% -5.16%, rgba(255, 255, 255, 0.18) 0%, rgba(0, 0, 0, 0) 100%), rgb(2 1 25 / 98%)',
+          'linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), radial-gradient(105.16% 105.16% at 50% -5.16%, rgba(255, 255, 255, 0.18) 0%, rgba(0, 0, 0, 0) 100%), rgb(15 34 51 / 98%)',
         height: panelHeight,
         top: topPosition,
       }}

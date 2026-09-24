@@ -7,6 +7,7 @@ import {
 } from '@phosphor-icons/react'
 import React from 'react'
 import toast from 'react-hot-toast'
+import { isAICapabilityAvailable } from '@services/ai/capabilities'
 import { uploadNewAudioFile, generateAudioBlock, generateScript, type GenerateAudioSpeaker } from '../../../../../services/blocks/Audio/audio'
 import { getAudioBlockStreamUrl, getPodcastAudioStreamUrl } from '@services/media/media'
 import { useOrg } from '@components/Contexts/OrgContext'
@@ -686,7 +687,10 @@ function AudioBlockComponent(props: ExtendedNodeViewProps) {
                 { key: 'generate' as TabType, icon: Sparkle, label: 'Generate' },
                 { key: 'episode' as TabType, icon: MusicNote, label: 'Episode' },
                 { key: 'podcast' as TabType, icon: List, label: 'Playlist' },
-              ]).map((tab) => (
+              ])
+                // Generating speech needs Google text-to-speech; hide it where that isn't set up.
+                .filter((tab) => tab.key !== 'generate' || isAICapabilityAvailable('speech'))
+                .map((tab) => (
                 <button
                   key={tab.key}
                   onClick={() => setActiveTab(tab.key)}

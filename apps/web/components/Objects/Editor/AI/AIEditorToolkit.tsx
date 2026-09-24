@@ -85,7 +85,7 @@ function AIEditorToolkit(props: AIEditorToolkitProps) {
                     style={{
                       pointerEvents: 'auto',
                       background:
-                        'linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), radial-gradient(105.16% 105.16% at 50% -5.16%, rgba(255, 255, 255, 0.18) 0%, rgba(0, 0, 0, 0) 100%), rgb(2 1 25 / 98%)',
+                        'linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), radial-gradient(105.16% 105.16% at 50% -5.16%, rgba(255, 255, 255, 0.18) 0%, rgba(0, 0, 0, 0) 100%), rgb(15 34 51 / 98%)',
                     }}
                     className="rounded-2xl max-w-(--breakpoint-2xl) w-fit shadow-xl ring-1 ring-inset ring-white/10 text-white p-3 flex-col-reverse backdrop-blur-md"
                   >
@@ -446,7 +446,7 @@ const UserFeedbackModal = (props: AIEditorToolkitProps) => {
         style={{
           pointerEvents: 'auto',
           background:
-            'linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), radial-gradient(105.16% 105.16% at 50% -5.16%, rgba(255, 255, 255, 0.18) 0%, rgba(0, 0, 0, 0) 100%), rgb(2 1 25 / 95%)',
+            'linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), radial-gradient(105.16% 105.16% at 50% -5.16%, rgba(255, 255, 255, 0.18) 0%, rgba(0, 0, 0, 0) 100%), rgb(15 34 51 / 95%)',
         }}
         className="backdrop-blur-md	z-modal rounded-2xl max-w-(--breakpoint-2xl) my-10 mx-auto w-[500px] h-[200px] fixed bottom-16 left-1/2 transform -translate-x-1/2 shadow-xl ring-1 ring-inset ring-white/10 text-white p-3 flex-col-reverse"
       >

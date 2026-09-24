@@ -146,7 +146,7 @@ function AICanvaToolkit(props: AICanvaToolkitProps) {
       <div
         style={{
           background:
-            'linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), radial-gradient(105.16% 105.16% at 50% -5.16%, rgba(255, 255, 255, 0.18) 0%, rgba(0, 0, 0, 0) 100%), rgba(2, 1, 25, 0.98)',
+            'linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%), radial-gradient(105.16% 105.16% at 50% -5.16%, rgba(255, 255, 255, 0.18) 0%, rgba(0, 0, 0, 0) 100%), rgba(15, 34, 51, 0.98)',
         }}
         className="py-1 h-10 px-2 w-max text-white rounded-xl shadow-md cursor-pointer flex items-center space-x-2 antialiased animate-in fade-in-0 zoom-in-95 duration-200"
       >

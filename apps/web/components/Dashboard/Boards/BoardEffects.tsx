@@ -435,7 +435,7 @@ function spawnBlackhole() {
     left: '50%', top: '50%',
     width: '20px', height: '20px',
     borderRadius: '50%',
-    background: 'radial-gradient(circle, #000 40%, #4400aa 70%, transparent 100%)',
+    background: 'radial-gradient(circle, #000 40%, #0055ac 70%, transparent 100%)',
     boxShadow: '0 0 60px 20px rgba(100,0,255,0.5), 0 0 120px 40px rgba(100,0,255,0.2), inset 0 0 20px rgba(0,0,0,1)',
     transform: 'translate(-50%, -50%) scale(0)',
     animation: 'blackhole-core 3s ease-out forwards',
