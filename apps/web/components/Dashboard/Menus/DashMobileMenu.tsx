@@ -26,6 +26,7 @@ import {
   CaretDown,
   MagnifyingGlass,
   Code,
+  SquaresFour,
 } from '@phosphor-icons/react'
 import { SUPPORT_EMAIL, getSiteUrl, isFeedbackEnabled } from '@services/brand/brand'
 import Link from 'next/link'
@@ -41,6 +42,7 @@ import { AVAILABLE_LANGUAGES } from '@/lib/languages'
 import { getOrgLogoMediaDirectory } from '@services/media/media'
 import { cn } from '@/lib/utils'
 import { usePlan } from '@components/Hooks/usePlan'
+import useAdminStatus from '@components/Hooks/useAdminStatus'
 import { planMeetsRequirement } from '@services/plans/plans'
 import { FeedbackModal } from '@components/Objects/Modals/FeedbackModal'
 import { useCommandPalette } from '@components/Dashboard/CommandPalette/CommandPaletteContext'
@@ -51,6 +53,7 @@ function DashMobileMenu() {
   const { t, i18n } = useTranslation()
   const pathname = usePathname() || ''
   const plan = usePlan()
+  const { canManageOrg } = useAdminStatus()
   const { toggle: openSearch } = useCommandPalette()
   const [menuOpen, setMenuOpen] = useState(false)
   const [feedbackModalOpen, setFeedbackModalOpen] = useState(false)
@@ -215,6 +218,7 @@ function DashMobileMenu() {
                 <PanelItem href="/dash/analytics" icon={<ChartBar size={15} weight="fill" />} label="Analytics" active={isActive('/dash/analytics')} onClick={close} />
                 <PanelItem href="/dash/org/settings/general" icon={<Buildings size={15} weight="fill" />} label={t('common.organization')} active={isActive('/dash/org')} onClick={close} />
                 <PanelItem href="/dash/developers/api" icon={<Code size={15} weight="fill" />} label={t('dashboard.developers.breadcrumb', { defaultValue: 'Developers' })} active={isActive('/dash/developers')} onClick={close} />
+                {canManageOrg && <PanelItem href="/dash/apps" icon={<SquaresFour size={15} weight="fill" />} label={t('dashboard.integrated_apps.title')} active={isActive('/dash/apps')} onClick={close} />}
 
                 <div className="h-px bg-neutral-200 mx-2 my-1.5" />
 
