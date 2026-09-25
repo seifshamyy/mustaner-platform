@@ -1,5 +1,5 @@
 'use client'
-import { useCallback } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import { useAuth } from '@components/Contexts/AuthContext'
 import { getSiteUrl } from '@services/brand/brand'
 
@@ -50,7 +50,13 @@ export const siteOrigin = (): string | null => {
 
 /** A call to the website on behalf of the signed-in Admin; a stale token is refreshed and the call tried once more. */
 export function useSiteApi() {
-  const { getAccessToken, refreshSession } = useAuth()
+  // useAuth() hands out new functions on every render; keep the latest in a ref
+  // so this caller stays the same function and never re-triggers effects.
+  const auth = useAuth()
+  const latest = useRef(auth)
+  useEffect(() => {
+    latest.current = auth
+  })
 
   return useCallback(
     async <T,>(path: string, init?: { method?: string; body?: unknown }): Promise<T> => {
@@ -71,12 +77,12 @@ export function useSiteApi() {
           throw new SiteError('site_unavailable', 0)
         }
       }
-      let res = await send(await getAccessToken())
-      if (res.status === 401) res = await send(await refreshSession(true))
+      let res = await send(await latest.current.getAccessToken())
+      if (res.status === 401) res = await send(await latest.current.refreshSession(true))
       const body = (await res.json().catch(() => ({}))) as { error?: string }
       if (!res.ok) throw new SiteError(body.error ?? 'failed', res.status)
       return body as T
     },
-    [getAccessToken, refreshSession],
+    [],
   )
 }

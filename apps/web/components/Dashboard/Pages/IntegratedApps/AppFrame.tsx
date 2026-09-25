@@ -73,8 +73,12 @@ export function WebsiteEditorFrame() {
       .catch(setError)
   }, [pass])
 
+  // Open once. A new pass means a new frame address (a reload), so it is only
+  // fetched again when the editor asks for one or on "Try again".
+  const started = useRef(false)
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- fetching the pass is the external system here
+    if (started.current) return
+    started.current = true
     open()
   }, [open])
 
