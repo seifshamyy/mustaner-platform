@@ -52,10 +52,30 @@ function Message({ text, action }: { text: string; action?: React.ReactNode }) {
   )
 }
 
-const frameShell = 'flex flex-col w-full h-[calc(100dvh-6rem)] lg:h-screen bg-[#f8f8f8]'
+const frameShell = 'flex flex-col w-full h-[calc(100dvh-6rem)] lg:h-dvh bg-[#f8f8f8]'
+
+/**
+ * While an app is open it fills the screen and only the app scrolls. Without
+ * this, reaching the bottom of the app hands the scroll to the dashboard page,
+ * which then scrolls to the organization footer under the frame (a white band).
+ */
+function useStillPage() {
+  useEffect(() => {
+    const html = document.documentElement
+    const body = document.body
+    const previous = [html.style.overflow, html.style.overscrollBehavior, body.style.overflow, body.style.overscrollBehavior]
+    html.style.overflow = body.style.overflow = 'hidden'
+    html.style.overscrollBehavior = body.style.overscrollBehavior = 'none'
+    window.scrollTo(0, 0)
+    return () => {
+      ;[html.style.overflow, html.style.overscrollBehavior, body.style.overflow, body.style.overscrollBehavior] = previous
+    }
+  }, [])
+}
 
 /** The website editor, signed in with the Admin's platform sign-in (no password). */
 export function WebsiteEditorFrame() {
+  useStillPage()
   const { t } = useTranslation()
   const api = useSiteApi()
   const errorText = useErrorText()
@@ -146,6 +166,7 @@ export function WebsiteEditorFrame() {
 
 /** One of the organization's own apps. */
 export function CustomAppFrame({ id }: { id: number }) {
+  useStillPage()
   const { t } = useTranslation()
   const api = useSiteApi()
   const errorText = useErrorText()
