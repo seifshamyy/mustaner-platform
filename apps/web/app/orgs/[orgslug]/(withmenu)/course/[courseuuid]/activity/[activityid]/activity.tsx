@@ -11,6 +11,7 @@ import { useOrg, useOrgMembership } from '@components/Contexts/OrgContext'
 import { CourseProvider } from '@components/Contexts/CourseContext'
 import { useLHSession } from '@components/Contexts/LHSessionContext'
 import React, { useEffect, useRef, useMemo, lazy, Suspense } from 'react'
+import { lessonName, localizeCourse } from '@services/mustaner/bilingual'
 import { getAssignmentFromActivityUUID, getFinalGrade, retryAssignmentSubmission, submitAssignmentForGrading } from '@services/courses/assignments'
 import { AssignmentProvider } from '@components/Contexts/Assignments/AssignmentContext'
 import { AssignmentsTaskProvider } from '@components/Contexts/Assignments/AssignmentsTaskContext'
@@ -244,8 +245,11 @@ function ActivityClient(props: ActivityClientProps) {
   const orgslug = props.orgslug
   const org = useOrg() as any
 
-  const { data: course, isLoading: courseLoading } = useCourseMeta(courseuuid)
+  const { data: rawCourse, isLoading: courseLoading } = useCourseMeta(courseuuid)
   const { data: activity, isLoading: activityLoading } = useActivity(activityid)
+  // In Arabic, the course's Arabic copy (Mustaner's bilingual courses), English where there is none.
+  const course = useMemo(() => localizeCourse(rawCourse, i18n.language), [rawCourse, i18n.language])
+  const activityTitle = lessonName(rawCourse, activity, i18n.language)
   const session = useLHSession() as any;
   const pathname = usePathname()
   const access_token = session?.data?.tokens?.access_token;
@@ -495,7 +499,7 @@ function ActivityClient(props: ActivityClientProps) {
 
   const activityNameFromCourse = allActivities[currentIndex]?.name ?? ''
   const chapterNameFromCourse = allActivities[currentIndex]?.chapterName ?? ''
-  const displayName = activity?.name ?? activityNameFromCourse
+  const displayName = activity ? activityTitle : activityNameFromCourse
   const displayActivityType = allActivities[currentIndex]?.activity_type
 
   if (activity?.is_locked) {
@@ -670,7 +674,7 @@ function ActivityClient(props: ActivityClientProps) {
                           {activity && (
                             <div className="hidden sm:block">
                               <ActivityShareDropdown
-                                activityName={activity.name}
+                                activityName={activityTitle}
                                 activityUrl={typeof window !== 'undefined' ? window.location.href : ''}
                                 orgslug={orgslug}
                                 courseUuid={course.course_uuid}
@@ -853,7 +857,7 @@ function ActivityClient(props: ActivityClientProps) {
                           {activity && (
                             <div className="hidden sm:block">
                               <ActivityShareDropdown
-                                activityName={activity.name}
+                                activityName={activityTitle}
                                 activityUrl={typeof window !== 'undefined' ? window.location.href : ''}
                                 orgslug={orgslug}
                                 courseUuid={course.course_uuid}

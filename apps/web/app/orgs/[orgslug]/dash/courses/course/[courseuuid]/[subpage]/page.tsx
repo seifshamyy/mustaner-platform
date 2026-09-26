@@ -3,10 +3,11 @@ import React, { use, useEffect } from 'react';
 import { CourseProvider } from '../../../../../../../../components/Contexts/CourseContext'
 import { CourseOverviewTop } from '@components/Dashboard/Misc/CourseOverviewTop'
 import { motion } from 'motion/react'
-import { GalleryVerticalEnd, Globe, Info, UserPen, Award, Lock, Search } from 'lucide-react'
+import { GalleryVerticalEnd, Globe, Info, UserPen, Award, Lock, Search, Languages } from 'lucide-react'
 import { ChartBar } from '@phosphor-icons/react'
 import EditCourseStructure from '@components/Dashboard/Pages/Course/EditCourseStructure/EditCourseStructure'
 import EditCourseGeneral from '@components/Dashboard/Pages/Course/EditCourseGeneral/EditCourseGeneral'
+import EditCourseArabic from '@components/Dashboard/Pages/Course/EditCourseArabic/EditCourseArabic'
 import EditCourseAccess from '@components/Dashboard/Pages/Course/EditCourseAccess/EditCourseAccess'
 import EditCourseContributors from '@components/Dashboard/Pages/Course/EditCourseContributors/EditCourseContributors'
 import EditCourseCertification from '@components/Dashboard/Pages/Course/EditCourseCertification/EditCourseCertification'
@@ -46,6 +47,13 @@ function CourseOverviewPage(props: { params: Promise<CourseOverviewParams> }) {
       label: t('dashboard.courses.settings.tabs.general'),
       icon: Info,
       href: `/dash/courses/course/${params.courseuuid}/general`,
+      requiredPermission: 'update' as const
+    },
+    {
+      key: 'arabic',
+      label: t('dashboard.courses.settings.tabs.arabic', { defaultValue: 'Arabic' }),
+      icon: Languages,
+      href: `/dash/courses/course/${params.courseuuid}/arabic`,
       requiredPermission: 'update' as const
     },
     {
@@ -168,6 +176,9 @@ function CourseOverviewPage(props: { params: Promise<CourseOverviewParams> }) {
                 <div className="h-4 bg-gray-200 rounded w-full max-w-md" />
                 <div className="h-32 bg-gray-200 rounded w-full max-w-2xl mt-6" />
               </div>
+            ) : null}
+            {!rightsLoading && params.subpage == 'arabic' && hasPermission('update') ? (
+              <EditCourseArabic />
             ) : null}
             {!rightsLoading && params.subpage == 'content' && hasPermission('update_content') ? (
               <EditCourseStructure orgslug={params.orgslug} />

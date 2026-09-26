@@ -2131,7 +2131,8 @@
           "contributors": "Contributors",
           "seo": "SEO",
           "certification": "Certification",
-          "analytics": "Analytics"
+          "analytics": "Analytics",
+          "arabic": "Arabic"
         },
         "access_denied": {
           "title": "Access Denied",
@@ -2853,6 +2854,35 @@
             "scorm": "SCORM-compliant learning package"
           }
         }
+      },
+      "arabic": {
+        "title": "Arabic version",
+        "subtitle": "Shown when the platform is in Arabic and on the website in Arabic. Empty fields show the English.",
+        "progress": "{{done}} of {{total}} translated",
+        "translate": "Translate empty fields with AI",
+        "translating": "Translating…",
+        "translated": "{{count}} fields translated. Review, then save.",
+        "ai_not_configured": "AI translation is not set up yet.",
+        "ai_rate_limited": "Too many translations in a row. Wait a few minutes.",
+        "ai_failed": "The translation did not come through. Try again.",
+        "save": "Save",
+        "saving": "Saving…",
+        "saved": "Arabic version saved",
+        "save_failed": "Could not save. Try again.",
+        "course": "Course",
+        "name": "Name",
+        "description": "Description",
+        "about": "About",
+        "learnings": "What you'll learn",
+        "details": "Program details",
+        "fact_audience": "Who it is for",
+        "fact_delivery": "Format",
+        "fact_schedule": "Schedule",
+        "fact_stack": "Tools",
+        "fact_capstone": "Final project",
+        "chapter": "Chapter",
+        "chapter_name": "Chapter name",
+        "lesson": "Lesson"
       }
     },
     "organization": {

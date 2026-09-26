@@ -25,6 +25,7 @@ import {
   DropdownMenuTrigger,
 } from "@components/ui/dropdown-menu"
 import { useTranslation } from 'react-i18next'
+import { localizeCourse } from '@services/mustaner/bilingual'
 import { formatDate } from '@/lib/format'
 import { useLHAnalytics, AnalyticsEvent } from '@services/analytics'
 
@@ -65,6 +66,8 @@ export const removeCoursePrefix = (course_uuid: string) => course_uuid.replace('
 
 function CourseThumbnail({ course, orgslug, customLink, isDashboard = false, isSelected = false, onToggleSelect, isPriority = false }: PropsType) {
   const { t, i18n } = useTranslation()
+  // The card's name and description in the interface language (Mustaner's bilingual courses).
+  const shown = localizeCourse(course, i18n.language)
   const org = useOrg() as any
   const session = useLHSession() as any
   const queryClient = useQueryClient()
@@ -223,13 +226,13 @@ function CourseThumbnail({ course, orgslug, customLink, isDashboard = false, isS
             onClick={handleCardOpen}
             className="text-base font-bold text-gray-900 leading-tight hover:text-black transition-colors line-clamp-1"
            dir="auto">
-            {course.name}
+            {shown.name}
           </Link>
         </div>
         
-        {course.description && (
-          <p className="text-[11px] text-gray-500 line-clamp-2 min-h-[1.5rem]">
-            {course.description}
+        {shown.description && (
+          <p className="text-[11px] text-gray-500 line-clamp-2 min-h-[1.5rem]" dir="auto">
+            {shown.description}
           </p>
         )}
 

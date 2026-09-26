@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import React, { useEffect, useState, Suspense } from 'react'
+import React, { useEffect, useMemo, useState, Suspense } from 'react'
 import { getUriWithOrg } from '@services/config/config'
 import { getCourseMetadata } from '@services/courses/courses'
 import { useTrail } from '@/hooks/queries/useTrail'
@@ -24,13 +24,14 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { queryKeys } from '@/lib/query/keys'
 import { getActivityWithAuthHeader } from '@services/courses/activities'
 import { useTranslation } from 'react-i18next'
+import { localizeCourse } from '@services/mustaner/bilingual'
 import CourseCommunitySection from '@components/Objects/Communities/CourseCommunitySection'
 import CourseShare from '@components/Objects/Courses/CourseShare/CourseShare'
 import { JsonLd } from '@components/SEO/JsonLd'
 import { useLHAnalytics, AnalyticsEvent } from '@services/analytics'
 
 const CourseClient = (props: any) => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const [learnings, setLearnings] = useState<any>([])
   const [expandedChapters, setExpandedChapters] = useState<{[key: string]: boolean}>({})
   const [activeThumbnailType, setActiveThumbnailType] = useState<'image' | 'video'>('image')
@@ -53,7 +54,9 @@ const CourseClient = (props: any) => {
     refetchOnWindowFocus: false,
   });
 
-  const course = initialCourse || clientCourseData;
+  // In Arabic, the course's Arabic copy (Mustaner's bilingual courses), English where there is none.
+  const rawCourse = initialCourse || clientCourseData;
+  const course = useMemo(() => localizeCourse(rawCourse, i18n.language), [rawCourse, i18n.language]);
 
   const { track } = useLHAnalytics('learner')
 
